@@ -271,7 +271,7 @@
     <div class="section-label" data-i="sl.pri">Website Pricing</div>
     <h2 class="section-title reveal" data-i="st.pri">Transparent Pricing for Every Need</h2>
     <p class="section-desc reveal" data-i="sd.pri">Choose the level that fits your business. Every project is quoted individually.</p>
-    <div class="grid-3">
+    <div class="grid-3 keep-3">
       <!-- STARTER -->
       <div class="price-card reveal">
         <div class="price-tier" data-i="p1ti">Starter</div>
@@ -328,7 +328,7 @@
     <div class="section-label" data-i="sl.smm">Marketing and SMM</div>
     <h2 class="section-title reveal" data-i="st.smm">Advertising and Social Media Packages</h2>
     <p class="section-desc reveal" data-i="sd.smm">From one-time ad setup to full-service social media management by our specialists.</p>
-    <div class="grid-3">
+    <div class="grid-3 keep-3">
       <div class="smm-card reveal">
         <div class="smm-tier" data-i="sm1ti">Setup</div>
         <h3 data-i="sm1t">Ad Campaign Setup</h3>
@@ -459,7 +459,7 @@
             <rect x="238" y="54" width="96" height="68" rx="6" fill="#4dff91" fill-opacity="0.08"/><rect x="242" y="58" width="88" height="40" rx="4" fill="#4dff91" fill-opacity="0.15"/><rect x="242" y="102" width="60" height="5" rx="2" fill="#333" fill-opacity="0.15"/><rect x="242" y="111" width="40" height="5" rx="2" fill="#4dff91" fill-opacity="0.4"/>
             <rect x="22" y="134" width="96" height="48" rx="6" fill="#7B2FBE" fill-opacity="0.05"/><rect x="130" y="134" width="96" height="48" rx="6" fill="#E84393" fill-opacity="0.05"/><rect x="238" y="134" width="96" height="48" rx="6" fill="#FF6B35" fill-opacity="0.05"/>
           </svg>
-          <div class="folio-overlay"><span data-i="fv">View Project</span></div>
+          <div class="folio-overlay" onclick="openProject(this)"><span data-i="fv">View Project</span></div>
         </div>
         <div class="folio-info">
           <div class="tags"><span class="tag">Marketplace</span><span class="tag">React</span></div>
@@ -488,7 +488,7 @@
             <rect x="242" y="136" width="80" height="6" rx="3" fill="#333" fill-opacity="0.1"/>
             <rect x="242" y="148" width="40" height="10" rx="5" fill="#FF6B35" fill-opacity="0.5"/>
           </svg>
-          <div class="folio-overlay"><span data-i="fv">View Project</span></div>
+          <div class="folio-overlay" onclick="openProject(this)"><span data-i="fv">View Project</span></div>
         </div>
         <div class="folio-info">
           <div class="tags"><span class="tag">Booking</span><span class="tag">Platform</span></div>
@@ -522,7 +522,7 @@
             <rect x="192" y="148" width="80" height="6" rx="3" fill="#333" fill-opacity="0.1"/>
             <rect x="192" y="160" width="50" height="6" rx="3" fill="#E84393" fill-opacity="0.2"/>
           </svg>
-          <div class="folio-overlay"><span data-i="fv">View Project</span></div>
+          <div class="folio-overlay" onclick="openProject(this)"><span data-i="fv">View Project</span></div>
         </div>
         <div class="folio-info">
           <div class="tags"><span class="tag">Real Estate</span><span class="tag">Next.js</span></div>
@@ -554,7 +554,7 @@
             <rect x="28" y="234" width="104" height="28" rx="14" fill="#4dff91" fill-opacity="0.25"/>
             <rect x="48" y="244" width="64" height="6" rx="3" fill="white" fill-opacity="0.8"/>
           </svg>
-          <div class="folio-overlay"><span data-i="fv">View Project</span></div>
+          <div class="folio-overlay" onclick="openProject(this)"><span data-i="fv">View Project</span></div>
         </div>
         <div class="folio-info">
           <div class="tags"><span class="tag">Mobile App</span><span class="tag">iOS &amp; Android</span></div>
@@ -596,7 +596,7 @@
     <div class="section-label" data-i="sl.prc">How We Work</div>
     <h2 class="section-title reveal center" data-i="st.prc">From Idea to Result</h2>
     <p class="section-desc reveal center-desc" data-i="sd.prc">Clear, transparent process to deliver your project on time and on budget.</p>
-    <div class="grid-4">
+    <div class="grid-4 keep-3">
       <div class="process-step reveal"><div class="step-num">01</div><h3 data-i="pr1t">Discovery</h3><p data-i="pr1d">We dive into your business, analyze competitors and create a detailed plan.</p></div>
       <div class="process-step reveal"><div class="step-num">02</div><h3 data-i="pr2t">Design</h3><p data-i="pr2d">Visual concept and interactive prototype for your approval.</p></div>
       <div class="process-step reveal"><div class="step-num">03</div><h3 data-i="pr3t">Development</h3><p data-i="pr3d">Clean code, thorough testing, analytics setup and smooth launch.</p></div>
@@ -658,7 +658,39 @@
   </div>
 </footer>
 
+
+<!-- PROJECT MODAL -->
+<div class="project-modal" id="projectModal">
+  <div class="pm-backdrop" onclick="closeModal()"></div>
+  <div class="pm-content">
+    <button class="pm-close" onclick="closeModal()">&times;</button>
+    <div class="pm-mockup" id="pmMockup"></div>
+    <div class="pm-info">
+      <div class="pm-tags" id="pmTags"></div>
+      <h3 id="pmTitle"></h3>
+      <p id="pmDesc"></p>
+      <div class="pm-details" id="pmDetails"></div>
+    </div>
+  </div>
+</div>
+
 <!-- COOKIE BANNER (GDPR) -->
+
+<!-- PROJECT MODAL -->
+<div class="project-modal" id="projectModal">
+  <div class="pm-backdrop" onclick="closeModal()"></div>
+  <div class="pm-content">
+    <button class="pm-close" onclick="closeModal()">&times;</button>
+    <div class="pm-mockup" id="pmMockup"></div>
+    <div class="pm-info">
+      <div class="pm-tags" id="pmTags"></div>
+      <h3 id="pmTitle"></h3>
+      <p id="pmDesc"></p>
+      <div class="pm-details" id="pmDetails"></div>
+    </div>
+  </div>
+</div>
+
 <!-- COOKIE BANNER (GDPR) -->
 <div class="cookie-banner" id="cookieBanner">
   <p class="cookie-text" data-ih="ck.t">We use cookies to improve your experience. By continuing you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
