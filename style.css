@@ -638,3 +638,4 @@ footer { background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.06
     .keep-3 .smm-features li::before { font-size: 0.55rem }
 }
 .seo-text{padding:40px 0;background:var(--bg);border-top:1px solid var(--border)}.seo-text h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;color:var(--text-dark)}.seo-text p{font-size:0.78rem;color:var(--text-light);line-height:1.7;margin-bottom:8px}
+.smm-card{cursor:pointer;}.price-card{cursor:pointer;}

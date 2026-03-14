@@ -266,5 +266,145 @@
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closeModal();
     });
+// === SMM PACKAGE DETAILS ===
+    var smmDetails = [
+        {
+            title: 'Ad Campaign Setup - €599',
+            list: [
+                'Target audience & competitor analysis',
+                'Campaign structure & strategy',
+                'Keyword research (Google Ads)',
+                'Ad creatives (up to 5)',
+                'Targeting setup (geo, demographics, interests)',
+                'Conversion & goal tracking',
+                'Google Ads / Meta Ads integration',
+                'A/B testing of ads',
+                'Retargeting setup',
+                'Performance report (first 2 weeks)'
+            ]
+        },
+        {
+            title: 'Ads + SMM Management - €1,399+/mo',
+            list: [
+                'Google Ads campaign management',
+                'Meta Ads (Facebook + Instagram)',
+                '12 social media posts / month',
+                'Stories & Reels (up to 8/mo)',
+                'Creative design for posts & ads',
+                'Community management',
+                'Monthly campaign optimization',
+                'A/B testing',
+                'Monthly analytics report',
+                'Conversion improvement recommendations'
+            ]
+        },
+        {
+            title: 'Dedicated SMM Specialist - €2,500+/mo',
+            list: [
+                'Personal account manager',
+                'Full Google Ads & Meta Ads management',
+                '20+ posts / month',
+                'Stories & Reels (up to 16/mo)',
+                'Content strategy & content plan',
+                'Professional copywriting',
+                'All creative design',
+                'Influencer & blogger outreach',
+                'Reputation management',
+                'TikTok content & ads',
+                'Email marketing setup',
+                'Weekly reports & calls',
+                'SEO monitoring & optimization',
+                'Priority support'
+            ]
+        }
+    ];
 
+    document.querySelectorAll('.smm-card').forEach(function(card, i) {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function() {
+            if (i >= smmDetails.length) return;
+            var d = smmDetails[i];
+            var modal = document.getElementById('projectModal');
+            document.getElementById('pmMockup').innerHTML = '';
+            document.getElementById('pmTags').innerHTML = '';
+            document.getElementById('pmTitle').textContent = d.title;
+            document.getElementById('pmDesc').textContent = '';
+            document.getElementById('pmDetails').innerHTML = '<ul>' + d.list.map(function(item) { return '<li>' + item + '</li>'; }).join('') + '</ul>';
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+// === PRICING CARD DETAILS ===
+    var pricingDetails = [
+        {
+            title: 'Starter - €700+',
+            list: [
+                'Responsive landing page',
+                'Contact form with email notifications',
+                'Mobile-first design',
+                'Basic SEO setup (meta tags, sitemap)',
+                'SSL certificate (HTTPS)',
+                'Google Analytics integration',
+                'Social media links',
+                'GDPR cookie banner',
+                '1 round of revisions',
+                'Delivery: 5-7 business days'
+            ]
+        },
+        {
+            title: 'Business - €1,700+',
+            list: [
+                'Multi-page website (up to 8 pages)',
+                'Custom UX/UI design in Figma',
+                'Content management system (CMS)',
+                'Advanced SEO (schema, hreflang, keywords)',
+                'Google Analytics + Search Console',
+                'Blog / news section',
+                'Multi-language support',
+                'Contact form + Google Maps',
+                'Social media integration',
+                'Speed optimization',
+                '2 rounds of revisions',
+                '1 month free support',
+                'Delivery: 2-3 weeks'
+            ]
+        },
+        {
+            title: 'Advanced - €4,500+',
+            list: [
+                'Admin panel + user-facing side',
+                'Payment integration (Stripe, PayPal)',
+                'User accounts, roles & permissions',
+                'Booking / shopping cart system',
+                'API integrations (CRM, ERP, email)',
+                'Advanced search & filtering',
+                'Dashboard with analytics',
+                'Email notifications system',
+                'Multi-language support',
+                'Full SEO package',
+                'Load testing & optimization',
+                'Priority support (SLA)',
+                '3 rounds of revisions',
+                'Delivery: 4-8 weeks'
+            ]
+        }
+    ];
+
+    document.querySelectorAll('.price-card').forEach(function(card, i) {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function(e) {
+            if (e.target.classList.contains('price-btn')) return;
+            if (i >= pricingDetails.length) return;
+            var d = pricingDetails[i];
+            var modal = document.getElementById('projectModal');
+            document.getElementById('pmMockup').innerHTML = '';
+            document.getElementById('pmTags').innerHTML = '';
+            document.getElementById('pmTitle').textContent = d.title;
+            document.getElementById('pmDesc').textContent = '';
+            document.getElementById('pmDetails').innerHTML = '<ul>' + d.list.map(function(item) { return '<li>' + item + '</li>'; }).join('') + '</ul>';
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+    });
 })();
