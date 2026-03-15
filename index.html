@@ -1,703 +1,661 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BoostLab | Web Development, Apps, Digital Marketing | Estonia</title>
-  <meta name="description" content="BoostLab - full-cycle digital agency in Estonia. Custom websites, mobile apps, turnkey platforms, Google Ads, SMM and technical support for businesses.">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="BoostLab">
-  <meta name="theme-color" content="#0f172a">
-  <link rel="canonical" href="https://boostlab.lt/">
-  <meta property="og:title" content="BoostLab Digital Agency Estonia">
-  <meta property="og:description" content="Custom websites, apps, turnkey platforms. Full-cycle digital services.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://boostlab.lt">
-  <meta property="og:image" content="https://boostlab.lt/og-image.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="BoostLab digital agency website preview">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="BoostLab Digital Agency Estonia">
-  <meta name="twitter:description" content="Custom websites, apps, turnkey platforms.">
-  <meta name="twitter:image" content="https://boostlab.lt/og-image.jpg">
-  <link rel="icon" type="image/png" href="logo.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5F8H438EKX"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5F8H438EKX");gtag("config","AW-18015999232");gtag("config","GT-TQDGLZ8J");</script>
-  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","137665235020353");fbq("track","PageView");</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"FANARI OÜ","alternateName":"BoostLab","url":"https://boostlab.lt","description":"Full-cycle digital agency in Estonia","address":{"@type":"PostalAddress","addressCountry":"EE","addressLocality":"Tallinn"},"contactPoint":{"@type":"ContactPoint","email":"info@boostlab.lt","contactType":"sales"}}</script>
-</head>
-<body>
+/* ============================================
+BoostLab - style.css
+Fonts: Plus Jakarta Sans, Fira Code (OFL)
+Colors: Purple/Pink/Orange brand palette
+============================================ */
 
-<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
-    <symbol id="i-mobile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></symbol>
-    <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
-    <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
-    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
-    <symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></symbol>
-    <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
-    <symbol id="i-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
-    <symbol id="i-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h11l5 5v5h-2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></symbol>
-    <symbol id="i-ticket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v2z"/></symbol>
-    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
-    <symbol id="i-brief" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
-    <symbol id="i-plane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></symbol>
-    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
-    <symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></symbol>
-    <symbol id="i-tool" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
-    <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></symbol>
-    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
-    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
-    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
-    <symbol id="i-activity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></symbol>
-    <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
-    <symbol id="i-headset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></symbol>
-    <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></symbol>
-  </defs>
-</svg>
+/* === RESET & VARIABLES === */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+--purple: #7B2FBE;
+--purple-deep: #5B1F94;
+--purple-light: #9B4FDE;
+--orange: #FF6B35;
+--orange-warm: #FF8C42;
+--pink: #E84393;
+--gradient: linear-gradient(135deg, #7B2FBE 0%, #E84393 50%, #FF6B35 100%);
+--gradient-subtle: linear-gradient(135deg, rgba(123,47,190,0.08), rgba(232,67,147,0.04), rgba(255,107,53,0.02));
+--bg: #FAFBFC;
+--bg-white: #FFFFFF;
+--bg-dark: #0D0B14;
+--text-dark: #1A1A2E;
+--text-body: #4A4A68;
+--text-light: #8888A0;
+--border: #E8E8F0;
+--border-hover: #D0D0E0;
+--shadow: 0 4px 16px rgba(0,0,0,0.06);
+--shadow-purple: 0 8px 30px rgba(123,47,190,0.15);
+--radius: 16px;
+--radius-sm: 10px;
+--font: 'Plus Jakarta Sans', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+--font-mono: 'Fira Code', monospace;
+--max-w: 1200px;
+--nav-h: 80px;
+}
 
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <svg width="20" height="20" class="logo-svg-icon"><use href="#i-rocket"/></svg>
-      <span class="logo-boost">Boost</span><span class="logo-lab">Lab</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#services" data-i="nav.services">Services</a></li>
-      <li><a href="#ready" data-i="nav.platforms">Platforms</a></li>
-      <li><a href="#pricing" data-i="nav.pricing">Pricing</a></li>
-      <li><a href="#portfolio" data-i="nav.portfolio">Portfolio</a></li>
-      <li><a href="#calculator" data-i="nav.calculator">Calculator</a></li>
-    </ul>
-    <div class="nav-right">
-      <div class="lang-switch">
-        <button class="lang-btn active" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="et">ET</button>
-        <button class="lang-btn" data-lang="ru">RU</button>
-      </div>
-      <a href="#contact" class="nav-cta" data-i="nav.cta">Get a Quote</a>
-    </div>
-    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-</nav>
+html { scroll-behavior: smooth }
+body {
+font-family: var(--font);
+color: var(--text-body);
+background: var(--bg);
+line-height: 1.6;
+-webkit-font-smoothing: antialiased;
+overflow-x: hidden;
+}
+img { max-width: 100%; display: block }
+a { text-decoration: none; color: inherit }
+ul { list-style: none }
 
-<div class="mob-menu" id="mobMenu">
-  <a href="#services" data-i="nav.services">Services</a>
-  <a href="#ready" data-i="nav.platforms">Platforms</a>
-  <a href="#pricing" data-i="nav.pricing">Pricing</a>
-  <a href="#portfolio" data-i="nav.portfolio">Portfolio</a>
-  <a href="#calculator" data-i="nav.calculator">Calculator</a>
-  <a href="#contact" data-i="nav.cta">Get a Quote</a>
-  <div class="lang-switch" style="margin-top:16px">
-    <button class="lang-btn active" data-lang="en">EN</button>
-    <button class="lang-btn" data-lang="et">ET</button>
-    <button class="lang-btn" data-lang="ru">RU</button>
-  </div>
-</div>
+/* === TYPOGRAPHY === */
+h1, h2, h3, h4 { color: var(--text-dark); font-weight: 700; line-height: 1.15 }
+h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); letter-spacing: -1.5px }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -1px }
+h3 { font-size: 1.25rem; letter-spacing: -0.3px }
 
-<!-- HERO -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-text">
-      <div class="hero-badge" data-i="hero.badge">Full-Cycle Digital Agency</div>
-      <h1 data-ih="hero.title">Web Development &amp; Digital Agency.<br><span class="gradient-text">We Build. We Launch. We Scale.</span></h1>
-      <p class="hero-sub" data-i="hero.sub">Turnkey websites, platforms and mobile apps. Advertising, SMM and 24/7 support for your business growth.</p>
-      <div class="hero-buttons">
-        <a href="#contact" class="btn btn-primary" data-i="hero.cta1">Discuss Your Project</a>
-        <a href="#services" class="btn btn-outline" data-i="hero.cta2">Our Services</a>
-      </div>
-      <div class="hero-stats">
-        <div><div class="stat-num">150+</div><div class="stat-label" data-i="hero.s1">Projects Delivered</div></div>
-        <div><div class="stat-num">98%</div><div class="stat-label" data-i="hero.s2">Client Satisfaction</div></div>
-        <div><div class="stat-num">24/7</div><div class="stat-label" data-i="hero.s3">Tech Support</div></div>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="hero-cards">
-        <div class="float-card fc1">
-          <div class="fc-icon"><svg width="20" height="20"><use href="#i-globe"/></svg></div>
-          <div class="fc-title" data-i="hc1t">Web Platform</div>
-          <div class="fc-sub" data-i="hc1s">Live &amp; Growing</div>
-          <div class="fc-bar"><div class="fc-bar-fill" style="width:92%"></div></div>
-        </div>
-        <div class="float-card fc2">
-          <div class="fc-icon"><svg width="20" height="20"><use href="#i-mobile"/></svg></div>
-          <div class="fc-title" data-i="hc2t">Mobile App</div>
-          <div class="fc-sub" data-i="hc2s">iOS &amp; Android</div>
-          <div class="fc-bar"><div class="fc-bar-fill" style="width:78%"></div></div>
-        </div>
-        <div class="float-card fc3">
-          <div class="fc-icon"><svg width="20" height="20"><use href="#i-trend"/></svg></div>
-          <div class="fc-title" data-i="hc3t">Ad Campaign</div>
-          <div class="fc-sub" data-i="hc3s">ROAS 4.2x</div>
-          <div class="fc-bar"><div class="fc-bar-fill" style="width:85%"></div></div>
-        </div>
-        <div class="float-card fc4">
-          <div class="fc-icon"><svg width="20" height="20"><use href="#i-shield"/></svg></div>
-          <div class="fc-title" data-i="hc4t">Tech Support</div>
-          <div class="fc-sub" data-i="hc4s">99.9% Uptime</div>
-          <div class="fc-bar"><div class="fc-bar-fill" style="width:99%"></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+/* === LAYOUT === */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 32px }
+section { padding: 100px 0 }
+.center { text-align: center }
+.center-desc { text-align: center; margin-left: auto; margin-right: auto }
+.alt-bg { background: var(--bg) }
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="container trust-inner">
-    <div class="trust-label" data-i="trust">Trusted by businesses across Europe</div>
-    <div class="trust-logos">
-      <span>CryptoATM.tech</span><span>NordicAuto</span><span>EstBuild</span><span>BalticPay</span><span>SmartLogic</span>
-    </div>
-  </div>
-</div>
+.section-label {
+font-family: var(--font-mono);
+font-size: 0.75rem;
+font-weight: 500;
+text-transform: uppercase;
+letter-spacing: 3px;
+background: var(--gradient);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+margin-bottom: 12px;
+}
+.section-title { margin-bottom: 16px }
+.section-desc {
+color: var(--text-light);
+font-size: 1.05rem;
+max-width: 560px;
+line-height: 1.7;
+margin-bottom: 48px;
+font-weight: 400;
+}
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="container">
-    <div class="section-label" data-i="sl.srv">What We Do</div>
-    <h2 class="section-title reveal" data-i="st.srv">Full-Spectrum Digital Services</h2>
-    <p class="section-desc reveal" data-i="sd.srv">From concept to launch and ongoing growth - we handle every aspect of your digital presence.</p>
-    <div class="grid-3">
-      <div class="service-card reveal">
-        <div class="card-icon"><svg width="26" height="26"><use href="#i-globe"/></svg></div>
-        <h3 data-i="s1t">Website Development</h3>
-        <p data-i="s1d">Landing pages, corporate sites, e-commerce and complex web platforms. Modern design, SEO-optimized.</p>
-        <div class="tags"><span class="tag">Landing</span><span class="tag">E-commerce</span><span class="tag">Corporate</span></div>
-      </div>
-      <div class="service-card reveal">
-        <div class="card-icon"><svg width="26" height="26"><use href="#i-mobile"/></svg></div>
-        <h3 data-i="s2t">Mobile Applications</h3>
-        <p data-i="s2d">Native and cross-platform apps for iOS and Android. UX design to store publishing.</p>
-        <div class="tags"><span class="tag">iOS</span><span class="tag">Android</span><span class="tag">React Native</span></div>
-      </div>
-      <div class="service-card reveal">
-        <div class="card-icon"><svg width="26" height="26"><use href="#i-target"/></svg></div>
-        <h3 data-i="s3t">Advertising &amp; PPC</h3>
-        <p data-i="s3d">Google Ads, Meta, TikTok campaigns. Analytics, A/B testing and ROI optimization.</p>
-        <div class="tags"><span class="tag">Google Ads</span><span class="tag">Meta</span><span class="tag">TikTok</span></div>
-      </div>
-      <div class="service-card reveal">
-        <div class="card-icon"><svg width="26" height="26"><use href="#i-send"/></svg></div>
-        <h3 data-i="s4t">SMM &amp; Content</h3>
-        <p data-i="s4d">Content strategy, social media management, community building and audience growth.</p>
-        <div class="tags"><span class="tag">Instagram</span><span class="tag">Telegram</span><span class="tag">TikTok</span></div>
-      </div>
-      <div class="service-card reveal">
-        <div class="card-icon"><svg width="26" height="26"><use href="#i-headset"/></svg></div>
-        <h3 data-i="s5t">Technical Support</h3>
-        <p data-i="s5d">24/7 monitoring, updates, bug fixes, hosting and ongoing maintenance.</p>
-        <div class="tags"><span class="tag">Monitoring</span><span class="tag">SLA</span><span class="tag">Hosting</span></div>
-      </div>
-      <div class="service-card reveal">
-        <div class="card-icon"><svg width="26" height="26"><use href="#i-pen"/></svg></div>
-        <h3 data-i="s6t">UX/UI Design</h3>
-        <p data-i="s6d">User research, interface design, prototyping and design systems.</p>
-        <div class="tags"><span class="tag">Figma</span><span class="tag">Prototypes</span><span class="tag">Design System</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px }
 
-<!-- READY-MADE PLATFORMS -->
-<section class="dark-section" id="ready">
-  <div class="container">
-    <div class="section-label" data-i="sl.rdy">Turnkey Platforms</div>
-    <h2 class="section-title reveal" data-i="st.rdy">Ready-Made Projects — Launch in 4–6 Months</h2>
-    <p class="section-desc reveal" data-i="sd.rdy">Pre-built platform foundations customized for your business. Faster to market, proven architecture.</p>
-    <div class="grid-3">
-      <div class="ready-card reveal">
-        <div class="ready-icon"><svg width="30" height="30"><use href="#i-bag"/></svg></div>
-        <h3 data-i="r1t">Marketplace Platform</h3>
-        <p data-i="r1d">Multi-vendor marketplace with seller dashboards, payments, reviews and admin panel.</p>
-        <div class="ready-price">&euro;19,790+</div>
-        <div class="ready-note" data-i="rn">+ customization</div>
-        <div class="ready-features">
-          <span data-i="r1f1">Multi-vendor management</span>
-          <span data-i="r1f2">Payment integration</span>
-          <span data-i="r1f3">Search and filters</span>
-          <span data-i="r1f4">Admin dashboard</span>
-        </div>
-      </div>
-      <div class="ready-card reveal">
-        <div class="ready-icon"><svg width="30" height="30"><use href="#i-car"/></svg></div>
-        <h3 data-i="r2t">Car Rental Platform</h3>
-        <p data-i="r2d">Vehicle listing, booking calendar, pricing engine and fleet management.</p>
-        <div class="ready-price">&euro;21,790+</div>
-        <div class="ready-note" data-i="rn">+ customization</div>
-        <div class="ready-features">
-          <span data-i="r2f1">Booking system</span>
-          <span data-i="r2f2">Fleet management</span>
-          <span data-i="r2f3">Dynamic pricing</span>
-          <span data-i="r2f4">User verification</span>
-        </div>
-      </div>
-      <div class="ready-card reveal">
-        <div class="ready-icon"><svg width="30" height="30"><use href="#i-ticket"/></svg></div>
-        <h3 data-i="r3t">Ticket Platform</h3>
-        <p data-i="r3d">Event tickets: sales, seating, QR validation and organizer tools.</p>
-        <div class="ready-price">&euro;18,790+</div>
-        <div class="ready-note" data-i="rn">+ customization</div>
-        <div class="ready-features">
-          <span data-i="r3f1">Seat selection</span>
-          <span data-i="r3f2">QR code tickets</span>
-          <span data-i="r3f3">Organizer dashboard</span>
-          <span data-i="r3f4">Payment processing</span>
-        </div>
-      </div>
-      <div class="ready-card reveal">
-        <div class="ready-icon"><svg width="30" height="30"><use href="#i-home"/></svg></div>
-        <h3 data-i="r4t">Real Estate Platform</h3>
-        <p data-i="r4d">Property listings, map search, agent profiles and mortgage calculators.</p>
-        <div class="ready-price">&euro;27,900+</div>
-        <div class="ready-note" data-i="rn">+ customization</div>
-        <div class="ready-features">
-          <span data-i="r4f1">Map-based search</span>
-          <span data-i="r4f2">Agent profiles</span>
-          <span data-i="r4f3">Mortgage calculator</span>
-          <span data-i="r4f4">Lead management</span>
-        </div>
-      </div>
-      <div class="ready-card reveal">
-        <div class="ready-icon"><svg width="30" height="30"><use href="#i-brief"/></svg></div>
-        <h3 data-i="r5t">Job Search Platform</h3>
-        <p data-i="r5d">Job posting, applicant tracking, company profiles and matching algorithms.</p>
-        <div class="ready-price">&euro;19,690+</div>
-        <div class="ready-note" data-i="rn">+ customization</div>
-        <div class="ready-features">
-          <span data-i="r5f1">Job posting and search</span>
-          <span data-i="r5f2">Applicant tracking</span>
-          <span data-i="r5f3">CV builder</span>
-          <span data-i="r5f4">Smart matching</span>
-        </div>
-      </div>
-      <div class="ready-card reveal">
-        <div class="ready-icon"><svg width="30" height="30"><use href="#i-plane"/></svg></div>
-        <h3 data-i="r6t">Travel Booking Platform</h3>
-        <p data-i="r6d">Flight and hotel search, package deals, booking management and reviews.</p>
-        <div class="ready-price">&euro;36,590+</div>
-        <div class="ready-note" data-i="rn">+ customization</div>
-        <div class="ready-features">
-          <span data-i="r6f1">Search and booking</span>
-          <span data-i="r6f2">Package deals</span>
-          <span data-i="r6f3">Review system</span>
-          <span data-i="r6f4">Loyalty program</span>
-        </div>
-      </div>
-    </div>
-    <div class="addon-bar reveal">
-      <div class="addon-text">
-        <h4 data-i="addon.t">Need a Mobile App?</h4>
-        <p data-i="addon.d">Add native iOS or Android apps to any platform</p>
-      </div>
-      <div class="addon-prices">
-        <div class="addon-item"><div class="addon-val">+&euro;4,970</div><div class="addon-label">Google Play</div></div>
-        <div class="addon-item"><div class="addon-val">+&euro;5,970</div><div class="addon-label">App Store</div></div>
-      </div>
-    </div>
-  </div>
-</section>
+/* === BUTTONS === */
+.btn {
+display: inline-flex; align-items: center; gap: 8px;
+padding: 14px 32px; border-radius: var(--radius-sm);
+font-weight: 600; font-size: 0.95rem;
+transition: all 0.3s ease; cursor: pointer;
+border: none; font-family: var(--font);
+}
+.btn-primary {
+background: var(--gradient); color: #fff;
+box-shadow: var(--shadow-purple);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(123,47,190,0.25) }
+.btn-outline {
+background: transparent; color: var(--text-dark);
+border: 1.5px solid var(--border);
+}
+.btn-outline:hover { border-color: var(--purple); color: var(--purple) }
+.btn-outline-light { color: #fff; border-color: rgba(255,255,255,0.2) }
+.btn-outline-light:hover { border-color: #fff; color: #fff }
 
-<!-- PRICING -->
-<section id="pricing">
-  <div class="container">
-    <div class="section-label" data-i="sl.pri">Website Pricing</div>
-    <h2 class="section-title reveal" data-i="st.pri">Transparent Pricing for Every Need</h2>
-    <p class="section-desc reveal" data-i="sd.pri">Choose the level that fits your business. Every project is quoted individually.</p>
-    <div class="grid-3 keep-3">
-      <div class="price-card reveal">
-        <div class="price-tier" data-i="p1ti">Starter</div>
-        <div class="price-value">&euro;700+</div>
-        <p class="price-desc" data-i="p1ds">Landing page with contact form. Perfect for quick launch and lead generation.</p>
-        <ul class="price-features">
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p1f1">Responsive landing page</span></li>
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p1f2">Contact form</span></li>
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p1f3">Mobile-first design</span></li>
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p1f4">Basic SEO setup</span></li>
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p1f5">SSL certificate</span></li>
-        </ul>
-        <a href="#contact" class="price-btn" data-i="pbtn">Get a Quote</a>
-      </div>
-      <div class="price-card featured reveal">
-        <div class="price-badge" data-i="ppop">Popular</div>
-        <div class="price-tier" data-i="p2ti">Business</div>
-        <div class="price-value">&euro;1,700+</div>
-        <p class="price-desc" data-i="p2ds">Professional multi-page site for businesses. Custom design and CMS.</p>
-        <ul class="price-features">
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p2f1">Multi-page website</span></li>
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p2f2">Custom UX/UI design</span></li>
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p2f3">Content management (CMS)</span></li>
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p2f4">Advanced SEO</span></li>
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p2f5">Analytics integration</span></li>
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p2f6">1 month support</span></li>
-        </ul>
-        <a href="#contact" class="price-btn" data-i="pbtn">Get a Quote</a>
-      </div>
-      <div class="price-card reveal">
-        <div class="price-tier" data-i="p3ti">Advanced</div>
-        <div class="price-value">&euro;4,500+</div>
-        <p class="price-desc" data-i="p3ds">Two-sided platform: admin panel + user area. E-commerce, booking systems.</p>
-        <ul class="price-features">
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p3f1">Admin panel + user side</span></li>
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p3f2">Payment integration</span></li>
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p3f3">User accounts and roles</span></li>
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p3f4">Booking / cart system</span></li>
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p3f5">API integrations</span></li>
-          <li><svg width="14" height="14"><use href="#i-check"/></svg><span data-i="p3f6">Priority support</span></li>
-        </ul>
-        <a href="#contact" class="price-btn" data-i="pbtn">Get a Quote</a>
-      </div>
-    </div>
-    <div class="pricing-note reveal" data-i="pnote">Add-ons available: booking calendar, online payments, multi-language, custom integrations. We provide individual quotes for every project.</div>
-  </div>
-</section>
+/* === NAVIGATION === */
+nav {
+position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+height: var(--nav-h);
+background: rgba(250,251,252,0.85);
+backdrop-filter: blur(20px);
+border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+max-width: var(--max-w); margin: 0 auto; padding: 0 32px;
+height: 100%; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 2px; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; font-style: italic; text-decoration: none }
+.logo-icon { font-style: normal; font-size: 1.3rem; margin-right: 4px }
+.logo-boost { color: var(--text-dark) }
+.logo-lab { background: linear-gradient(135deg, #7B2FBE, #E84393); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text }
+.footer-logo { display: flex; align-items: center; gap: 2px; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; font-style: italic; margin-bottom: 16px }
+.footer-logo .logo-boost { color: #fff }
+.footer-logo .logo-icon { font-style: normal; font-size: 1.3rem; margin-right: 4px }
 
-<!-- SMM & ADS -->
-<section class="alt-bg" id="smm">
-  <div class="container">
-    <div class="section-label" data-i="sl.smm">Marketing and SMM</div>
-    <h2 class="section-title reveal" data-i="st.smm">Advertising and Social Media Packages</h2>
-    <p class="section-desc reveal" data-i="sd.smm">From one-time ad setup to full-service social media management by our specialists.</p>
-    <div class="grid-3 keep-3">
-      <div class="smm-card reveal">
-        <div class="smm-tier" data-i="sm1ti">Setup</div>
-        <h3 data-i="sm1t">Ad Campaign Setup</h3>
-        <div class="smm-price">&euro;599 <span data-i="sm1p">/ one-time</span></div>
-        <p data-i="sm1d">Professional Google Ads or Meta campaign setup. Targeting, creatives and tracking.</p>
-        <ul class="smm-features">
-          <li data-i="sm1f1">Campaign structure and strategy</li>
-          <li data-i="sm1f2">Audience research</li>
-          <li data-i="sm1f3">Ad creatives (up to 5)</li>
-          <li data-i="sm1f4">Conversion tracking</li>
-          <li data-i="sm1f5">Performance report</li>
-        </ul>
-      </div>
-      <div class="smm-card featured reveal">
-        <div class="smm-tier" data-i="sm2ti">Growth</div>
-        <h3 data-i="sm2t">Ads + SMM Management</h3>
-        <div class="smm-price">&euro;1,399+ <span data-i="sm2p">/ month</span></div>
-        <p data-i="sm2d">Ongoing ad management plus social media content. Monthly reports and optimization.</p>
-        <ul class="smm-features">
-          <li data-i="sm2f1">Google and Meta ad management</li>
-          <li data-i="sm2f2">12 posts / month</li>
-          <li data-i="sm2f3">Stories and Reels</li>
-          <li data-i="sm2f4">Community management</li>
-          <li data-i="sm2f5">Monthly analytics report</li>
-          <li data-i="sm2f6">A/B testing</li>
-        </ul>
-      </div>
-      <div class="smm-card reveal">
-        <div class="smm-tier" data-i="sm3ti">Full Service</div>
-        <h3 data-i="sm3t">Dedicated SMM Specialist</h3>
-        <div class="smm-price">&euro;2,500+ <span data-i="sm3p">/ month</span></div>
-        <p data-i="sm3d">Dedicated specialist for your entire digital presence: ads, content, strategy and brand.</p>
-        <ul class="smm-features">
-          <li data-i="sm3f1">Dedicated account manager</li>
-          <li data-i="sm3f2">Full ad management</li>
-          <li data-i="sm3f3">20+ posts / month</li>
-          <li data-i="sm3f4">Content strategy</li>
-          <li data-i="sm3f5">Influencer outreach</li>
-          <li data-i="sm3f6">Weekly reports</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- CALCULATOR -->
-<section id="calculator">
-  <div class="container">
-    <div class="section-label" data-i="sl.calc">Project Calculator</div>
-    <h2 class="section-title reveal center" data-i="st.calc">Estimate Your Project Cost</h2>
-    <p class="section-desc reveal center-desc" data-i="sd.calc">Get an approximate budget. We provide detailed quotes after consultation.</p>
-    <div class="calc-wrapper reveal">
-      <div class="calc-group">
-        <label class="calc-label" data-i="c.type">Project Type</label>
-        <div class="calc-options" id="calcType">
-          <button class="calc-opt selected" data-v="700">Landing Page</button>
-          <button class="calc-opt" data-v="1700">Business Website</button>
-          <button class="calc-opt" data-v="3500">Advanced Platform</button>
-          <button class="calc-opt" data-v="19000">Turnkey Platform</button>
-        </div>
-      </div>
-      <div class="calc-group">
-        <label class="calc-label" data-i="c.design">Design</label>
-        <div class="calc-options" id="calcDesign">
-          <button class="calc-opt selected" data-v="0">Template-Based</button>
-          <button class="calc-opt" data-v="800">Custom Design</button>
-          <button class="calc-opt" data-v="2000">Premium UX/UI</button>
-        </div>
-      </div>
-      <div class="calc-group">
-        <label class="calc-label" data-i="c.addons">Add-ons</label>
-        <div class="calc-checks" id="calcAddons">
-          <label class="calc-check"><input type="checkbox" data-v="400"><span data-i="ca1">Booking system</span></label>
-          <label class="calc-check"><input type="checkbox" data-v="500"><span data-i="ca2">Online payments</span></label>
-          <label class="calc-check"><input type="checkbox" data-v="300"><span data-i="ca3">Multi-language</span></label>
-          <label class="calc-check"><input type="checkbox" data-v="250"><span data-i="ca4">Blog / News</span></label>
-          <label class="calc-check"><input type="checkbox" data-v="900"><span data-i="ca5">Admin panel</span></label>
-          <label class="calc-check"><input type="checkbox" data-v="499"><span data-i="ca6">SEO package</span></label>
-        </div>
-      </div>
-      <div class="calc-group">
-        <label class="calc-label" data-i="c.mobile">Mobile Apps</label>
-        <div class="calc-checks" id="calcMobile">
-          <label class="calc-check"><input type="checkbox" data-v="4990"><span>Google Play (Android)</span></label>
-          <label class="calc-check"><input type="checkbox" data-v="5990"><span>App Store (iOS)</span></label>
-        </div>
-      </div>
-      <div class="calc-group">
-        <label class="calc-label" data-i="c.mkt">Marketing</label>
-        <div class="calc-options" id="calcMkt">
-          <button class="calc-opt selected" data-v="0" data-i="cm0">None</button>
-          <button class="calc-opt" data-v="599" data-i="cm1">Ad Setup (&euro;599)</button>
-          <button class="calc-opt" data-v="1399" data-i="cm2">Managed (&euro;1,399/mo)</button>
-          <button class="calc-opt" data-v="2500" data-i="cm3">Full Service (&euro;2,500/mo)</button>
-        </div>
-      </div>
-      <div class="calc-divider"></div>
-      <div class="calc-result">
-        <div class="calc-result-label" data-i="c.res">Estimated starting price</div>
-        <div class="calc-result-price" id="calcTotal">&euro;700</div>
-        <div class="calc-result-note" data-i="c.note">Final price depends on scope and complexity</div>
-      </div>
-      <div style="text-align:center;margin-top:24px">
-        <a href="#contact" class="btn btn-primary" data-i="c.cta">Get Detailed Quote</a>
-      </div>
-    </div>
-  </div>
-</section>
+.nav-links { display: flex; align-items: center; gap: 32px }
+.nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-body); transition: color 0.3s }
+.nav-links a:hover { color: var(--purple) }
+.nav-right { display: flex; align-items: center; gap: 16px }
 
-<!-- PORTFOLIO -->
-<section class="alt-bg" id="portfolio">
-  <div class="container">
-    <div class="section-label" data-i="sl.por">Our Work</div>
-    <h2 class="section-title reveal" data-i="st.por">Selected Projects</h2>
-    <p class="section-desc reveal" data-i="sd.por">A few examples of what we have built for our clients.</p>
-    <div class="grid-2">
-      <div class="folio-card reveal">
-        <div class="folio-img" style="background:linear-gradient(135deg,#7B2FBE15,#E8439310)">
-          <svg class="folio-mockup" viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="10" width="340" height="180" rx="8" fill="white" fill-opacity="0.9"/>
-            <rect x="10" y="10" width="340" height="32" rx="8" fill="#7B2FBE" fill-opacity="0.1"/>
-            <circle cx="28" cy="26" r="6" fill="#7B2FBE" fill-opacity="0.3"/>
-            <rect x="42" y="22" width="50" height="6" rx="3" fill="#7B2FBE" fill-opacity="0.2"/>
-            <rect x="260" y="22" width="36" height="8" rx="4" fill="#7B2FBE" fill-opacity="0.6"/>
-            <rect x="300" y="22" width="36" height="8" rx="4" fill="#E84393" fill-opacity="0.6"/>
-            <rect x="22" y="54" width="96" height="68" rx="6" fill="#7B2FBE" fill-opacity="0.08"/><rect x="26" y="58" width="88" height="40" rx="4" fill="#E84393" fill-opacity="0.12"/><rect x="26" y="102" width="60" height="5" rx="2" fill="#333" fill-opacity="0.15"/><rect x="26" y="111" width="40" height="5" rx="2" fill="#7B2FBE" fill-opacity="0.3"/>
-            <rect x="130" y="54" width="96" height="68" rx="6" fill="#FF6B35" fill-opacity="0.08"/><rect x="134" y="58" width="88" height="40" rx="4" fill="#FF6B35" fill-opacity="0.12"/><rect x="134" y="102" width="60" height="5" rx="2" fill="#333" fill-opacity="0.15"/><rect x="134" y="111" width="40" height="5" rx="2" fill="#FF6B35" fill-opacity="0.3"/>
-            <rect x="238" y="54" width="96" height="68" rx="6" fill="#4dff91" fill-opacity="0.08"/><rect x="242" y="58" width="88" height="40" rx="4" fill="#4dff91" fill-opacity="0.15"/><rect x="242" y="102" width="60" height="5" rx="2" fill="#333" fill-opacity="0.15"/><rect x="242" y="111" width="40" height="5" rx="2" fill="#4dff91" fill-opacity="0.4"/>
-            <rect x="22" y="134" width="96" height="48" rx="6" fill="#7B2FBE" fill-opacity="0.05"/><rect x="130" y="134" width="96" height="48" rx="6" fill="#E84393" fill-opacity="0.05"/><rect x="238" y="134" width="96" height="48" rx="6" fill="#FF6B35" fill-opacity="0.05"/>
-          </svg>
-          <div class="folio-overlay" onclick="openProject(this)"><span data-i="fv">View Project</span></div>
-        </div>
-        <div class="folio-info">
-          <div class="tags"><span class="tag">Marketplace</span><span class="tag">React</span></div>
-          <h3 data-i="f1t">Multi-Vendor Marketplace</h3>
-          <p data-i="f1d">E-commerce platform with 500+ sellers, custom checkout and real-time inventory.</p>
-        </div>
-      </div>
-      <div class="folio-card reveal">
-        <div class="folio-img" style="background:linear-gradient(135deg,#FF6B3515,#FF8C4210)">
-          <svg class="folio-mockup" viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="10" width="340" height="180" rx="8" fill="white" fill-opacity="0.9"/>
-            <rect x="10" y="10" width="340" height="32" rx="8" fill="#FF6B35" fill-opacity="0.1"/>
-            <circle cx="28" cy="26" r="6" fill="#FF6B35" fill-opacity="0.3"/>
-            <rect x="22" y="54" width="200" height="120" rx="6" fill="#FF6B35" fill-opacity="0.06"/>
-            <rect x="30" y="62" width="80" height="10" rx="3" fill="#FF6B35" fill-opacity="0.2"/>
-            <rect x="30" y="96" width="60" height="24" rx="6" fill="#FF6B35" fill-opacity="0.15"/><rect x="96" y="96" width="60" height="24" rx="6" fill="#FF6B35" fill-opacity="0.15"/>
-            <rect x="234" y="54" width="104" height="50" rx="6" fill="#FF8C42" fill-opacity="0.1"/>
-            <rect x="234" y="114" width="104" height="50" rx="6" fill="#FF8C42" fill-opacity="0.1"/>
-          </svg>
-          <div class="folio-overlay" onclick="openProject(this)"><span data-i="fv">View Project</span></div>
-        </div>
-        <div class="folio-info">
-          <div class="tags"><span class="tag">Booking</span><span class="tag">Platform</span></div>
-          <h3 data-i="f2t">Car Rental Service</h3>
-          <p data-i="f2d">Fleet management with dynamic pricing, GPS tracking and automated invoicing.</p>
-        </div>
-      </div>
-      <div class="folio-card reveal">
-        <div class="folio-img" style="background:linear-gradient(135deg,#E8439315,#7B2FBE10)">
-          <svg class="folio-mockup" viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="10" width="340" height="180" rx="8" fill="white" fill-opacity="0.9"/>
-            <rect x="10" y="10" width="340" height="32" rx="8" fill="#E84393" fill-opacity="0.1"/>
-            <circle cx="28" cy="26" r="6" fill="#E84393" fill-opacity="0.3"/>
-            <rect x="22" y="54" width="150" height="120" rx="6" fill="#E84393" fill-opacity="0.04"/>
-            <rect x="30" y="74" width="130" height="50" rx="4" fill="#E84393" fill-opacity="0.08"/>
-            <circle cx="60" cy="99" r="10" fill="#E84393" fill-opacity="0.12"/>
-            <circle cx="95" cy="99" r="10" fill="#7B2FBE" fill-opacity="0.12"/>
-            <circle cx="130" cy="99" r="10" fill="#FF6B35" fill-opacity="0.12"/>
-            <rect x="184" y="54" width="158" height="76" rx="6" fill="#9B4FDE" fill-opacity="0.06"/>
-            <rect x="192" y="110" width="60" height="12" rx="6" fill="#E84393" fill-opacity="0.3"/>
-            <rect x="184" y="140" width="158" height="34" rx="6" fill="#E84393" fill-opacity="0.04"/>
-          </svg>
-          <div class="folio-overlay" onclick="openProject(this)"><span data-i="fv">View Project</span></div>
-        </div>
-        <div class="folio-info">
-          <div class="tags"><span class="tag">Real Estate</span><span class="tag">Next.js</span></div>
-          <h3 data-i="f3t">Property Listing Platform</h3>
-          <p data-i="f3d">Real estate portal with map search, virtual tours and CRM for agents.</p>
-        </div>
-      </div>
-      <div class="folio-card reveal">
-        <div class="folio-img" style="background:linear-gradient(135deg,#4dff9112,#00e5ff12)">
-          <svg class="folio-mockup" viewBox="0 0 160 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="20" y="10" width="120" height="260" rx="20" fill="white" fill-opacity="0.9" stroke="#ddd" stroke-width="1"/>
-            <rect x="55" y="16" width="50" height="6" rx="3" fill="#333" fill-opacity="0.15"/>
-            <rect x="28" y="32" width="104" height="40" rx="8" fill-opacity="0.1"/>
-            <rect x="28" y="80" width="50" height="50" rx="8" fill="#4dff91" fill-opacity="0.1"/>
-            <rect x="82" y="80" width="50" height="50" rx="8" fill="#00e5ff" fill-opacity="0.1"/>
-            <rect x="28" y="140" width="104" height="36" rx="8" fill="#4dff91" fill-opacity="0.06"/>
-            <rect x="28" y="186" width="104" height="36" rx="8" fill="#00e5ff" fill-opacity="0.06"/>
-            <rect x="28" y="234" width="104" height="28" rx="14" fill="#4dff91" fill-opacity="0.25"/>
-          </svg>
-          <div class="folio-overlay" onclick="openProject(this)"><span data-i="fv">View Project</span></div>
-        </div>
-        <div class="folio-info">
-          <div class="tags"><span class="tag">Mobile App</span><span class="tag">iOS &amp; Android</span></div>
-          <h3 data-i="f4t">Fitness &amp; Wellness App</h3>
-          <p data-i="f4d">Cross-platform app with workout plans, nutrition tracking and social features.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+.lang-switch { display: flex; gap: 4px }
+.lang-btn {
+padding: 6px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
+background: transparent; border: 1px solid var(--border); color: var(--text-light);
+cursor: pointer; transition: all 0.2s; font-family: var(--font);
+}
+.lang-btn.active { background: var(--purple); color: #fff; border-color: var(--purple) }
+.lang-btn:hover:not(.active) { border-color: var(--purple); color: var(--purple) }
 
-<!-- TECH SUPPORT -->
-<section id="support">
-  <div class="container">
-    <div class="support-layout">
-      <div>
-        <div class="section-label" data-i="sl.sup">Technical Support</div>
-        <h2 class="section-title reveal" data-i="st.sup">Keep Your Project Running Smoothly</h2>
-        <p class="section-desc reveal" data-i="sd.sup">We primarily support projects we built, but we are open to discussing your existing systems too.</p>
-        <div class="support-features">
-          <div class="sup-feat reveal"><div class="sup-icon"><svg width="20" height="20"><use href="#i-activity"/></svg></div><div><h4 data-i="sf1t">24/7 Monitoring</h4><p data-i="sf1d">Continuous uptime monitoring with instant alerts and rapid response.</p></div></div>
-          <div class="sup-feat reveal"><div class="sup-icon"><svg width="20" height="20"><use href="#i-refresh"/></svg></div><div><h4 data-i="sf2t">Regular Updates</h4><p data-i="sf2d">Security patches, performance improvements and feature updates.</p></div></div>
-          <div class="sup-feat reveal"><div class="sup-icon"><svg width="20" height="20"><use href="#i-tool"/></svg></div><div><h4 data-i="sf3t">Bug Fixes</h4><p data-i="sf3d">Quick resolution with priority SLA for critical issues.</p></div></div>
-          <div class="sup-feat reveal"><div class="sup-icon"><svg width="20" height="20"><use href="#i-chart"/></svg></div><div><h4 data-i="sf4t">Performance Reports</h4><p data-i="sf4d">Monthly reports on uptime, speed and optimization suggestions.</p></div></div>
-        </div>
-      </div>
-      <div class="support-cta-box reveal">
-        <h3 data-i="scb.t">Have an Existing Project?</h3>
-        <p data-i="scb.d">We are ready to evaluate your system and offer a tailored support plan.</p>
-        <a href="#contact" class="btn btn-primary" data-i="scb.btn">Discuss Support</a>
-      </div>
-    </div>
-  </div>
-</section>
+.nav-cta {
+background: var(--gradient); color: #fff;
+padding: 10px 24px; border-radius: var(--radius-sm);
+font-weight: 600; font-size: 0.85rem;
+transition: all 0.3s; border: none; cursor: pointer; font-family: var(--font);
+}
+.nav-cta:hover { box-shadow: var(--shadow-purple); transform: translateY(-1px) }
 
-<!-- PROCESS -->
-<section class="alt-bg">
-  <div class="container">
-    <div class="section-label" data-i="sl.prc">How We Work</div>
-    <h2 class="section-title reveal center" data-i="st.prc">From Idea to Result</h2>
-    <p class="section-desc reveal center-desc" data-i="sd.prc">Clear, transparent process to deliver your project on time and on budget.</p>
-    <div class="grid-4 keep-3">
-      <div class="process-step reveal"><div class="step-num">01</div><h3 data-i="pr1t">Discovery</h3><p data-i="pr1d">We dive into your business, analyze competitors and create a detailed plan.</p></div>
-      <div class="process-step reveal"><div class="step-num">02</div><h3 data-i="pr2t">Design</h3><p data-i="pr2d">Visual concept and interactive prototype for your approval.</p></div>
-      <div class="process-step reveal"><div class="step-num">03</div><h3 data-i="pr3t">Development</h3><p data-i="pr3d">Clean code, thorough testing, analytics setup and smooth launch.</p></div>
-      <div class="process-step reveal"><div class="step-num">04</div><h3 data-i="pr4t">Growth</h3><p data-i="pr4d">Marketing launch, social media management and ongoing support.</p></div>
-    </div>
-  </div>
-</section>
+.burger { display: none; background: none; border: none; cursor: pointer; padding: 4px; flex-direction: column; gap: 5px }
+.burger span { width: 22px; height: 2px; background: var(--text-dark); border-radius: 2px; transition: all 0.3s }
 
-<!-- CTA -->
-<section class="cta-section" id="contact">
-  <div class="container">
-    <h2 class="reveal" data-i="cta.t">Ready to Launch Your Project?</h2>
-    <p class="reveal" data-i="cta.d">Tell us about your idea. Free consultation and detailed quote.</p>
-    <div class="cta-contacts reveal">
-      <a href="tel:+3725555555" class="cta-ci"><svg width="16" height="16"><use href="#i-phone"/></svg> +372 555 5555</a>
-      <a href="mailto:info@boostlab.lt" class="cta-ci"><svg width="16" height="16"><use href="#i-mail"/></svg> info@boostlab.lt</a>
-    </div>
-    <div class="cta-buttons reveal">
-      <a href="mailto:info@boostlab.lt" class="btn btn-primary" data-i="cta.e">Email Us</a>
-      <a href="tel:+3725555555" class="btn btn-outline btn-outline-light" data-i="cta.call">Call Us</a>
-    </div>
-  </div>
-</section>
+.mob-menu { display: none }
+.mob-menu.open {
+display: flex; flex-direction: column; gap: 16px;
+position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+background: rgba(250,251,252,0.98); backdrop-filter: blur(20px);
+padding: 32px; z-index: 999;
+}
+.mob-menu a { font-size: 1.1rem; font-weight: 600; color: var(--text-dark); padding: 12px 0; border-bottom: 1px solid var(--border) }
 
-<section class="seo-text">
-  <div class="container">
-    <h2 data-i="seo.title">Digital Agency in Tallinn, Estonia</h2>
-    <p data-i="seo.p1">BoostLab is a full-cycle digital agency in Tallinn. Custom websites, mobile apps, turnkey platforms, e-commerce, Google Ads, SMM and 24/7 support. We serve clients across Estonia, Latvia, Lithuania and Europe.</p>
-  </div>
-</section>
+/* === HERO === */
+.hero {
+min-height: 100vh; display: flex; align-items: center;
+padding-top: var(--nav-h); position: relative; overflow: hidden; background: #fff;
+}
+.hero::before {
+content: ''; position: absolute; top: -200px; right: -200px;
+width: 700px; height: 700px; border-radius: 50%;
+background: radial-gradient(circle, rgba(123,47,190,0.06), rgba(232,67,147,0.03), transparent 70%);
+pointer-events: none;
+}
+.hero .container { display: flex; align-items: center; gap: 60px; position: relative; z-index: 1 }
+.hero-text { flex: 1 }
+.hero-visual { flex: 1; display: flex; justify-content: center }
 
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <svg width="20" height="20" class="logo-svg-icon" style="color:#9B4FDE"><use href="#i-rocket"/></svg>
-          <span class="logo-boost" style="color:#fff">Boost</span><span class="logo-lab">Lab</span>
-        </div>
-        <p data-i="ft.d">Full-cycle digital agency. We build, launch and scale your business online. Estonia, Europe.</p>
-      </div>
-      <div class="footer-cols">
-        <div class="footer-col">
-          <h4 data-i="ft.srv">Services</h4>
-          <a href="#services" data-i="s1t">Website Development</a>
-          <a href="#services" data-i="s2t">Mobile Applications</a>
-          <a href="#smm" data-i="s3t">Advertising</a>
-          <a href="#smm" data-i="s4t">SMM</a>
-          <a href="#support" data-i="s5t">Technical Support</a>
-        </div>
-        <div class="footer-col">
-          <h4 data-i="ft.co">Company</h4>
-          <a href="#" data-i="ft.prc">How We Work</a>
-          <a href="#pricing" data-i="nav.pricing">Pricing</a>
-          <a href="#portfolio" data-i="nav.portfolio">Portfolio</a>
-          <a href="#contact" data-i="ft.cnt">Contact</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 FANARI O&Uuml; (BoostLab). <span data-i="ft.r">All rights reserved.</span></p>
-      <div class="footer-legal">
-        <a href="/privacy.html" data-i="ft.pp">Privacy Policy</a>
-        <a href="/terms.html" data-i="ft.tos">Terms of Service</a>
-      </div>
-    </div>
-  </div>
-</footer>
+.hero-badge {
+display: inline-flex; align-items: center; gap: 8px;
+background: var(--gradient-subtle); border: 1px solid rgba(123,47,190,0.12);
+padding: 8px 18px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;
+color: var(--purple); margin-bottom: 24px;
+}
+.hero-badge::before {
+content: ''; width: 6px; height: 6px; background: var(--purple);
+border-radius: 50%; animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+0%, 100% { opacity: 1; transform: scale(1) }
+50% { opacity: 0.5; transform: scale(1.4) }
+}
 
-<!-- PROJECT MODAL -->
-<div class="project-modal" id="projectModal">
-  <div class="pm-backdrop" onclick="closeModal()"></div>
-  <div class="pm-content">
-    <button class="pm-close" onclick="closeModal()">&times;</button>
-    <div class="pm-mockup" id="pmMockup"></div>
-    <div class="pm-info">
-      <div class="pm-tags" id="pmTags"></div>
-      <h3 id="pmTitle"></h3>
-      <p id="pmDesc"></p>
-      <div class="pm-details" id="pmDetails"></div>
-    </div>
-  </div>
-</div>
+.gradient-text {
+background: var(--gradient);
+-webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-sub { font-size: 1.15rem; color: var(--text-body); max-width: 520px; margin-bottom: 36px; line-height: 1.7; font-weight: 400 }
+.hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px }
+.hero-stats { display: flex; gap: 40px }
+.stat-num { font-size: 1.8rem; font-weight: 800; color: var(--text-dark); letter-spacing: -1px }
+.stat-label { font-size: 0.8rem; color: var(--text-light); font-weight: 500 }
 
-<!-- COOKIE BANNER (GDPR) -->
-<div class="cookie-banner" id="cookieBanner">
-  <p class="cookie-text" data-ih="ck.t">We use cookies to improve your experience. By continuing you agree to our <a href="/privacy.html">Privacy Policy</a>.</p>
-  <div class="cookie-btns">
-    <button class="cookie-accept" id="cookieAccept" data-i="ck.a">Accept</button>
-    <button class="cookie-decline" id="cookieDecline" data-i="ck.d">Decline</button>
-  </div>
-</div>
+/* Hero floating cards */
+.hero-cards { position: relative; width: 420px; height: 420px }
+.float-card {
+position: absolute; background: var(--bg-white); border: 1px solid var(--border);
+border-radius: var(--radius); padding: 20px 24px; box-shadow: var(--shadow);
+transition: transform 0.3s;
+}
+.float-card:hover { transform: translateY(-4px) !important }
+.fc1 { top: 0; left: 20px; animation: float-a 6s ease-in-out infinite }
+.fc2 { top: 80px; right: 0; animation: float-b 7s ease-in-out infinite }
+.fc3 { bottom: 80px; left: 0; animation: float-a 5s ease-in-out infinite 1s }
+.fc4 { bottom: 0; right: 40px; animation: float-b 8s ease-in-out infinite 0.5s }
+@keyframes float-a { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-12px) } }
+@keyframes float-b { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
+.fc-icon { font-size: 1.4rem; margin-bottom: 8px }
+.fc-title { font-size: 0.85rem; font-weight: 700; color: var(--text-dark); margin-bottom: 2px }
+.fc-sub { font-size: 0.75rem; color: var(--text-light) }
+.fc-bar { height: 4px; border-radius: 2px; background: var(--border); margin-top: 10px; overflow: hidden }
+.fc-bar-fill { height: 100%; border-radius: 2px; background: var(--gradient) }
 
-<script src="i18n.js"></script>
-<script src="main.js"></script>
-</body>
-</html>
+/* === TRUST BAR === */
+.trust-bar { padding: 48px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-white) }
+.trust-inner { text-align: center }
+.trust-label { font-size: 0.8rem; color: var(--text-light); font-weight: 500; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px }
+.trust-logos { display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap; opacity: 0.3; filter: grayscale(1) }
+.trust-logos span { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.5px; color: var(--text-dark) }
+
+/* === SERVICE CARDS === */
+.service-card {
+background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius);
+padding: 36px 32px; transition: all 0.3s ease; position: relative; overflow: hidden;
+}
+.service-card::after {
+content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+background: var(--gradient); opacity: 0; transition: opacity 0.3s;
+}
+.service-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow); transform: translateY(-4px) }
+.service-card:hover::after { opacity: 1 }
+.card-icon {
+width: 52px; height: 52px; border-radius: 12px;
+background: var(--gradient-subtle); display: flex; align-items: center; justify-content: center;
+font-size: 1.4rem; margin-bottom: 20px;
+color: var(--purple);
+}
+.card-icon svg { flex-shrink: 0 }
+.fc-icon { color: var(--purple) }
+.fc-icon svg { display: block }
+.sup-icon { color: var(--purple) }
+.sup-icon svg { display: block }
+.ready-icon {
+width: 52px; height: 52px; border-radius: 12px;
+background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+display: flex; align-items: center; justify-content: center;
+color: rgba(255,255,255,0.7); margin-bottom: 16px;
+}
+.ready-icon svg { display: block }
+/* Logo SVG icon */
+.logo-svg-icon { color: var(--purple); flex-shrink: 0; margin-right: 4px }
+.nav-logo { gap: 6px }
+/* Price list SVG checkmarks */
+.price-features li { font-size: 0.88rem; color: var(--text-body); padding: 7px 0; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border) }
+.price-features li svg { flex-shrink: 0; color: var(--purple) }
+.price-features li span { flex: 1 }
+/* CTA contact SVG icons */
+.cta-ci svg { flex-shrink: 0; opacity: 0.7 }
+.service-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.6 }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px }
+.tag {
+font-size: 0.7rem; font-weight: 600; padding: 4px 10px; border-radius: 50px;
+background: rgba(123,47,190,0.06); color: var(--purple);
+}
+
+/* === DARK SECTION (Ready Projects) === */
+.dark-section { background: var(--bg-dark); color: #fff; position: relative; overflow: hidden }
+.dark-section::before {
+content: ''; position: absolute; top: 0; right: 0; width: 600px; height: 600px;
+background: radial-gradient(circle, rgba(123,47,190,0.15), transparent 70%); pointer-events: none;
+}
+.dark-section .section-title { color: #fff }
+.dark-section .section-desc { color: rgba(255,255,255,0.5) }
+
+.ready-card {
+background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+border-radius: var(--radius); padding: 36px 32px; transition: all 0.4s ease;
+}
+.ready-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(123,47,190,0.4); transform: translateY(-4px) }
+.ready-emoji { font-size: 2rem; margin-bottom: 16px } /* legacy, now replaced by .ready-icon */
+.ready-card h3 { color: #fff; margin-bottom: 8px; font-size: 1.15rem }
+.ready-card > p { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.6; margin-bottom: 20px }
+.ready-price {
+font-size: 1.6rem; font-weight: 800;
+background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+margin-bottom: 4px;
+}
+.ready-note { font-size: 0.78rem; color: rgba(255,255,255,0.35) }
+.ready-features { margin-top: 16px; display: flex; flex-direction: column; gap: 6px }
+.ready-features span { font-size: 0.82rem; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 8px }
+.ready-features span::before { content: '\2713'; color: var(--purple-light); font-weight: 700; font-size: 0.75rem }
+
+.addon-bar {
+margin-top: 40px; padding: 28px 32px;
+background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+border-radius: var(--radius); display: flex; align-items: center; justify-content: space-between;
+flex-wrap: wrap; gap: 20px; position: relative; z-index: 1;
+}
+.addon-text h4 { color: #fff; font-size: 1rem; margin-bottom: 4px }
+.addon-text p { color: rgba(255,255,255,0.4); font-size: 0.88rem }
+.addon-prices { display: flex; gap: 24px }
+.addon-item { text-align: center }
+.addon-val { font-size: 1.2rem; font-weight: 800; color: #fff }
+.addon-label { font-size: 0.72rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px }
+
+/* === PRICING CARDS === */
+.price-card {
+background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius);
+padding: 40px 32px; transition: all 0.3s ease; position: relative;
+}
+.price-card.featured { border-color: var(--purple); box-shadow: var(--shadow-purple) }
+.price-badge {
+position: absolute; top: -1px; right: 24px;
+background: var(--gradient); color: #fff; font-size: 0.68rem; font-weight: 700;
+padding: 6px 14px; border-radius: 0 0 8px 8px; text-transform: uppercase; letter-spacing: 1px;
+}
+.price-tier { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--purple); margin-bottom: 8px }
+.price-value { font-size: 2.4rem; font-weight: 800; color: var(--text-dark); letter-spacing: -1px; margin-bottom: 4px }
+.price-desc { font-size: 0.88rem; color: var(--text-light); margin-bottom: 24px; line-height: 1.6 }
+.price-features { margin-bottom: 28px }
+.price-btn { display: block; text-align: center; padding: 13px; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.9rem; transition: all 0.3s }
+.price-card:not(.featured) .price-btn { border: 1.5px solid var(--border); color: var(--text-dark) }
+.price-card:not(.featured) .price-btn:hover { border-color: var(--purple); color: var(--purple) }
+.price-card.featured .price-btn { background: var(--gradient); color: #fff; box-shadow: var(--shadow-purple) }
+.pricing-note { text-align: center; margin-top: 32px; padding: 20px; background: var(--gradient-subtle); border-radius: var(--radius-sm); font-size: 0.9rem; color: var(--text-body) }
+
+/* === SMM CARDS === */
+.smm-card {
+background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius);
+padding: 36px 32px; transition: all 0.3s ease;
+}
+.smm-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow); transform: translateY(-3px) }
+.smm-card.featured { border-color: var(--purple); box-shadow: var(--shadow-purple) }
+.smm-tier { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--orange); margin-bottom: 8px }
+.smm-card.featured .smm-tier { color: var(--purple) }
+.smm-price { font-size: 1.6rem; font-weight: 800; color: var(--text-dark); margin-bottom: 4px }
+.smm-price span { font-size: 0.8rem; font-weight: 400; color: var(--text-light) }
+.smm-card > p { font-size: 0.85rem; color: var(--text-light); margin-bottom: 20px; line-height: 1.6 }
+.smm-features { margin-bottom: 24px }
+.smm-features li { font-size: 0.85rem; color: var(--text-body); padding: 6px 0; display: flex; align-items: center; gap: 8px }
+.smm-features li::before { content: '\2713'; color: var(--orange); font-weight: 700; font-size: 0.75rem }
+.smm-card.featured .smm-features li::before { color: var(--purple) }
+
+/* === CALCULATOR === */
+.calc-wrapper {
+max-width: 800px; margin: 0 auto;
+background: var(--bg-white); border: 1px solid var(--border); border-radius: 20px;
+padding: 48px; box-shadow: 0 12px 40px rgba(0,0,0,0.08); position: relative; overflow: hidden;
+}
+.calc-wrapper::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gradient) }
+.calc-group { margin-bottom: 28px }
+.calc-label { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); margin-bottom: 10px; display: block }
+.calc-options { display: flex; flex-wrap: wrap; gap: 8px }
+.calc-opt {
+padding: 10px 20px; border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: 500;
+border: 1.5px solid var(--border); background: var(--bg); color: var(--text-body);
+cursor: pointer; transition: all 0.2s; font-family: var(--font);
+}
+.calc-opt:hover { border-color: var(--purple); color: var(--purple) }
+.calc-opt.selected { background: var(--purple); color: #fff; border-color: var(--purple) }
+.calc-checks { display: flex; flex-wrap: wrap; gap: 10px }
+.calc-check {
+display: flex; align-items: center; gap: 8px;
+padding: 10px 16px; border-radius: var(--radius-sm);
+border: 1.5px solid var(--border); background: var(--bg);
+cursor: pointer; transition: all 0.2s; font-size: 0.85rem; color: var(--text-body);
+}
+.calc-check:hover { border-color: var(--purple) }
+.calc-check.checked { border-color: var(--purple); background: rgba(123,47,190,0.05); color: var(--purple) }
+.calc-check input { display: none }
+.calc-divider { height: 1px; background: var(--border); margin: 28px 0 }
+.calc-result { text-align: center; padding: 32px; background: var(--gradient-subtle); border-radius: var(--radius) }
+.calc-result-label { font-size: 0.85rem; color: var(--text-light); margin-bottom: 8px }
+.calc-result-price {
+font-size: 2.8rem; font-weight: 800;
+background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+margin-bottom: 8px;
+}
+.calc-result-note { font-size: 0.82rem; color: var(--text-light) }
+
+/* === PORTFOLIO === */
+.folio-card {
+background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius);
+overflow: hidden; transition: all 0.3s ease;
+}
+.folio-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.08); transform: translateY(-4px) }
+.folio-img { height: 220px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden }
+.folio-icon { font-size: 3rem; opacity: 0.6 }
+.folio-mockup { width: 85%; height: auto; opacity: 0.8; transition: transform 0.3s }
+.folio-card:hover .folio-mockup { transform: scale(1.03) }
+.folio-overlay {
+position: absolute; inset: 0;
+background: linear-gradient(135deg, rgba(123,47,190,0.85), rgba(232,67,147,0.7));
+display: flex; align-items: center; justify-content: center;
+opacity: 0; transition: opacity 0.3s;
+}
+.folio-card:hover .folio-overlay { opacity: 1 }
+.folio-overlay span { color: #fff; font-weight: 600; font-size: 0.9rem; border: 1.5px solid #fff; padding: 10px 24px; border-radius: var(--radius-sm) }
+.folio-info { padding: 24px 28px }
+.folio-info h3 { margin-top: 8px; margin-bottom: 6px }
+.folio-info p { font-size: 0.85rem; color: var(--text-light); line-height: 1.5 }
+
+/* === SUPPORT === */
+.support-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center }
+.support-features { display: flex; flex-direction: column; gap: 20px }
+.sup-feat { display: flex; gap: 16px; align-items: flex-start }
+.sup-icon {
+width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+background: var(--gradient-subtle); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+}
+.sup-feat h4 { font-size: 1rem; margin-bottom: 4px }
+.sup-feat p { font-size: 0.88rem; color: var(--text-light); line-height: 1.5 }
+.support-cta-box {
+background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+padding: 40px; text-align: center;
+}
+.support-cta-box h3 { font-size: 1.4rem; margin-bottom: 12px }
+.support-cta-box > p { color: var(--text-light); font-size: 0.92rem; margin-bottom: 24px; line-height: 1.6 }
+
+/* === PROCESS === */
+.process-step { text-align: center; padding: 28px 20px }
+.step-num {
+font-size: 3.5rem; font-weight: 900;
+background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+opacity: 0.15; line-height: 1; margin-bottom: 12px;
+}
+.process-step p { font-size: 0.85rem; color: var(--text-light); line-height: 1.5 }
+
+/* === CTA SECTION === */
+.cta-section {
+background: var(--bg-dark); padding: 100px 0; text-align: center;
+position: relative; overflow: hidden;
+}
+.cta-section::before {
+content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+width: 600px; height: 600px; border-radius: 50%;
+background: radial-gradient(circle, rgba(123,47,190,0.12), transparent 70%); pointer-events: none;
+}
+.cta-section h2 { color: #fff; margin-bottom: 16px; position: relative; z-index: 1 }
+.cta-section > div > p { color: rgba(255,255,255,0.5); font-size: 1.05rem; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; position: relative; z-index: 1 }
+.cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1 }
+.cta-contacts { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; position: relative; z-index: 1 }
+.cta-ci { color: rgba(255,255,255,0.7); font-size: 1.05rem; font-weight: 500; transition: color 0.3s; display: flex; align-items: center; gap: 6px }
+.cta-ci:hover { color: #fff }
+
+/* === FOOTER === */
+footer { background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.06); padding: 60px 0 32px }
+.footer-top { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; margin-bottom: 40px }
+.footer-brand { max-width: 300px }
+.footer-brand img { display: none }
+.footer-brand p { color: rgba(255,255,255,0.4); font-size: 0.88rem; line-height: 1.6 }
+.footer-cols { display: flex; gap: 64px }
+.footer-col h4 { color: #fff; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 14px }
+.footer-col a { display: block; color: rgba(255,255,255,0.4); font-size: 0.88rem; padding: 3px 0; transition: color 0.3s }
+.footer-col a:hover { color: var(--purple-light) }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px }
+.footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.8rem }
+.footer-legal { display: flex; gap: 20px }
+.footer-legal a { color: rgba(255,255,255,0.3); font-size: 0.8rem; transition: color 0.3s }
+.footer-legal a:hover { color: rgba(255,255,255,0.6) }
+
+/* === COOKIE BANNER === */
+.cookie-banner {
+position: fixed; bottom: 0; left: 0; right: 0; z-index: 99999;
+background: var(--bg-white); border-top: 1px solid var(--border);
+padding: 20px 32px; display: flex; align-items: center; justify-content: space-between;
+gap: 20px; box-shadow: 0 -4px 20px rgba(0,0,0,0.08); flex-wrap: wrap;
+}
+.cookie-banner.hidden { display: none }
+.cookie-text { font-size: 0.85rem; color: var(--text-body); max-width: 700px; line-height: 1.5 }
+.cookie-text a { color: var(--purple); font-weight: 600 }
+.cookie-btns { display: flex; gap: 8px; flex-shrink: 0 }
+.cookie-accept, .cookie-decline {
+padding: 10px 24px; border-radius: var(--radius-sm); font-size: 0.85rem;
+font-weight: 600; cursor: pointer; font-family: var(--font);
+}
+.cookie-accept { background: var(--gradient); color: #fff; border: none }
+.cookie-decline { background: transparent; color: var(--text-body); border: 1.5px solid var(--border) }
+
+/* === ANIMATIONS === */
+.reveal { opacity: 0; transform: translateY(28px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) }
+.reveal.visible { opacity: 1; transform: translateY(0) }
+/* Fallback if JS fails */
+.no-js .reveal { opacity: 1; transform: none }
+
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+.hero .container { flex-direction: column; text-align: center; gap: 40px }
+.hero-sub { margin-left: auto; margin-right: auto }
+.hero-buttons { justify-content: center }
+.hero-stats { justify-content: center }
+.hero-cards { width: 340px; height: 340px }
+.grid-3 { grid-template-columns: repeat(2, 1fr) }
+.grid-4 { grid-template-columns: repeat(2, 1fr) }
+.support-layout { grid-template-columns: 1fr }
+}
+@media (max-width: 768px) {
+
+section { padding: 48px 0 }
+.container { padding: 0 16px }
+.nav-links { display: none }
+.burger { display: flex }
+.grid-3 { grid-template-columns: 1fr 1fr; gap: 12px }
+.grid-2 { grid-template-columns: 1fr 1fr; gap: 12px }
+.grid-4 { grid-template-columns: 1fr 1fr; gap: 12px }
+.hero { min-height: auto; padding-top: 90px; padding-bottom: 40px }
+.hero-cards { display: none }
+.hero-stats { flex-wrap: wrap; gap: 16px }
+.stat-num { font-size: 1.4rem }
+.stat-label { font-size: 0.7rem }
+h1 { font-size: 2rem }
+h2 { font-size: 1.5rem }
+.section-title { margin-bottom: 10px }
+.section-desc { margin-bottom: 28px; font-size: 0.9rem }
+.hero-sub { font-size: 0.95rem; margin-bottom: 24px }
+.hero-buttons { margin-bottom: 32px }
+.hero-buttons .btn { padding: 12px 24px; font-size: 0.85rem }
+.service-card { padding: 20px 16px }
+.service-card p { font-size: 0.8rem }
+.card-icon { width: 40px; height: 40px; font-size: 1.1rem; margin-bottom: 12px }
+.ready-card { padding: 20px 16px }
+.ready-card > p { font-size: 0.78rem; margin-bottom: 12px }
+.ready-emoji { font-size: 1.5rem; margin-bottom: 10px }
+.ready-price { font-size: 1.3rem }
+.ready-features span { font-size: 0.72rem }
+.price-card { padding: 24px 16px }
+.price-value { font-size: 1.8rem }
+.price-desc { font-size: 0.78rem; margin-bottom: 16px }
+.price-features li { font-size: 0.78rem; padding: 5px 0 }
+.smm-card { padding: 24px 16px }
+.smm-price { font-size: 1.3rem }
+.smm-features li { font-size: 0.78rem }
+.folio-img { height: 140px }
+.folio-info { padding: 16px }
+.folio-info h3 { font-size: 1rem }
+.folio-info p { font-size: 0.78rem }
+.calc-wrapper { padding: 24px 16px }
+.calc-opt { padding: 8px 14px; font-size: 0.78rem }
+.calc-check { padding: 8px 12px; font-size: 0.78rem }
+.calc-result-price { font-size: 2.2rem }
+.process-step { padding: 16px 12px }
+.step-num { font-size: 2.5rem }
+.support-layout { gap: 24px }
+.support-cta-box { padding: 24px }
+.footer-cols { flex-direction: column; gap: 24px }
+.footer-top { gap: 24px }
+.addon-prices { flex-direction: row; gap: 16px }
+.addon-bar { flex-direction: column; text-align: center; padding: 20px }
+.cta-section { padding: 60px 0 }
+.cta-contacts { gap: 16px; flex-direction: column; align-items: center }
+.cta-ci { font-size: 0.9rem }
+.trust-logos { gap: 24px }
+.trust-logos span { font-size: 1rem }
+.tags { gap: 4px }
+.tag { font-size: 0.6rem; padding: 3px 8px }
+.cookie-banner { padding: 14px 16px; gap: 12px }
+.cookie-text { font-size: 0.78rem }
+}
+@media (max-width: 480px) {
+.grid-4 { grid-template-columns: 1fr }
+}
+/* === MOBILE FIXES (priority overrides) === */
+@media (max-width: 768px) {
+/* Nav compact */
+.nav-right { gap: 6px }
+.nav-cta { padding: 7px 12px; font-size: 0.72rem }
+.lang-btn { padding: 4px 6px; font-size: 0.6rem }
+.nav-logo { font-size: 1.15rem; gap: 1px }
+.logo-icon { font-size: 0.95rem; margin-right: 2px }
+.nav-inner { padding: 0 10px }
+
+/* Pricing 3 cols */
+.grid-3.keep-3 { grid-template-columns: repeat(3, 1fr) !important; gap: 8px }
+.grid-4.keep-3 { grid-template-columns: repeat(4, 1fr) !important; gap: 6px }
+.keep-3 .price-card { padding: 14px 8px }
+.keep-3 .price-value { font-size: 1.3rem }
+.keep-3 .price-tier { font-size: 0.6rem; letter-spacing: 1px }
+.keep-3 .price-desc { font-size: 0.68rem; margin-bottom: 10px; line-height: 1.4 }
+.keep-3 .price-features li { font-size: 0.68rem; padding: 3px 0 }
+.keep-3 .price-btn { padding: 8px; font-size: 0.72rem }
+.keep-3 .price-badge { font-size: 0.55rem; padding: 3px 8px; right: 6px }
+.keep-3 .smm-card { padding: 14px 8px }
+.keep-3 .smm-price { font-size: 1.1rem }
+.keep-3 .smm-tier { font-size: 0.6rem }
+.keep-3 .smm-card h3 { font-size: 0.85rem }
+.keep-3 .smm-card > p { font-size: 0.68rem; line-height: 1.4 }
+.keep-3 .smm-features li { font-size: 0.68rem }
+.keep-3 .process-step { padding: 12px 8px }
+.keep-3 .step-num { font-size: 2rem }
+.keep-3 .process-step h3 { font-size: 0.85rem }
+.keep-3 .process-step p { font-size: 0.7rem }
+}
+
+@media (max-width: 480px) {
+.grid-3.keep-3 { grid-template-columns: repeat(3, 1fr) !important; gap: 6px }
+.grid-4.keep-3 { grid-template-columns: repeat(2, 1fr) !important; gap: 6px }
+.keep-3 .price-value { font-size: 1.1rem }
+.keep-3 .price-features li { font-size: 0.62rem }
+.keep-3 .smm-price { font-size: 1rem }
+}
+
+/* === PROJECT MODAL === */
+.project-modal { display: none; position: fixed; inset: 0; z-index: 100000; align-items: center; justify-content: center }
+.project-modal.open { display: flex }
+.pm-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px) }
+.pm-content { position: relative; background: var(--bg-white); border-radius: 20px; max-width: 680px; width: 92%; max-height: 85vh; overflow-y: auto; box-shadow: 0 24px 80px rgba(0,0,0,0.2); animation: pmIn 0.3s ease }
+@keyframes pmIn { from { opacity: 0; transform: translateY(20px) } to { opacity: 1; transform: translateY(0) } }
+.pm-close { position: absolute; top: 16px; right: 16px; background: rgba(0,0,0,0.06); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.4rem; cursor: pointer; z-index: 2; color: var(--text-body); transition: all 0.2s }
+.pm-close:hover { background: rgba(0,0,0,0.12) }
+.pm-mockup { padding: 32px; background: var(--gradient-subtle); border-radius: 20px 20px 0 0; display: flex; justify-content: center }
+.pm-mockup svg { width: 100%; max-width: 400px; height: auto }
+.pm-info { padding: 28px 32px 32px }
+.pm-info h3 { font-size: 1.4rem; margin-bottom: 8px }
+.pm-info > p { color: var(--text-light); font-size: 0.92rem; margin-bottom: 20px; line-height: 1.6 }
+.pm-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px }
+.pm-tags span { font-size: 0.7rem; font-weight: 600; padding: 4px 10px; border-radius: 50px; background: rgba(123,47,190,0.06); color: var(--purple) }
+.pm-detail-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px }
+.pm-stat { text-align: center; padding: 12px 8px; background: var(--bg); border-radius: 10px }
+.pm-stat-num { font-size: 1.2rem; font-weight: 800; color: var(--text-dark) }
+.pm-stat-label { font-size: 0.7rem; color: var(--text-light); margin-top: 2px }
+.pm-details h4 { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px }
+.pm-details ul { margin: 0; padding: 0; list-style: none }
+.pm-details li { font-size: 0.85rem; color: var(--text-body); padding: 5px 0; display: flex; align-items: center; gap: 8px }
+.pm-details li::before { content: '\2713'; color: var(--purple); font-weight: 700; font-size: 0.75rem }
+@media (max-width: 768px) {
+.pm-content { width: 96%; max-height: 90vh }
+.pm-info { padding: 20px }
+.pm-detail-grid { grid-template-columns: repeat(2, 1fr) }
+.pm-mockup { padding: 20px }
+}
+
+/* === MOBILE PRICING FIX === */
+@media (max-width: 520px) {
+.grid-3.keep-3 { grid-template-columns: repeat(3, 1fr) !important; gap: 6px; overflow-x: visible }
+.keep-3 .price-card, .keep-3 .smm-card { padding: 12px 6px; min-width: 0 }
+.keep-3 .price-value { font-size: 1rem; letter-spacing: -0.5px }
+.keep-3 .price-tier { font-size: 0.55rem; letter-spacing: 0.5px }
+.keep-3 .price-desc { font-size: 0.6rem; margin-bottom: 8px; line-height: 1.3 }
+.keep-3 .price-features li { font-size: 0.6rem; padding: 2px 0; gap: 4px }
+.keep-3 .price-features li::before { font-size: 0.6rem }
+.keep-3 .price-btn { padding: 7px 4px; font-size: 0.6rem }
+.keep-3 .price-badge { font-size: 0.5rem; padding: 2px 6px; right: 4px }
+.keep-3 .smm-price { font-size: 0.9rem }
+.keep-3 .smm-tier { font-size: 0.55rem }
+.keep-3 .smm-card h3 { font-size: 0.75rem }
+.keep-3 .smm-card > p { font-size: 0.6rem; line-height: 1.3 }
+.keep-3 .smm-features li { font-size: 0.6rem; gap: 4px }
+.keep-3 .smm-features li::before { font-size: 0.55rem }
+}
+.seo-text{padding:40px 0;background:var(--bg);border-top:1px solid var(--border)}.seo-text h2{font-size:1.1rem;font-weight:700;margin-bottom:12px;color:var(--text-dark)}.seo-text p{font-size:0.78rem;color:var(--text-light);line-height:1.7;margin-bottom:8px}
+.smm-card{cursor:pointer;}.price-card{cursor:pointer;}
