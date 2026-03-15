@@ -243,7 +243,29 @@ nav {
     width: 52px; height: 52px; border-radius: 12px;
     background: var(--gradient-subtle); display: flex; align-items: center; justify-content: center;
     font-size: 1.4rem; margin-bottom: 20px;
+    color: var(--purple);
 }
+.card-icon svg { flex-shrink: 0 }
+.fc-icon { color: var(--purple) }
+.fc-icon svg { display: block }
+.sup-icon { color: var(--purple) }
+.sup-icon svg { display: block }
+.ready-icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.7); margin-bottom: 16px;
+}
+.ready-icon svg { display: block }
+/* Logo SVG icon */
+.logo-svg-icon { color: var(--purple); flex-shrink: 0; margin-right: 4px }
+.nav-logo { gap: 6px }
+/* Price list SVG checkmarks */
+.price-features li { font-size: 0.88rem; color: var(--text-body); padding: 7px 0; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border) }
+.price-features li svg { flex-shrink: 0; color: var(--purple) }
+.price-features li span { flex: 1 }
+/* CTA contact SVG icons */
+.cta-ci svg { flex-shrink: 0; opacity: 0.7 }
 .service-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.6 }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px }
 .tag {
@@ -265,7 +287,7 @@ nav {
     border-radius: var(--radius); padding: 36px 32px; transition: all 0.4s ease;
 }
 .ready-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(123,47,190,0.4); transform: translateY(-4px) }
-.ready-emoji { font-size: 2rem; margin-bottom: 16px }
+.ready-emoji { font-size: 2rem; margin-bottom: 16px } /* legacy, now replaced by .ready-icon */
 .ready-card h3 { color: #fff; margin-bottom: 8px; font-size: 1.15rem }
 .ready-card > p { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.6; margin-bottom: 20px }
 .ready-price {
@@ -306,8 +328,6 @@ nav {
 .price-value { font-size: 2.4rem; font-weight: 800; color: var(--text-dark); letter-spacing: -1px; margin-bottom: 4px }
 .price-desc { font-size: 0.88rem; color: var(--text-light); margin-bottom: 24px; line-height: 1.6 }
 .price-features { margin-bottom: 28px }
-.price-features li { font-size: 0.88rem; color: var(--text-body); padding: 7px 0; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border) }
-.price-features li::before { content: '\2713'; color: var(--purple); font-weight: 700; font-size: 0.8rem }
 .price-btn { display: block; text-align: center; padding: 13px; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.9rem; transition: all 0.3s }
 .price-card:not(.featured) .price-btn { border: 1.5px solid var(--border); color: var(--text-dark) }
 .price-card:not(.featured) .price-btn:hover { border-color: var(--purple); color: var(--purple) }
