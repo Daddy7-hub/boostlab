@@ -59,8 +59,6 @@
             metaDesc.setAttribute('content', d ? (d[lang] || d.en) : (pageDescs.home[lang] || pageDescs.home.en));
         }
 
-        // Recalculate calculator
-        calcUpdate();
     }
 
     // Bind all lang buttons
@@ -115,68 +113,6 @@
         });
     }, 2000);
 
-    // === CALCULATOR ===
-    function setupCalcOptions(containerId) {
-        var container = document.getElementById(containerId);
-        if (!container) return;
-        container.querySelectorAll('.calc-opt').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                container.querySelectorAll('.calc-opt').forEach(function(b) { b.classList.remove('selected'); });
-                btn.classList.add('selected');
-                calcUpdate();
-            });
-        });
-    }
-
-    function setupCalcChecks(containerId) {
-        var container = document.getElementById(containerId);
-        if (!container) return;
-        container.querySelectorAll('.calc-check').forEach(function(label) {
-            label.addEventListener('click', function() {
-                var input = label.querySelector('input');
-                if (input) {
-                    input.checked = !input.checked;
-                    label.classList.toggle('checked', input.checked);
-                }
-                calcUpdate();
-            });
-        });
-    }
-
-    function calcUpdate() {
-        var total = 0;
-
-        // Get selected option values from each group
-        ['calcType', 'calcDesign', 'calcMkt'].forEach(function(id) {
-            var container = document.getElementById(id);
-            if (!container) return;
-            var selected = container.querySelector('.calc-opt.selected');
-            if (selected) total += parseInt(selected.getAttribute('data-v')) || 0;
-        });
-
-        // Get checked checkboxes
-        ['calcAddons', 'calcMobile'].forEach(function(id) {
-            var container = document.getElementById(id);
-            if (!container) return;
-            container.querySelectorAll('input[type="checkbox"]:checked').forEach(function(input) {
-                total += parseInt(input.getAttribute('data-v')) || 0;
-            });
-        });
-
-        // Update display
-        var display = document.getElementById('calcTotal');
-        if (display) {
-            display.textContent = '\u20AC' + total.toLocaleString('en-US');
-        }
-    }
-
-    setupCalcOptions('calcType');
-    setupCalcOptions('calcDesign');
-    setupCalcOptions('calcMkt');
-    setupCalcChecks('calcAddons');
-    setupCalcChecks('calcMobile');
-    calcUpdate();
-
     // === COOKIE BANNER ===
     var cookieBanner = document.getElementById('cookieBanner');
     var cookieAccept = document.getElementById('cookieAccept');
@@ -218,57 +154,7 @@
 
 
 
-// === PROJECT MODAL ===
-    var projectData = [
-        {
-            tags: ['Marketplace', 'React', 'Node.js', 'PostgreSQL'],
-            details: '<div class="pm-detail-grid"><div class="pm-stat"><div class="pm-stat-num">500+</div><div class="pm-stat-label">Sellers</div></div><div class="pm-stat"><div class="pm-stat-num">50K+</div><div class="pm-stat-label">Products</div></div><div class="pm-stat"><div class="pm-stat-num">99.9%</div><div class="pm-stat-label">Uptime</div></div><div class="pm-stat"><div class="pm-stat-num">2.1s</div><div class="pm-stat-label">Load Time</div></div></div><h4>Key Features</h4><ul><li>Multi-vendor dashboard with real-time analytics</li><li>Custom checkout with Stripe & PayPal</li><li>Advanced search with filters and sorting</li><li>Review system with photo uploads</li><li>Admin panel with order management</li><li>Automated email notifications</li></ul>'
-        },
-        {
-            tags: ['Booking', 'Platform', 'React', 'Python'],
-            details: '<div class="pm-detail-grid"><div class="pm-stat"><div class="pm-stat-num">200+</div><div class="pm-stat-label">Vehicles</div></div><div class="pm-stat"><div class="pm-stat-num">15K+</div><div class="pm-stat-label">Bookings</div></div><div class="pm-stat"><div class="pm-stat-num">4.8</div><div class="pm-stat-label">Rating</div></div><div class="pm-stat"><div class="pm-stat-num">3</div><div class="pm-stat-label">Countries</div></div></div><h4>Key Features</h4><ul><li>Real-time availability calendar</li><li>Dynamic pricing engine</li><li>GPS tracking and fleet management</li><li>Automated invoicing and payments</li><li>Driver verification system</li><li>Multi-language support (EN, ET, RU)</li></ul>'
-        },
-        {
-            tags: ['Real Estate', 'Next.js', 'Maps API', 'CRM'],
-            details: '<div class="pm-detail-grid"><div class="pm-stat"><div class="pm-stat-num">10K+</div><div class="pm-stat-label">Listings</div></div><div class="pm-stat"><div class="pm-stat-num">50+</div><div class="pm-stat-label">Agents</div></div><div class="pm-stat"><div class="pm-stat-num">360\u00b0</div><div class="pm-stat-label">Virtual Tours</div></div><div class="pm-stat"><div class="pm-stat-num">98%</div><div class="pm-stat-label">Satisfaction</div></div></div><h4>Key Features</h4><ul><li>Interactive map with neighborhood data</li><li>Virtual 360\u00b0 property tours</li><li>Mortgage calculator</li><li>Agent profiles with reviews</li><li>Lead management CRM</li><li>Saved searches and email alerts</li></ul>'
-        },
-        {
-            tags: ['Mobile App', 'React Native', 'iOS', 'Android'],
-            details: '<div class="pm-detail-grid"><div class="pm-stat"><div class="pm-stat-num">25K+</div><div class="pm-stat-label">Downloads</div></div><div class="pm-stat"><div class="pm-stat-num">4.7</div><div class="pm-stat-label">App Store</div></div><div class="pm-stat"><div class="pm-stat-num">500+</div><div class="pm-stat-label">Workouts</div></div><div class="pm-stat"><div class="pm-stat-num">12</div><div class="pm-stat-label">Languages</div></div></div><h4>Key Features</h4><ul><li>Personalized AI workout plans</li><li>Nutrition tracking and meal plans</li><li>Progress photos and measurements</li><li>Social feed with challenges</li><li>Apple Health & Google Fit sync</li><li>Offline mode for gym</li></ul>'
-        }
-    ];
-
-    window.openProject = function(el) {
-        var card = el.closest('.folio-card');
-        var cards = document.querySelectorAll('.folio-card');
-        var index = Array.from(cards).indexOf(card);
-        if (index < 0 || index >= projectData.length) return;
-
-        var data = projectData[index];
-        var modal = document.getElementById('projectModal');
-        var mockupContainer = document.getElementById('pmMockup');
-        var tagsContainer = document.getElementById('pmTags');
-        var titleEl = document.getElementById('pmTitle');
-        var descEl = document.getElementById('pmDesc');
-        var detailsEl = document.getElementById('pmDetails');
-
-        // Copy SVG from card
-        var svg = card.querySelector('.folio-mockup');
-        mockupContainer.innerHTML = svg ? svg.outerHTML : '';
-
-        // Set title and desc from card
-        titleEl.textContent = card.querySelector('h3').textContent;
-        descEl.textContent = card.querySelector('.folio-info p').textContent;
-
-        // Set tags
-        tagsContainer.innerHTML = data.tags.map(function(t) { return '<span>' + t + '</span>'; }).join('');
-
-        // Set details
-        detailsEl.innerHTML = data.details;
-
-        modal.classList.add('open');
-        document.body.style.overflow = 'hidden';
-    };
+// === MODALS ===
 
     window.closeModal = function() {
         var modal = document.getElementById('projectModal');

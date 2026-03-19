@@ -14,7 +14,8 @@
       "Bash(npx --yes playwright screenshot --browser chromium --wait-for-timeout 5000 --viewport-size \"1400,900\" \"https://cryptoatm.tech\" portfolio-cryptoatm.png)",
       "Read(//c/Users/Richard/PhpstormProjects/boostlab/$USERPROFILE/Downloads/**)",
       "Read(//c/Users/Richard/PhpstormProjects/boostlab/$USERPROFILE/**)",
-      "Bash(ls -la \"C:\\\\Users\\\\Richard\\\\Downloads\"/*.png)"
+      "Bash(ls -la \"C:\\\\Users\\\\Richard\\\\Downloads\"/*.png)",
+      "Bash(python -c \":*)"
     ]
   }
 }

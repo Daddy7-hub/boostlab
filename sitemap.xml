@@ -43,6 +43,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://boostlab.lt/portfolio.html</loc>
+        <lastmod>2026-03-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://boostlab.lt/privacy.html</loc>
         <lastmod>2026-03-15</lastmod>
         <changefreq>yearly</changefreq>
