@@ -29,22 +29,35 @@
             btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
         });
 
-        // Update page title
-        var titles = {
-            en: 'BoostLab | Web Development, Apps, Digital Marketing | Estonia',
-            et: 'BoostLab | Veebiarendus, rakendused, digiturundus | Eesti',
-            ru: 'BoostLab | Разработка сайтов, приложений, маркетинг | Эстония'
+        // Update page title & meta description per page
+        var page = document.body.getAttribute('data-page') || 'home';
+        var pageTitles = {
+            home: { en: 'BoostLab | Web Development, Apps, Digital Marketing | Estonia', et: 'BoostLab | Veebiarendus, rakendused, digiturundus | Eesti', ru: 'BoostLab | Разработка сайтов, приложений, маркетинг | Эстония' },
+            'web-development': { en: 'Website Development Estonia, Latvia, Lithuania | BoostLab', et: 'Veebiarendus Eestis, Lätis, Leedus | BoostLab', ru: 'Создание сайтов Эстония, Латвия, Литва | BoostLab' },
+            'mobile-apps': { en: 'Mobile App Development iOS & Android | BoostLab Estonia', et: 'Mobiilirakenduste arendus iOS & Android | BoostLab', ru: 'Разработка мобильных приложений iOS и Android | BoostLab' },
+            'smm-marketing': { en: 'SMM & Content Marketing Estonia, Latvia, Lithuania | BoostLab', et: 'SMM ja sisuturundus Eestis, Lätis, Leedus | BoostLab', ru: 'SMM и контент-маркетинг Эстония, Латвия, Литва | BoostLab' },
+            advertising: { en: 'Google Ads & PPC Advertising Estonia | BoostLab', et: 'Google Ads ja PPC reklaam Eestis | BoostLab', ru: 'Реклама Google Ads и PPC Эстония | BoostLab' },
+            platforms: { en: 'Turnkey Platform Development | BoostLab Estonia', et: 'Võtmed kätte platvormide arendus | BoostLab', ru: 'Разработка платформ под ключ | BoostLab Эстония' },
+            pricing: { en: 'Pricing — Web Development & Marketing | BoostLab', et: 'Hinnad — Veebiarendus ja turundus | BoostLab', ru: 'Цены — Разработка сайтов и маркетинг | BoostLab' },
+            portfolio: { en: 'Portfolio — Digital Agency Projects | BoostLab Estonia', et: 'Portfoolio — Digiagentuur | BoostLab', ru: 'Портфолио — Проекты digital-агентства | BoostLab' }
         };
-        document.title = titles[lang] || titles.en;
-
-        // Update meta description
-        var descs = {
-            en: 'BoostLab - full-cycle digital agency in Estonia. Custom websites, mobile apps, turnkey platforms, Google Ads, SMM and technical support.',
-            et: 'BoostLab - taisteenuse digiagentuur Eestis. Veebilehed, mobiilirakendused, platvormid, Google Ads, SMM ja tehniline tugi.',
-            ru: 'BoostLab - digital-агентство полного цикла в Эстонии. Сайты, приложения, платформы под ключ, Google Ads, SMM и техподдержка.'
+        var pageDescs = {
+            home: { en: 'BoostLab - full-cycle digital agency in Estonia. Custom websites, mobile apps, turnkey platforms, Google Ads, SMM and technical support.', et: 'BoostLab - taisteenuse digiagentuur Eestis. Veebilehed, mobiilirakendused, platvormid, Google Ads, SMM ja tehniline tugi.', ru: 'BoostLab - digital-агентство полного цикла в Эстонии. Сайты, приложения, платформы под ключ, Google Ads, SMM и техподдержка.' },
+            'web-development': { en: 'Professional website development in Estonia, Latvia and Lithuania. Landing pages, corporate sites, e-commerce and web platforms. SEO-optimized, mobile-first.', et: 'Professionaalne veebiarendus Eestis, Lätis ja Leedus. Maandumislehed, ettevõtte veebilehed, e-poed ja veebiplatvormid.', ru: 'Профессиональное создание сайтов в Эстонии, Латвии и Литве. Лендинги, корпоративные сайты, интернет-магазины и веб-платформы.' },
+            'mobile-apps': { en: 'Mobile app development for iOS and Android in Estonia. Native and cross-platform apps from UX design to App Store publishing.', et: 'Mobiilirakenduste arendus iOS ja Android Eestis. Natiivsed ja platvormideülesed rakendused.', ru: 'Разработка мобильных приложений для iOS и Android в Эстонии. Нативные и кросс-платформенные приложения.' },
+            'smm-marketing': { en: 'SMM and content marketing in Estonia, Latvia, Lithuania. Social media management, content strategy, Instagram, Facebook, TikTok.', et: 'SMM ja sisuturundus Eestis, Lätis, Leedus. Sotsiaalmeedia haldamine, sisustrateegia.', ru: 'SMM и контент-маркетинг в Эстонии, Латвии, Литве. Ведение соцсетей, контент-стратегия, Instagram, Facebook, TikTok.' },
+            advertising: { en: 'Google Ads, Meta and TikTok advertising in Estonia. PPC campaign setup and management with measurable ROI.', et: 'Google Ads, Meta ja TikTok reklaam Eestis. PPC kampaaniate seadistamine ja haldamine.', ru: 'Реклама Google Ads, Meta и TikTok в Эстонии. Настройка и ведение PPC-кампаний с измеримым ROI.' },
+            platforms: { en: 'Turnkey platform development in Estonia. Marketplaces, car rental, real estate, ticketing systems. Launch in 4-6 months.', et: 'Võtmed kätte platvormide arendus Eestis. Turuplatside, autorendiplatvormide ja piletisüsteemide arendus.', ru: 'Разработка платформ под ключ в Эстонии. Маркетплейсы, аренда авто, недвижимость, билетные системы.' },
+            pricing: { en: 'Transparent pricing for web development, apps and marketing. Landing pages from €700, business sites from €1,700.', et: 'Läbipaistev hinnakujundus veebiarendusele ja turundusele. Maandumislehed alates €700.', ru: 'Прозрачные цены на разработку сайтов, приложений и маркетинг. Лендинги от €700, бизнес-сайты от €1 700.' },
+            portfolio: { en: 'BoostLab portfolio — 150+ web development, mobile app and marketing projects in Estonia, Latvia, Lithuania.', et: 'BoostLab portfoolio — 150+ veebiarenduse ja turunduse projekti Eestis, Lätis, Leedus.', ru: 'Портфолио BoostLab — 150+ проектов веб-разработки и маркетинга в Эстонии, Латвии, Литве.' }
         };
+        var t = pageTitles[page];
+        document.title = t ? (t[lang] || t.en) : (pageTitles.home[lang] || pageTitles.home.en);
         var metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) metaDesc.setAttribute('content', descs[lang] || descs.en);
+        if (metaDesc) {
+            var d = pageDescs[page];
+            metaDesc.setAttribute('content', d ? (d[lang] || d.en) : (pageDescs.home[lang] || pageDescs.home.en));
+        }
 
         // Recalculate calculator
         calcUpdate();
@@ -405,6 +418,18 @@
             document.getElementById('pmDetails').innerHTML = '<ul>' + d.list.map(function(item) { return '<li>' + item + '</li>'; }).join('') + '</ul>';
             modal.classList.add('open');
             document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // === FAQ ACCORDION ===
+    document.querySelectorAll('.faq-q').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var item = btn.closest('.faq-item');
+            var wasOpen = item.classList.contains('open');
+            // Close all
+            document.querySelectorAll('.faq-item.open').forEach(function(el) { el.classList.remove('open'); });
+            // Toggle current
+            if (!wasOpen) item.classList.add('open');
         });
     });
 })();

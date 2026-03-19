@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"C:\\\\Users\\\\Richard\\\\PhpstormProjects\\\\boostlab\" log --oneline -20)",
+      "Bash(git -C \"C:\\\\Users\\\\Richard\\\\PhpstormProjects\\\\boostlab\" diff --stat HEAD)",
+      "Bash(git -C \"C:\\\\Users\\\\Richard\\\\PhpstormProjects\\\\boostlab\" status -s)"
+    ]
+  }
+}

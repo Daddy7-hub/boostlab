@@ -70,9 +70,17 @@
       <span class="logo-boost">Boost</span><span class="logo-lab">Lab</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#services" data-i="nav.services">Services</a></li>
-      <li><a href="#ready" data-i="nav.platforms">Platforms</a></li>
-      <li><a href="#pricing" data-i="nav.pricing">Pricing</a></li>
+      <li class="nav-dropdown">
+        <a href="#services" data-i="nav.services">Services</a>
+        <div class="nav-dd-menu"><div class="nav-dd-inner">
+          <a href="/web-development.html" data-i="nav.dd.web">Web Development</a>
+          <a href="/mobile-apps.html" data-i="nav.dd.mobile">Mobile Apps</a>
+          <a href="/advertising.html" data-i="nav.dd.ads">Advertising & PPC</a>
+          <a href="/smm-marketing.html" data-i="nav.dd.smm">SMM & Content</a>
+        </div></div>
+      </li>
+      <li><a href="/platforms.html" data-i="nav.platforms">Platforms</a></li>
+      <li><a href="/pricing.html" data-i="nav.pricing">Pricing</a></li>
       <li><a href="#portfolio" data-i="nav.portfolio">Portfolio</a></li>
       <li><a href="#calculator" data-i="nav.calculator">Calculator</a></li>
     </ul>
@@ -89,12 +97,15 @@
 </nav>
 
 <div class="mob-menu" id="mobMenu">
-  <a href="#services" data-i="nav.services">Services</a>
-  <a href="#ready" data-i="nav.platforms">Platforms</a>
-  <a href="#pricing" data-i="nav.pricing">Pricing</a>
+  <a href="/web-development.html" data-i="nav.dd.web">Web Development</a>
+  <a href="/mobile-apps.html" data-i="nav.dd.mobile">Mobile Apps</a>
+  <a href="/advertising.html" data-i="nav.dd.ads">Advertising & PPC</a>
+  <a href="/smm-marketing.html" data-i="nav.dd.smm">SMM & Content</a>
+  <a href="/platforms.html" data-i="nav.platforms">Platforms</a>
+  <a href="/pricing.html" data-i="nav.pricing">Pricing</a>
   <a href="#portfolio" data-i="nav.portfolio">Portfolio</a>
   <a href="#calculator" data-i="nav.calculator">Calculator</a>
-  <a href="#contact" data-i="nav.cta">Get a Quote</a>
+  <a href="#contact" class="nav-cta" data-i="nav.cta">Get a Quote</a>
   <div class="lang-switch" style="margin-top:16px">
     <button class="lang-btn active" data-lang="en">EN</button>
     <button class="lang-btn" data-lang="et">ET</button>
