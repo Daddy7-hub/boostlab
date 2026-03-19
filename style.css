@@ -388,27 +388,93 @@ nav {
 }
 .calc-result-note { font-size: 0.82rem; color: var(--text-light) }
 
-/* === PORTFOLIO === */
-.folio-card {
-    background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius);
-    overflow: hidden; transition: all 0.3s ease;
+/* === PORTFOLIO / CASE STUDIES === */
+.case-study {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+    margin-bottom: 64px; padding: 48px; border-radius: 20px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
 }
-.folio-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.08); transform: translateY(-4px) }
-.folio-img { height: 220px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden }
-.folio-icon { font-size: 3rem; opacity: 0.6 }
-.folio-mockup { width: 85%; height: auto; opacity: 0.8; transition: transform 0.3s }
-.folio-card:hover .folio-mockup { transform: scale(1.03) }
-.folio-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(123,47,190,0.85), rgba(232,67,147,0.7));
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; transition: opacity 0.3s;
+.case-study.reverse { direction: rtl }
+.case-study.reverse > * { direction: ltr }
+.case-study:last-child { margin-bottom: 0 }
+
+.case-visual { position: relative }
+.case-browser {
+    border-radius: 12px; overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08);
 }
-.folio-card:hover .folio-overlay { opacity: 1 }
-.folio-overlay span { color: #fff; font-weight: 600; font-size: 0.9rem; border: 1.5px solid #fff; padding: 10px 24px; border-radius: var(--radius-sm) }
-.folio-info { padding: 24px 28px }
-.folio-info h3 { margin-top: 8px; margin-bottom: 6px }
-.folio-info p { font-size: 0.85rem; color: var(--text-light); line-height: 1.5 }
+.browser-bar {
+    background: #1a1a2e; padding: 12px 16px; display: flex; align-items: center; gap: 8px;
+}
+.browser-dot { width: 10px; height: 10px; border-radius: 50%; background: #ff5f57 }
+.browser-dot:nth-child(2) { background: #ffbd2e }
+.browser-dot:nth-child(3) { background: #28c840 }
+.browser-url {
+    margin-left: 12px; font-family: var(--font-mono); font-size: 0.75rem;
+    color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.06);
+    padding: 4px 14px; border-radius: 6px;
+}
+.case-browser img { width: 100%; display: block }
+.case-screenshot {
+    overflow: hidden; background: #0a0a14;
+}
+.case-screenshot img {
+    width: 100%; height: auto; display: block;
+}
+.case-visit-btn {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;
+    color: var(--purple-light); font-weight: 600; font-size: 0.85rem;
+    padding: 10px 20px; border: 1px solid rgba(155,79,222,0.3); border-radius: var(--radius-sm);
+    transition: all 0.3s; background: rgba(155,79,222,0.08);
+}
+.case-visit-btn:hover { background: rgba(155,79,222,0.2); border-color: var(--purple-light) }
+
+/* Terminal mockup */
+.terminal-mockup {
+    border-radius: 12px; overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08);
+}
+.terminal-bar {
+    background: #1a1a2e; padding: 12px 16px; display: flex; align-items: center; gap: 8px;
+}
+.terminal-bar .red { background: #ff5f57 }
+.terminal-bar .yellow { background: #ffbd2e }
+.terminal-bar .green { background: #28c840 }
+.terminal-title {
+    margin-left: 12px; font-family: var(--font-mono); font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+}
+.terminal-body {
+    background: #0a0a14; padding: 24px; font-family: var(--font-mono); font-size: 0.82rem; line-height: 2;
+}
+.t-line { color: rgba(255,255,255,0.7) }
+.t-prompt { color: #28c840; font-weight: 600 }
+.t-mod { color: #ffbd2e }
+.t-ok { color: #28c840 }
+.t-cursor { animation: cursor-blink 1s infinite }
+@keyframes cursor-blink { 0%,50% { opacity: 1 } 51%,100% { opacity: 0 } }
+
+/* Case info */
+.case-info h3 { font-size: 1.5rem; margin-bottom: 12px }
+.dark-section .case-info h3 { color: #fff }
+.case-tags { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap }
+.dark-section .case-tags .tag { background: rgba(155,79,222,0.15); color: var(--purple-light); border-color: rgba(155,79,222,0.2) }
+.case-desc { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 20px }
+.case-features { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px }
+.case-feat {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.85rem; color: rgba(255,255,255,0.7);
+}
+.case-feat svg { color: #28c840; flex-shrink: 0 }
+.case-meta-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08);
+}
+.case-metric { padding: 12px 16px; border-radius: 10px; background: rgba(255,255,255,0.03) }
+.case-metric.highlight { background: rgba(123,47,190,0.12); border: 1px solid rgba(123,47,190,0.2) }
+.case-metric-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255,255,255,0.4); margin-bottom: 4px }
+.case-metric-val { font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.9) }
+.case-metric-val.price { color: var(--purple-light); font-size: 1.1rem }
 
 /* === SUPPORT === */
 .support-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center }
@@ -540,10 +606,11 @@ footer { background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.06
     .smm-card { padding: 24px 16px }
     .smm-price { font-size: 1.3rem }
     .smm-features li { font-size: 0.78rem }
-    .folio-img { height: 140px }
-    .folio-info { padding: 16px }
-    .folio-info h3 { font-size: 1rem }
-    .folio-info p { font-size: 0.78rem }
+    .case-study { grid-template-columns: 1fr; gap: 28px; padding: 24px }
+    .case-study.reverse { direction: ltr }
+    .case-info h3 { font-size: 1.2rem }
+    .case-meta-grid { grid-template-columns: 1fr 1fr; gap: 8px }
+    .terminal-body { padding: 16px; font-size: 0.72rem }
     .calc-wrapper { padding: 24px 16px }
     .calc-opt { padding: 8px 14px; font-size: 0.78rem }
     .calc-check { padding: 8px 12px; font-size: 0.78rem }

@@ -3,7 +3,18 @@
     "allow": [
       "Bash(git -C \"C:\\\\Users\\\\Richard\\\\PhpstormProjects\\\\boostlab\" log --oneline -20)",
       "Bash(git -C \"C:\\\\Users\\\\Richard\\\\PhpstormProjects\\\\boostlab\" diff --stat HEAD)",
-      "Bash(git -C \"C:\\\\Users\\\\Richard\\\\PhpstormProjects\\\\boostlab\" status -s)"
+      "Bash(git -C \"C:\\\\Users\\\\Richard\\\\PhpstormProjects\\\\boostlab\" status -s)",
+      "Bash(curl -L -o portfolio-cryptoatm.jpg \"https://image.thum.io/get/width/1200/crop/800/https://cryptoatm.tech/\" --max-time 15)",
+      "WebFetch(domain:cryptoatm.tech)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(mv portfolio-cryptoatm.jpg portfolio-cryptoatm.gif)",
+      "Bash(ls -la portfolio-cryptoatm.*)",
+      "Bash(curl -L -o portfolio-cryptoatm.png \"https://image.thum.io/get/png/width/1200/https://cryptoatm.tech/\" --max-time 30)",
+      "Bash(node -e \":*)",
+      "Bash(npx --yes playwright screenshot --browser chromium --wait-for-timeout 5000 --viewport-size \"1400,900\" \"https://cryptoatm.tech\" portfolio-cryptoatm.png)",
+      "Read(//c/Users/Richard/PhpstormProjects/boostlab/$USERPROFILE/Downloads/**)",
+      "Read(//c/Users/Richard/PhpstormProjects/boostlab/$USERPROFILE/**)",
+      "Bash(ls -la \"C:\\\\Users\\\\Richard\\\\Downloads\"/*.png)"
     ]
   }
 }
