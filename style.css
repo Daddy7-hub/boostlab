@@ -48,7 +48,7 @@ ul { list-style: none }
 
 /* === TYPOGRAPHY === */
 h1, h2, h3, h4 { color: var(--text-dark); font-weight: 700; line-height: 1.15 }
-h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); letter-spacing: -1.5px }
+h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -1.5px }
 h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -1px }
 h3 { font-size: 1.25rem; letter-spacing: -0.3px }
 
@@ -106,6 +106,26 @@ section { padding: 100px 0 }
 .btn-outline-light { color: #fff; border-color: rgba(255,255,255,0.2) }
 .btn-outline-light:hover { border-color: #fff; color: #fff }
 
+/* === TOP BANNER === */
+.top-banner {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1100;
+    background: var(--gradient); color: #fff;
+    padding: 10px 32px; text-align: center;
+    font-size: 0.82rem; font-weight: 500; line-height: 1.4;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+}
+.top-banner a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 2px }
+.top-banner a:hover { opacity: 0.85 }
+.banner-close {
+    position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: rgba(255,255,255,0.7);
+    font-size: 1.2rem; cursor: pointer; padding: 4px 8px; line-height: 1;
+}
+.banner-close:hover { color: #fff }
+.has-banner nav { top: 40px }
+.has-banner .mob-menu { top: calc(var(--nav-h) + 40px) }
+.has-banner .hero { padding-top: calc(var(--nav-h) + 40px) }
+
 /* === NAVIGATION === */
 nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
@@ -132,14 +152,36 @@ nav {
 .nav-links a:hover { color: var(--purple) }
 .nav-right { display: flex; align-items: center; gap: 16px }
 
-.lang-switch { display: flex; gap: 4px }
-.lang-btn {
-    padding: 6px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
-    background: transparent; border: 1px solid var(--border); color: var(--text-light);
+/* Language dropdown */
+.lang-dropdown { position: relative }
+.lang-trigger {
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 600;
+    background: transparent; border: 1px solid var(--border); color: var(--text-body);
     cursor: pointer; transition: all 0.2s; font-family: var(--font);
 }
-.lang-btn.active { background: var(--purple); color: #fff; border-color: var(--purple) }
-.lang-btn:hover:not(.active) { border-color: var(--purple); color: var(--purple) }
+.lang-trigger:hover { border-color: var(--purple); color: var(--purple) }
+.lang-trigger .globe { font-size: 1rem; line-height: 1 }
+.lang-trigger .arrow { font-size: 0.6rem; opacity: 0.5; transition: transform 0.2s }
+.lang-dropdown.open .arrow { transform: rotate(180deg) }
+.lang-list {
+    position: absolute; top: calc(100% + 8px); right: 0; min-width: 160px;
+    background: var(--bg-white); border: 1px solid var(--border);
+    border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    padding: 6px; opacity: 0; visibility: hidden;
+    transform: translateY(-8px); transition: all 0.2s;
+    z-index: 1200;
+}
+.lang-dropdown.open .lang-list { opacity: 1; visibility: visible; transform: translateY(0) }
+.lang-btn {
+    display: flex; align-items: center; gap: 10px; width: 100%;
+    padding: 8px 12px; border-radius: 8px; font-size: 0.82rem; font-weight: 500;
+    background: transparent; border: none; color: var(--text-body);
+    cursor: pointer; transition: all 0.15s; font-family: var(--font); text-align: left;
+}
+.lang-btn:hover { background: var(--gradient-subtle); color: var(--purple) }
+.lang-btn .flag { font-size: 1.1rem; line-height: 1 }
+.lang-btn.active { background: rgba(123,47,190,0.08); color: var(--purple); font-weight: 700 }
 
 .nav-cta {
     background: var(--gradient); color: #fff;
@@ -163,7 +205,7 @@ nav {
 
 /* === HERO === */
 .hero {
-    min-height: 100vh; display: flex; align-items: center;
+    min-height: calc(100vh - var(--nav-h)); display: flex; align-items: center;
     padding-top: var(--nav-h); position: relative; overflow: hidden; background: #fff;
 }
 .hero::before {
@@ -180,7 +222,7 @@ nav {
     display: inline-flex; align-items: center; gap: 8px;
     background: var(--gradient-subtle); border: 1px solid rgba(123,47,190,0.12);
     padding: 8px 18px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;
-    color: var(--purple); margin-bottom: 24px;
+    color: var(--purple); margin-bottom: 16px;
 }
 .hero-badge::before {
     content: ''; width: 6px; height: 6px; background: var(--purple);
@@ -195,14 +237,14 @@ nav {
     background: var(--gradient);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
-.hero-sub { font-size: 1.15rem; color: var(--text-body); max-width: 520px; margin-bottom: 36px; line-height: 1.7; font-weight: 400 }
-.hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px }
-.hero-stats { display: flex; gap: 40px }
-.stat-num { font-size: 1.8rem; font-weight: 800; color: var(--text-dark); letter-spacing: -1px }
+.hero-sub { font-size: 1.05rem; color: var(--text-body); max-width: 520px; margin-bottom: 20px; line-height: 1.6; font-weight: 400 }
+.hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px }
+.hero-stats { display: flex; gap: 32px }
+.stat-num { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); letter-spacing: -1px }
 .stat-label { font-size: 0.8rem; color: var(--text-light); font-weight: 500 }
 
 /* Hero floating cards */
-.hero-cards { position: relative; width: 420px; height: 420px }
+.hero-cards { position: relative; width: 340px; height: 340px }
 .float-card {
     position: absolute; background: var(--bg-white); border: 1px solid var(--border);
     border-radius: var(--radius); padding: 20px 24px; box-shadow: var(--shadow);
@@ -610,7 +652,8 @@ footer { background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.06
     /* Nav compact */
     .nav-right { gap: 6px }
     .nav-cta { padding: 7px 12px; font-size: 0.72rem }
-    .lang-btn { padding: 4px 6px; font-size: 0.6rem }
+    .lang-trigger { padding: 4px 8px; font-size: 0.72rem }
+    .lang-trigger .globe { font-size: 0.85rem }
     .nav-logo { font-size: 1.15rem; gap: 1px }
     .logo-icon { font-size: 0.95rem; margin-right: 2px }
     .nav-inner { padding: 0 10px }

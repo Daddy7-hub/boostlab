@@ -15,7 +15,12 @@
       "Read(//c/Users/Richard/PhpstormProjects/boostlab/$USERPROFILE/Downloads/**)",
       "Read(//c/Users/Richard/PhpstormProjects/boostlab/$USERPROFILE/**)",
       "Bash(ls -la \"C:\\\\Users\\\\Richard\\\\Downloads\"/*.png)",
-      "Bash(python -c \":*)"
+      "Bash(python -c \":*)",
+      "Bash(python gen_langs.py)",
+      "Read(//mnt/c/Users/Richard/PhpstormProjects/**)",
+      "Bash(python update_subpages.py)",
+      "Bash(python update_subpages2.py)",
+      "Bash(del gen_langs.py update_subpages.py update_subpages2.py)"
     ]
   }
 }

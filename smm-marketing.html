@@ -43,6 +43,12 @@
   <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
 </defs></svg>
 
+<div class="top-banner" id="topBanner">
+  <span data-i="banner.text">Free consultation — we'll design a mockup of your future website in 24h</span>
+  <a href="#contact" data-i="banner.cta">Contact Us</a>
+  <button class="banner-close" id="bannerClose" aria-label="Close">&times;</button>
+</div>
+
 <nav><div class="nav-inner">
   <a href="/" class="nav-logo"><svg width="20" height="20" class="logo-svg-icon"><use href="#i-rocket"/></svg><span class="logo-boost">Boost</span><span class="logo-lab">Lab</span></a>
   <ul class="nav-links">
@@ -51,10 +57,32 @@
     <li><a href="/pricing.html" data-i="nav.pricing">Pricing</a></li>
     <li><a href="/portfolio.html" data-i="nav.portfolio">Portfolio</a></li>
   </ul>
-  <div class="nav-right"><div class="lang-switch"><button class="lang-btn active" data-lang="en">EN</button><button class="lang-btn" data-lang="et">ET</button><button class="lang-btn" data-lang="ru">RU</button></div><a href="/#contact" class="nav-cta" data-i="nav.cta">Get a Quote</a></div>
+  <div class="nav-right"><div class="lang-dropdown">
+        <button class="lang-trigger"><span class="globe">🌐</span> <span class="lang-current">EN</span> <span class="arrow">▾</span></button>
+        <div class="lang-list">
+          <button class="lang-btn active" data-lang="en"><span class="flag">🇬🇧</span> English</button>
+          <button class="lang-btn" data-lang="et"><span class="flag">🇪🇪</span> Eesti</button>
+          <button class="lang-btn" data-lang="ru"><span class="flag">🇷🇺</span> Русский</button>
+          <button class="lang-btn" data-lang="lt"><span class="flag">🇱🇹</span> Lietuvių</button>
+          <button class="lang-btn" data-lang="lv"><span class="flag">🇱🇻</span> Latviešu</button>
+          <button class="lang-btn" data-lang="es"><span class="flag">🇪🇸</span> Español</button>
+          <button class="lang-btn" data-lang="fr"><span class="flag">🇫🇷</span> Français</button>
+        </div>
+      </div><a href="/#contact" class="nav-cta" data-i="nav.cta">Get a Quote</a></div>
   <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="mob-menu" id="mobMenu"><a href="/web-development.html" data-i="nav.dd.web">Web Development</a><a href="/mobile-apps.html" data-i="nav.dd.mobile">Mobile Apps</a><a href="/advertising.html" data-i="nav.dd.ads">Advertising & PPC</a><a href="/smm-marketing.html" data-i="nav.dd.smm">SMM & Content</a><a href="/platforms.html" data-i="nav.platforms">Platforms</a><a href="/pricing.html" data-i="nav.pricing">Pricing</a><a href="/portfolio.html" data-i="nav.portfolio">Portfolio</a><a href="/#contact" class="nav-cta" data-i="nav.cta">Get a Quote</a><div class="lang-switch" style="margin-top:16px"><button class="lang-btn active" data-lang="en">EN</button><button class="lang-btn" data-lang="et">ET</button><button class="lang-btn" data-lang="ru">RU</button></div></div>
+<div class="mob-menu" id="mobMenu"><a href="/web-development.html" data-i="nav.dd.web">Web Development</a><a href="/mobile-apps.html" data-i="nav.dd.mobile">Mobile Apps</a><a href="/advertising.html" data-i="nav.dd.ads">Advertising & PPC</a><a href="/smm-marketing.html" data-i="nav.dd.smm">SMM & Content</a><a href="/platforms.html" data-i="nav.platforms">Platforms</a><a href="/pricing.html" data-i="nav.pricing">Pricing</a><a href="/portfolio.html" data-i="nav.portfolio">Portfolio</a><a href="/#contact" class="nav-cta" data-i="nav.cta">Get a Quote</a><div class="lang-dropdown" style="margin-top:16px">
+    <button class="lang-trigger"><span class="globe">🌐</span> <span class="lang-current">EN</span> <span class="arrow">▾</span></button>
+    <div class="lang-list">
+      <button class="lang-btn active" data-lang="en"><span class="flag">🇬🇧</span> English</button>
+      <button class="lang-btn" data-lang="et"><span class="flag">🇪🇪</span> Eesti</button>
+      <button class="lang-btn" data-lang="ru"><span class="flag">🇷🇺</span> Русский</button>
+      <button class="lang-btn" data-lang="lt"><span class="flag">🇱🇹</span> Lietuvių</button>
+      <button class="lang-btn" data-lang="lv"><span class="flag">🇱🇻</span> Latviešu</button>
+      <button class="lang-btn" data-lang="es"><span class="flag">🇪🇸</span> Español</button>
+      <button class="lang-btn" data-lang="fr"><span class="flag">🇫🇷</span> Français</button>
+    </div>
+  </div></div>
 
 <section class="page-hero"><div class="container">
   <div class="breadcrumbs"><a href="/" data-i="bc.home">Home</a> <span>/</span> <span data-i="nav.dd.smm">SMM & Content</span></div>
