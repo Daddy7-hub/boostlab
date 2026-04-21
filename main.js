@@ -8,6 +8,97 @@
     var langCodes = { en:'en', et:'et', ru:'ru', lt:'lt', lv:'lv', es:'es', fr:'fr' };
     let currentLang = 'en';
 
+    var growthTranslations = {
+        en: {
+            'gr.label': 'Growth & Lead Generation',
+            'gr.title': 'Promotion Through Balticleads.ee',
+            'gr.desc': 'We help client businesses get more qualified requests through Balticleads.ee and properly configured advertising campaigns. The goal is simple: connect your website, analytics and ad traffic into one measurable sales system.',
+            'gr.p1': 'Campaign setup',
+            'gr.p2': 'Lead generation funnels',
+            'gr.p3': 'Tracking and analytics',
+            'gr.p4': 'Landing page optimization',
+            'gr.status': 'Lead platform',
+            'gr.card': 'We use Balticleads.ee as part of a practical promotion workflow: prepare the offer, launch traffic, track conversions and improve the funnel based on real data.',
+            'gr.link': 'Visit Balticleads.ee'
+        },
+        et: {
+            'gr.label': 'Kasv ja müügivihjed',
+            'gr.title': 'Edendamine Balticleads.ee kaudu',
+            'gr.desc': 'Aitame klientide ettevõtetel saada Balticleads.ee ja õigesti seadistatud reklaamikampaaniate kaudu rohkem kvaliteetseid päringuid. Eesmärk on lihtne: ühendada veebileht, analüütika ja reklaamiliiklus üheks mõõdetavaks müügisüsteemiks.',
+            'gr.p1': 'Kampaaniate seadistus',
+            'gr.p2': 'Müügivihjete lehtrid',
+            'gr.p3': 'Jälgimine ja analüütika',
+            'gr.p4': 'Maandumislehe optimeerimine',
+            'gr.status': 'Lead-platvorm',
+            'gr.card': 'Kasutame Balticleads.ee platvormi praktilises edendustöös: valmistame pakkumise ette, käivitame liikluse, jälgime konversioone ja parandame lehtrit pärisandmete põhjal.',
+            'gr.link': 'Ava Balticleads.ee'
+        },
+        ru: {
+            'gr.label': 'Рост и лидогенерация',
+            'gr.title': 'Продвижение через Balticleads.ee',
+            'gr.desc': 'Мы помогаем бизнесу клиентов получать больше качественных заявок через Balticleads.ee и правильно настроенные рекламные кампании. Цель простая: связать сайт, аналитику и рекламный трафик в одну измеримую систему продаж.',
+            'gr.p1': 'Настройка кампаний',
+            'gr.p2': 'Воронки лидогенерации',
+            'gr.p3': 'Трекинг и аналитика',
+            'gr.p4': 'Оптимизация лендингов',
+            'gr.status': 'Lead-платформа',
+            'gr.card': 'Мы используем Balticleads.ee как часть практического процесса продвижения: готовим оффер, запускаем трафик, отслеживаем конверсии и улучшаем воронку по реальным данным.',
+            'gr.link': 'Перейти на Balticleads.ee'
+        },
+        lt: {
+            'gr.label': 'Augimas ir lead generavimas',
+            'gr.title': 'Sklaida per Balticleads.ee',
+            'gr.desc': 'Padedame klientų verslams gauti daugiau kokybiškų užklausų per Balticleads.ee ir tinkamai sukonfigūruotas reklamos kampanijas. Tikslas paprastas: sujungti svetainę, analitiką ir reklamos srautą į vieną matuojamą pardavimų sistemą.',
+            'gr.p1': 'Kampanijų nustatymas',
+            'gr.p2': 'Lead generavimo piltuvai',
+            'gr.p3': 'Sekimas ir analitika',
+            'gr.p4': 'Nukreipimo puslapių optimizavimas',
+            'gr.status': 'Lead platforma',
+            'gr.card': 'Balticleads.ee naudojame kaip praktinio sklaidos proceso dalį: paruošiame pasiūlymą, paleidžiame srautą, stebime konversijas ir geriname piltuvą pagal realius duomenis.',
+            'gr.link': 'Atidaryti Balticleads.ee'
+        },
+        lv: {
+            'gr.label': 'Izaugsme un potenciālie klienti',
+            'gr.title': 'Virzīšana ar Balticleads.ee',
+            'gr.desc': 'Palīdzam klientu uzņēmumiem iegūt vairāk kvalitatīvu pieprasījumu ar Balticleads.ee un pareizi iestatītām reklāmas kampaņām. Mērķis ir vienkāršs: savienot mājaslapu, analītiku un reklāmas trafiku vienā izmērāmā pārdošanas sistēmā.',
+            'gr.p1': 'Kampaņu iestatīšana',
+            'gr.p2': 'Lead ģenerēšanas piltuves',
+            'gr.p3': 'Izsekošana un analītika',
+            'gr.p4': 'Landing lapu optimizācija',
+            'gr.status': 'Lead platforma',
+            'gr.card': 'Balticleads.ee izmantojam kā praktiskas virzīšanas procesa daļu: sagatavojam piedāvājumu, palaižam trafiku, sekojam konversijām un uzlabojam piltuvi pēc reāliem datiem.',
+            'gr.link': 'Atvērt Balticleads.ee'
+        },
+        es: {
+            'gr.label': 'Crecimiento y leads',
+            'gr.title': 'Promoción a través de Balticleads.ee',
+            'gr.desc': 'Ayudamos a las empresas de nuestros clientes a recibir más solicitudes cualificadas mediante Balticleads.ee y campañas publicitarias bien configuradas. El objetivo es simple: conectar sitio web, analítica y tráfico publicitario en un sistema de ventas medible.',
+            'gr.p1': 'Configuración de campañas',
+            'gr.p2': 'Embudos de leads',
+            'gr.p3': 'Seguimiento y analítica',
+            'gr.p4': 'Optimización de landing pages',
+            'gr.status': 'Plataforma de leads',
+            'gr.card': 'Usamos Balticleads.ee como parte de un flujo práctico de promoción: preparar la oferta, lanzar tráfico, medir conversiones y mejorar el embudo con datos reales.',
+            'gr.link': 'Visitar Balticleads.ee'
+        },
+        fr: {
+            'gr.label': 'Croissance et leads',
+            'gr.title': 'Promotion via Balticleads.ee',
+            'gr.desc': 'Nous aidons les entreprises clientes à obtenir plus de demandes qualifiées via Balticleads.ee et des campagnes publicitaires bien configurées. L’objectif est simple : relier le site, l’analytique et le trafic publicitaire dans un système de vente mesurable.',
+            'gr.p1': 'Configuration des campagnes',
+            'gr.p2': 'Funnels de génération de leads',
+            'gr.p3': 'Suivi et analytique',
+            'gr.p4': 'Optimisation des landing pages',
+            'gr.status': 'Plateforme de leads',
+            'gr.card': 'Nous utilisons Balticleads.ee dans un processus de promotion concret : préparer l’offre, lancer le trafic, suivre les conversions et améliorer le funnel avec des données réelles.',
+            'gr.link': 'Visiter Balticleads.ee'
+        }
+    };
+
+    Object.keys(growthTranslations).forEach(function(lang) {
+        if (T[lang]) Object.assign(T[lang], growthTranslations[lang]);
+    });
+
     function setLang(lang) {
         if (!T[lang]) return;
         currentLang = lang;
