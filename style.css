@@ -523,6 +523,41 @@ nav {
 .support-cta-box h3 { font-size: 1.4rem; margin-bottom: 12px }
 .support-cta-box > p { color: var(--text-light); font-size: 0.92rem; margin-bottom: 24px; line-height: 1.6 }
 
+/* === GROWTH PLATFORM === */
+.growth-platform { background: var(--bg-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border) }
+.growth-layout { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center }
+.growth-points { display: flex; flex-wrap: wrap; gap: 8px; margin-top: -24px }
+.growth-points span {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 12px; border-radius: 50px;
+    background: var(--gradient-subtle); border: 1px solid rgba(123,47,190,0.1);
+    color: var(--purple); font-size: 0.78rem; font-weight: 700;
+}
+.growth-points span::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gradient);
+}
+.growth-card {
+    background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 32px; box-shadow: var(--shadow); position: relative; overflow: hidden;
+}
+.growth-card::before {
+    content: ''; position: absolute; inset: 0 0 auto; height: 3px;
+    background: var(--gradient);
+}
+.growth-card-top {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    margin-bottom: 18px;
+}
+.growth-domain { color: var(--text-dark); font-size: 1.25rem; font-weight: 800 }
+.growth-status {
+    padding: 5px 10px; border-radius: 50px;
+    background: rgba(123,47,190,0.08); color: var(--purple);
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    white-space: nowrap;
+}
+.growth-card p { color: var(--text-light); font-size: 0.92rem; line-height: 1.7 }
+
 /* === PROCESS === */
 .process-step { text-align: center; padding: 28px 20px }
 .step-num {
@@ -599,6 +634,7 @@ footer { background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.06
     .grid-3 { grid-template-columns: repeat(2, 1fr) }
     .grid-4 { grid-template-columns: repeat(2, 1fr) }
     .support-layout { grid-template-columns: 1fr }
+    .growth-layout { grid-template-columns: 1fr; gap: 28px }
 }
 @media (max-width: 768px) {
 
@@ -645,6 +681,9 @@ footer { background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.06
     .step-num { font-size: 2.5rem }
     .support-layout { gap: 24px }
     .support-cta-box { padding: 24px }
+    .growth-card { padding: 24px 20px }
+    .growth-card-top { flex-direction: column; align-items: flex-start; gap: 8px }
+    .growth-points { margin-top: -12px }
     .footer-cols { flex-direction: column; gap: 24px }
     .footer-top { gap: 24px }
     .addon-prices { flex-direction: row; gap: 16px }
