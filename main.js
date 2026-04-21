@@ -99,6 +99,97 @@
         if (T[lang]) Object.assign(T[lang], growthTranslations[lang]);
     });
 
+    var portfolioTranslations = {
+        en: {
+            'por.seo1': 'BoostLab delivers digital solutions for businesses across Estonia, Latvia and Lithuania. Our portfolio includes websites, web platforms, trading terminals, lead generation tools like BalticLeads and mobile applications for clients in fintech, e-commerce and other industries.',
+            'cs3.title': 'BalticLeads — Lead Platform',
+            'cs3.desc': 'Lead generation workspace for finding Baltic business contacts, filtering companies by market data and preparing targeted outreach or advertising campaigns.',
+            'cs3.f1': 'Company and email database',
+            'cs3.f2': 'Filters by country, industry and city',
+            'cs3.f3': 'Campaign and export workflow',
+            'cs3.f4': 'Admin tools for lead management',
+            'cs3.type': 'Lead Platform',
+            'cs3.time': 'Ongoing',
+            'cs3.price': 'Internal product'
+        },
+        et: {
+            'por.seo1': 'BoostLab loob digitaalseid lahendusi ettevõtetele Eestis, Lätis ja Leedus. Meie portfoolio sisaldab veebilehti, veebiplatvorme, kauplemisterminale, lead-generatsiooni tööriistu nagu BalticLeads ja mobiilirakendusi.',
+            'cs3.title': 'BalticLeads — lead-platvorm',
+            'cs3.desc': 'Müügivihjete tööruum Balti ettevõtete kontaktide leidmiseks, ettevõtete filtreerimiseks turuandmete järgi ning sihitud outreachi või reklaamikampaaniate ettevalmistamiseks.',
+            'cs3.f1': 'Ettevõtete ja e-posti andmebaas',
+            'cs3.f2': 'Filtrid riigi, valdkonna ja linna järgi',
+            'cs3.f3': 'Kampaaniate ja ekspordi töövoog',
+            'cs3.f4': 'Admin-tööriistad leadide haldamiseks',
+            'cs3.type': 'Lead-platvorm',
+            'cs3.time': 'Jätkuv arendus',
+            'cs3.price': 'Sisemine toode'
+        },
+        ru: {
+            'por.seo1': 'BoostLab создает digital-решения для бизнеса в Эстонии, Латвии и Литве. В портфолио входят сайты, веб-платформы, торговые терминалы, инструменты лидогенерации вроде BalticLeads и мобильные приложения.',
+            'cs3.title': 'BalticLeads — платформа лидов',
+            'cs3.desc': 'Рабочая платформа для поиска бизнес-контактов в Балтии, фильтрации компаний по рыночным данным и подготовки точечных outreach- или рекламных кампаний.',
+            'cs3.f1': 'База компаний и email-контактов',
+            'cs3.f2': 'Фильтры по стране, отрасли и городу',
+            'cs3.f3': 'Работа с кампаниями и экспортом',
+            'cs3.f4': 'Admin-инструменты для управления лидами',
+            'cs3.type': 'Lead-платформа',
+            'cs3.time': 'Постоянное развитие',
+            'cs3.price': 'Внутренний продукт'
+        },
+        lt: {
+            'por.seo1': 'BoostLab kuria skaitmeninius sprendimus verslams Estijoje, Latvijoje ir Lietuvoje. Portfelyje yra svetainės, web platformos, prekybos terminalai, lead generavimo įrankiai kaip BalticLeads ir mobiliosios programėlės.',
+            'cs3.title': 'BalticLeads — lead platforma',
+            'cs3.desc': 'Lead generavimo darbo erdvė Baltijos verslo kontaktams rasti, įmonėms filtruoti pagal rinkos duomenis ir tikslinėms outreach arba reklamos kampanijoms paruošti.',
+            'cs3.f1': 'Įmonių ir el. pašto duomenų bazė',
+            'cs3.f2': 'Filtrai pagal šalį, industriją ir miestą',
+            'cs3.f3': 'Kampanijų ir eksporto eiga',
+            'cs3.f4': 'Admin įrankiai lead valdymui',
+            'cs3.type': 'Lead platforma',
+            'cs3.time': 'Nuolatinė plėtra',
+            'cs3.price': 'Vidinis produktas'
+        },
+        lv: {
+            'por.seo1': 'BoostLab izstrādā digitālus risinājumus uzņēmumiem Igaunijā, Latvijā un Lietuvā. Portfolio ietver mājaslapas, web platformas, tirdzniecības termināļus, lead ģenerēšanas rīkus kā BalticLeads un mobilās lietotnes.',
+            'cs3.title': 'BalticLeads — lead platforma',
+            'cs3.desc': 'Lead ģenerēšanas darba vide Baltijas biznesa kontaktu atrašanai, uzņēmumu filtrēšanai pēc tirgus datiem un mērķētām outreach vai reklāmas kampaņām.',
+            'cs3.f1': 'Uzņēmumu un e-pastu datubāze',
+            'cs3.f2': 'Filtri pēc valsts, nozares un pilsētas',
+            'cs3.f3': 'Kampaņu un eksporta plūsma',
+            'cs3.f4': 'Admin rīki lead pārvaldībai',
+            'cs3.type': 'Lead platforma',
+            'cs3.time': 'Pastāvīga attīstība',
+            'cs3.price': 'Iekšējais produkts'
+        },
+        es: {
+            'por.seo1': 'BoostLab entrega soluciones digitales para empresas en Estonia, Letonia y Lituania. Nuestro portafolio incluye sitios web, plataformas, terminales de trading, herramientas de generación de leads como BalticLeads y apps móviles.',
+            'cs3.title': 'BalticLeads — plataforma de leads',
+            'cs3.desc': 'Espacio de trabajo para generar leads, encontrar contactos empresariales en los Bálticos, filtrar empresas por datos de mercado y preparar campañas publicitarias o de outreach.',
+            'cs3.f1': 'Base de empresas y emails',
+            'cs3.f2': 'Filtros por país, industria y ciudad',
+            'cs3.f3': 'Flujo de campañas y exportación',
+            'cs3.f4': 'Herramientas admin para leads',
+            'cs3.type': 'Plataforma de leads',
+            'cs3.time': 'Continuo',
+            'cs3.price': 'Producto interno'
+        },
+        fr: {
+            'por.seo1': 'BoostLab livre des solutions digitales pour les entreprises en Estonie, Lettonie et Lituanie. Notre portfolio inclut sites web, plateformes, terminaux de trading, outils de génération de leads comme BalticLeads et applications mobiles.',
+            'cs3.title': 'BalticLeads — plateforme de leads',
+            'cs3.desc': 'Espace de travail de génération de leads pour trouver des contacts business dans les pays baltes, filtrer les entreprises par données marché et préparer des campagnes ciblées.',
+            'cs3.f1': 'Base entreprises et emails',
+            'cs3.f2': 'Filtres par pays, secteur et ville',
+            'cs3.f3': 'Workflow campagnes et export',
+            'cs3.f4': 'Outils admin de gestion des leads',
+            'cs3.type': 'Plateforme de leads',
+            'cs3.time': 'En continu',
+            'cs3.price': 'Produit interne'
+        }
+    };
+
+    Object.keys(portfolioTranslations).forEach(function(lang) {
+        if (T[lang]) Object.assign(T[lang], portfolioTranslations[lang]);
+    });
+
     function setLang(lang) {
         if (!T[lang]) return;
         currentLang = lang;
