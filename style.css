@@ -1041,11 +1041,14 @@ footer { background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.06
     .has-banner .mob-menu { top: calc(var(--nav-h) + 70px) }
     .has-banner .page-hero { padding-top: calc(var(--nav-h) + 102px) }
     .nav-inner { min-width: 0 }
-    .nav-logo { min-width: 0; font-size: 1.05rem }
-    .nav-right { flex-shrink: 1; min-width: 0 }
+    .nav-logo { min-width: 0; font-size: 1rem }
+    .nav-right { flex-shrink: 1; min-width: 0; gap: 4px }
+    .burger { padding: 3px }
+    .burger span { width: 18px }
     .nav-cta {
-        max-width: 116px;
-        padding: 7px 10px;
+        max-width: 92px;
+        padding: 7px 8px;
+        font-size: 0.68rem;
         white-space: normal;
         line-height: 1.15;
         text-align: center;
@@ -1057,13 +1060,13 @@ footer { background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.06
         overflow-wrap: anywhere;
         word-break: normal;
     }
-    .page-hero h1 { max-width: 320px; font-size: 2rem }
-    .page-hero-sub { max-width: 320px }
+    .page-hero h1 { max-width: 300px; font-size: 2rem }
+    .page-hero-sub { max-width: 300px }
     .page-hero-badges {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 8px;
-        max-width: 320px;
+        max-width: 300px;
     }
     .page-hero-badge {
         justify-content: center;
@@ -1081,46 +1084,116 @@ footer { background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.06
     .cookie-btns { width: 100%; justify-content: flex-start }
     .cookie-accept, .cookie-decline { padding: 10px 22px }
     .hero { overflow: hidden }
-    .hero-text { width: 100%; max-width: calc(100vw - 32px); margin: 0 auto }
+    .hero .container {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .hero-text {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        flex: none;
+    }
+    .hero-visual { display: none }
     .hero h1 {
-        max-width: 280px;
+        max-width: 250px;
         margin-left: auto;
         margin-right: auto;
-        font-size: 1.3rem;
-        overflow-wrap: break-word;
+        font-size: 1.22rem;
+        overflow-wrap: anywhere;
     }
-    .gradient-text { display: block; max-width: 260px; margin-left: auto; margin-right: auto }
+    .gradient-text { display: block; max-width: 250px; margin-left: auto; margin-right: auto }
     .hero-sub {
-        max-width: 280px;
+        max-width: 250px;
         margin-left: auto;
         margin-right: auto;
-        overflow-wrap: break-word;
+        overflow-wrap: anywhere;
     }
-    .hero-buttons { width: 100%; max-width: 280px; margin-left: auto; margin-right: auto; flex-direction: column }
+    .hero-buttons { width: 100%; max-width: 260px; margin-left: auto; margin-right: auto; flex-direction: column }
     .hero-buttons .btn { width: 100%; min-width: 0; justify-content: center }
-    .hero-proof { max-width: 280px; margin-left: auto; margin-right: auto }
-    .hero-stats { gap: 18px; justify-content: center }
+    .hero-proof { max-width: 260px; margin-left: auto; margin-right: auto }
+    .hero-stats { max-width: 260px; margin-left: auto; margin-right: auto; gap: 18px; justify-content: center; flex-wrap: wrap }
     .stat-num { font-size: 1.35rem }
     .stat-label { font-size: 0.68rem }
-    .trust-label { font-size: 0.68rem; letter-spacing: 2px; padding: 0 16px }
+    .trust-label { max-width: 300px; margin-left: auto; margin-right: auto; font-size: 0.68rem; letter-spacing: 2px; padding: 0 16px; white-space: normal }
+    .trust-logos { max-width: 100%; overflow: hidden }
     .section-title,
     .section-desc {
         max-width: 300px;
-        overflow-wrap: break-word;
+        overflow-wrap: anywhere;
+    }
+    .service-card p,
+    .ready-card > p,
+    .case-desc,
+    .seo-text p,
+    .growth-card p,
+    .support-cta-box p {
+        overflow-wrap: anywhere;
+    }
+    .grid-2,
+    .grid-3,
+    .grid-4,
+    .case-study,
+    .case-info,
+    .case-visual,
+    .ready-card,
+    .price-card,
+    .smm-card {
+        min-width: 0;
+    }
+    .case-study {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        padding: 24px 16px;
+    }
+    .case-study > *,
+    .case-info > *,
+    .case-visual > * {
+        max-width: 100%;
+    }
+    .case-info h3,
+    .case-desc,
+    .case-feat,
+    .case-metric-label,
+    .case-metric-val {
+        overflow-wrap: anywhere;
+    }
+    .case-browser { max-width: 100% }
+    .case-meta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .keep-3 > * { min-width: 0 }
+    .keep-3 .price-card,
+    .keep-3 .smm-card {
+        overflow: hidden;
+    }
+    .keep-3 .price-value { font-size: 0.95rem }
+    .keep-3 .price-desc,
+    .keep-3 .price-features li span,
+    .keep-3 .smm-card > p,
+    .keep-3 .smm-features li {
+        overflow-wrap: anywhere;
+    }
+    body[data-page="portfolio"] .case-desc,
+    body[data-page="portfolio"] .case-info h3 {
+        max-width: 290px;
     }
     body[data-page="platforms"] .page-hero-sub,
     body[data-page="platforms"] .section-title,
     body[data-page="platforms"] .section-desc {
-        max-width: calc(100vw - 64px);
-        overflow-wrap: break-word;
+        max-width: 290px;
+        overflow-wrap: anywhere;
     }
     body[data-page="platforms"] .dark-section .grid-3 { justify-items: start }
     body[data-page="platforms"] .dark-section .section-title {
         max-width: 260px;
         font-size: 1.45rem;
     }
-    body[data-page="platforms"] .dark-section .section-desc { max-width: 300px }
+    body[data-page="platforms"] .dark-section .section-desc { max-width: 290px }
     body[data-page="platforms"] .page-hero-badges { gap: 8px }
     body[data-page="platforms"] .page-hero-badge { font-size: 0.72rem; padding: 6px 12px }
-    body[data-page="platforms"] .ready-card { max-width: calc(100vw - 48px) }
+    body[data-page="platforms"] .ready-card { width: 100%; max-width: 100%; overflow: hidden }
+    body[data-page="platforms"] .platform-preview { max-width: 100%; overflow: hidden }
 }
