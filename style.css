@@ -1027,6 +1027,59 @@ footer { background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.06
 }
 
 @media (max-width: 520px) {
+    .top-banner {
+        min-height: 70px;
+        padding: 8px 40px 8px 16px;
+        font-size: 0.72rem;
+        line-height: 1.35;
+        gap: 8px;
+    }
+    .top-banner span { max-width: 220px }
+    .top-banner a { white-space: nowrap }
+    .banner-close { right: 8px }
+    .has-banner nav { top: 70px }
+    .has-banner .mob-menu { top: calc(var(--nav-h) + 70px) }
+    .has-banner .page-hero { padding-top: calc(var(--nav-h) + 102px) }
+    .nav-inner { min-width: 0 }
+    .nav-logo { min-width: 0; font-size: 1.05rem }
+    .nav-right { flex-shrink: 1; min-width: 0 }
+    .nav-cta {
+        max-width: 116px;
+        padding: 7px 10px;
+        white-space: normal;
+        line-height: 1.15;
+        text-align: center;
+    }
+    .page-hero h1,
+    .page-hero-sub,
+    .page-hero-badge,
+    .btn {
+        overflow-wrap: anywhere;
+        word-break: normal;
+    }
+    .page-hero h1 { max-width: 320px; font-size: 2rem }
+    .page-hero-sub { max-width: 320px }
+    .page-hero-badges {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        max-width: 320px;
+    }
+    .page-hero-badge {
+        justify-content: center;
+        text-align: center;
+        min-width: 0;
+        white-space: normal;
+    }
+    .page-hero-badge:nth-child(3) { grid-column: 1 / -1 }
+    .page-hero .btn { max-width: 220px; justify-content: center }
+    .cookie-banner {
+        align-items: flex-start;
+        padding: 14px 16px;
+    }
+    .cookie-text { max-width: 100%; font-size: 0.78rem }
+    .cookie-btns { width: 100%; justify-content: flex-start }
+    .cookie-accept, .cookie-decline { padding: 10px 22px }
     .hero { overflow: hidden }
     .hero-text { width: 100%; max-width: calc(100vw - 32px); margin: 0 auto }
     .hero h1 {
