@@ -1,10 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>https://boostlab.lt/</loc>
-        <lastmod>2026-04-21</lastmod>
+        <xhtml:link rel="alternate" hreflang="en" href="https://boostlab.lt/"/>
+        <xhtml:link rel="alternate" hreflang="et" href="https://boostlab.lt/et.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://boostlab.lt/ru.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://boostlab.lt/"/>
+        <lastmod>2026-04-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://boostlab.lt/et.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://boostlab.lt/"/>
+        <xhtml:link rel="alternate" hreflang="et" href="https://boostlab.lt/et.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://boostlab.lt/ru.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://boostlab.lt/"/>
+        <lastmod>2026-04-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+    </url>
+    <url>
+        <loc>https://boostlab.lt/ru.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://boostlab.lt/"/>
+        <xhtml:link rel="alternate" hreflang="et" href="https://boostlab.lt/et.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://boostlab.lt/ru.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://boostlab.lt/"/>
+        <lastmod>2026-04-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
     </url>
     <url>
         <loc>https://boostlab.lt/web-development.html</loc>
