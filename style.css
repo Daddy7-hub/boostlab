@@ -788,8 +788,6 @@ footer { background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.06
 }
 @media (max-width: 480px) {
     .grid-4 { grid-template-columns: 1fr }
-    body:not([data-page="pricing"]) .grid-3 { grid-template-columns: 1fr }
-    body:not([data-page="pricing"]) .grid-2 { grid-template-columns: 1fr }
 }
 @media (max-width: 520px) {
     body[data-page="platforms"] .dark-section .grid-3 { grid-template-columns: 1fr; gap: 16px }
