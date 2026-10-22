@@ -127,7 +127,7 @@ def layout(T, ALL, key, body, meta, schema, stage=False):
 <div class="hdr-r"><div class="langs">{langs}</div><a class="btn btn-solid" href="#contact">{escape(u['cta'])}</a>
 <button class="burger" aria-label="{escape(u['menu'])}" aria-expanded="false"><i></i><i></i></button></div>
 </div></header>
-<div class="drawer">{drawer}<a class="btn btn-solid" href="#contact">{escape(u['cta'])}</a><div class="langs">{langs}</div></div>
+<div class="drawer" data-lenis-prevent>{drawer}<a class="btn btn-solid" href="#contact">{escape(u['cta'])}</a><div class="langs">{langs}</div></div>
 <main>
 {body}
 {cta_block(T)}
