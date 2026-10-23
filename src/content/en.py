@@ -90,7 +90,7 @@ T["cases"] = [
      "tags": ["Ticketing", "Payments", "CRM"],
      "text": "Event platform for after.ee: online ticket sales with Estonian bank payments, QR check-in at the door, VIP table booking, referral links and a guest CRM."},
     {"id": "rentme", "name": "RentMe", "url": "https://rentme.rent/", "img": "case-rentme.webp", "mock": "rent",
-     "tags": ["Marketplace", "Booking", "Mobile API"],
+     "tags": ["Marketplace", "Booking", "International"],
      "text": "International rental marketplace rentme.rent: transport, places to stay and things from verified hosts. Online booking with 10% prepayment, free listings, reviews and support in three languages."},
     {"id": "crm", "name": "Custom CRM", "url": "", "img": "", "mock": "crm",
      "tags": ["CRM", "Automation", "Integrations"],

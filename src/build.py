@@ -37,14 +37,21 @@ def load(lang):
 
 
 def url(T, key, absolute=False):
+    """key: page key from T["slugs"], "niche:<id>" (industry page) or "post:<id>" (blog article)."""
     prefix = "/" if T["lang"] == "en" else f"/{T['lang']}/"
-    u = prefix + T["slugs"][key]
+    if key.startswith("niche:"):
+        rel = T["niches"][key[6:]]["slug"]
+    elif key.startswith("post:"):
+        rel = T["slugs"]["blog"] + T["blog"]["posts"][key[5:]]["slug"]
+    else:
+        rel = T["slugs"][key]
+    u = prefix + rel
     return SITE + u if absolute else u
 
 
 ARR = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="arr"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 ARR_UP = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M8 7h9v9"/></svg>'
-SERVICE_KEYS = ["web", "crm", "platforms", "apps", "ads", "smm"]
+SERVICE_KEYS = ["web", "crm", "platforms", "apps", "ads", "smm", "leadgen"]
 # our own B2B product, linked from the header as a separate highlighted tab
 BL_TAB = '<a class="bl-tab" href="https://balticleads.ee/" target="_blank" rel="noopener"><i></i>BalticLeads<span aria-hidden="true">↗</span></a>'
 
@@ -64,11 +71,15 @@ def layout(T, ALL, key, body, meta, schema, stage=False):
         for L in ALL.values()
     )
     menu = [("web", u["services"]), ("crm", T["nav"]["crm"]), ("portfolio", u["work"]), ("pricing", u["pricing"])]
+    if "blog" in T:
+        menu.append(("blog", T["blog"]["crumb"]))
     menu_html = "".join(
-        f'<a href="{url(T, k)}"' + (' aria-current="page"' if k == key else "") + f">{escape(lbl)}</a>" for k, lbl in menu
+        f'<a href="{url(T, k)}"' + (' aria-current="page"' if k == key or (k == "blog" and key.startswith("post:")) else "") + f">{escape(lbl)}</a>" for k, lbl in menu
     ) + BL_TAB
-    drawer = "".join(f'<a class="dl" href="{url(T, k)}">{escape(T["nav"][k])}</a>' for k in SERVICE_KEYS)
+    drawer = "".join(f'<a class="dl" href="{url(T, k)}">{escape(T["nav"][k])}</a>' for k in SERVICE_KEYS if k in T.get("pages", {}))
     drawer += f'<a class="dl" href="{url(T, "portfolio")}">{escape(u["work"])}</a><a class="dl" href="{url(T, "pricing")}">{escape(u["pricing"])}</a>'
+    if "blog" in T:
+        drawer += f'<a class="dl" href="{url(T, "blog")}">{escape(T["blog"]["crumb"])}</a>'
     drawer += BL_TAB.replace('class="bl-tab"', 'class="dl bl-tab"')
     og_img = f"{SITE}/assets/img/og-{T['lang']}.jpg"
     preload_three = (
@@ -153,12 +164,15 @@ def cta_block(T):
 
 def footer(T):
     u = T["ui"]
-    svc = "".join(f'<a href="{url(T, k)}">{escape(T["nav"][k])}</a>' for k in SERVICE_KEYS)
+    svc = "".join(f'<a href="{url(T, k)}">{escape(T["nav"][k])}</a>' for k in SERVICE_KEYS if k in T.get("pages", {}))
+    ind = "".join(f'<a href="{url(T, "niche:" + k)}">{escape(n["nav"])}</a>' for k, n in T.get("niches", {}).items())
+    ind_col = f'<div class="ftr-col"><h4>{escape(u.get("f_industries", ""))}</h4>{ind}</div>' if ind else ""
+    blog_a = f'<a href="{url(T, "blog")}">{escape(T["blog"]["crumb"])}</a>' if "blog" in T else ""
     return f"""<footer class="ftr"><div class="wrap">
 <div class="ftr-top">
 <div class="ftr-about"><a class="logo" href="{url(T, 'home')}">BOOST<span>LAB</span></a><p>{escape(u['about'])}</p></div>
-<div class="ftr-col"><h4>{escape(u['f_services'])}</h4>{svc}</div>
-<div class="ftr-col"><h4>{escape(u['f_company'])}</h4><a href="{url(T, 'portfolio')}">{escape(u['work'])}</a><a href="{url(T, 'pricing')}">{escape(u['pricing'])}</a><a href="#contact">{escape(u['contact'])}</a></div>
+<div class="ftr-col"><h4>{escape(u['f_services'])}</h4>{svc}</div>{ind_col}
+<div class="ftr-col"><h4>{escape(u['f_company'])}</h4><a href="{url(T, 'portfolio')}">{escape(u['work'])}</a><a href="{url(T, 'pricing')}">{escape(u['pricing'])}</a>{blog_a}<a href="#contact">{escape(u['contact'])}</a></div>
 <div class="ftr-col"><h4>{escape(u['f_contact'])}</h4><a href="mailto:{EMAIL}">{EMAIL}</a><a href="tel:{PHONE}">{PHONE_H}</a><a href="https://balticleads.ee/" rel="noopener">BalticLeads.ee</a></div>
 </div>
 <div class="mega" aria-hidden="true">BOOSTLAB</div>
@@ -273,7 +287,7 @@ def page_home(T, ALL):
 <div class="stage-shade"></div>
 <div class="steps-bar" aria-hidden="true">{steps}</div>
 <div class="sc sc-hero">
-<span class="eyebrow fade">01 / {escape(h["steps"][0])} · {escape(h["eyebrow"])}</span>
+<span class="eyebrow fade">01 / {escape(h["steps"][0])}<span class="hide-m"> · {escape(h["eyebrow"])}</span></span>
 <h1 class="h-xl" data-split style="margin-top:22px">{h['h1']}</h1>
 <p class="lead fade">{escape(h['lead'])}</p>
 <div class="ctas fade"><a class="btn btn-solid" href="#contact">{escape(h['cta1'])} {ARR}</a><a class="btn btn-line" href="#work">{escape(h['cta2'])}</a></div>
@@ -340,7 +354,8 @@ def crumbs_schema(T, key, label):
 
 
 # stock photos (CC0, no people/logos) per page key; missing files are simply skipped
-PAGE_IMG = {"web": "stock-web.webp", "crm": "stock-crm.webp", "platforms": "stock-platforms.webp", "apps": "stock-apps.webp",
+PAGE_IMG = {"leadgen": "stock-portfolio.webp", "clinics": "stock-crm.webp", "rental": "stock-platforms.webp",
+            "restaurants": "stock-pricing.webp", "ecommerce": "stock-web.webp", "web": "stock-web.webp", "crm": "stock-crm.webp", "platforms": "stock-platforms.webp", "apps": "stock-apps.webp",
             "ads": "stock-ads.webp", "smm": "stock-smm.webp", "portfolio": "stock-portfolio.webp", "pricing": "stock-pricing.webp",
             "band": "stock-home.webp"}
 
@@ -381,7 +396,7 @@ def process_html(T):
 
 
 def related_html(T, key):
-    links = "".join(f'<a href="{url(T, k)}"><span>{escape(T["nav"][k])}</span>{ARR_UP}</a>' for k in SERVICE_KEYS if k != key)
+    links = "".join(f'<a href="{url(T, k)}"><span>{escape(T["nav"][k])}</span>{ARR_UP}</a>' for k in SERVICE_KEYS if k != key and k in T.get("pages", {}))
     return f'<section class="sec line-top"><div class="wrap"><span class="eyebrow">{escape(T["ui"]["related"])}</span><div class="rel fade">{links}</div></div></section>'
 
 
@@ -394,20 +409,37 @@ def price_int(p):
     return int(p.replace("€", "").replace("+", "").replace(",", ""))
 
 
+def partner_html(P):
+    """BalticLeads partnership block (lead-gen page only)."""
+    b = P.get("partner")
+    if not b:
+        return ""
+    pts = "".join(f"<li>{escape(x)}</li>" for x in b["points"])
+    return f"""<section class="sec line-top"><div class="wrap partner">
+<div class="partner-media fade"><div class="win"><div class="win-bar"><i></i><i></i><i></i><span>balticleads.ee</span></div><div class="win-body"><img src="/assets/img/case-balticleads.webp" alt="BalticLeads" loading="lazy" width="{img_size('case-balticleads.webp')[0]}" height="{img_size('case-balticleads.webp')[1]}"></div></div></div>
+<div class="case-info"><span class="case-n">{escape(b['kicker'])}</span><h2 class="h-l" data-split>{b['title']}</h2><p>{escape(b['text'])}</p><ul class="points">{pts}</ul>
+<a class="btn btn-solid" href="https://balticleads.ee/" target="_blank" rel="noopener">{escape(b['cta'])} {ARR_UP}</a></div></div></section>"""
+
+
 def page_service(key):
     def render(T, ALL):
-        P = T["pages"][key]
+        if key.startswith("niche:"):
+            P = T["niches"][key[6:]]
+        else:
+            P = T["pages"][key]
         feats = "".join(
             f'<div class="card fade"><span class="n">0{i + 1}</span><h3 class="h-s">{escape(t)}</h3><p>{escape(d)}</p>'
             + (f'<span class="from"><small class="muted">{escape(T["ui"]["from"])}</small> {f}</span>' if f else "") + "</div>"
             for i, (t, d, f) in enumerate(P["feats"]))
-        body = f"""{phero(T, P, key=key)}
+        body = f"""{phero(T, P, key=P.get("img", key))}
 <section class="sec line-top"><div class="wrap">
 <div class="sec-head"><div><h2 class="h-l" data-split>{P['feat_title']}</h2></div></div>
 <div class="cards">{feats}</div></div></section>
+{partner_html(P)}
 {process_html(T)}
 {seo_html(P['seo'])}
 {faq_html(T, P['faq'])}
+{posts_related(T, P.get("posts", []))}
 {related_html(T, key)}"""
         prices = [price_int(f) for _, _, f in P["feats"] if f]
         service = {"@type": "Service", "name": P["crumb"], "serviceType": P["crumb"], "description": P["desc"],
@@ -473,8 +505,83 @@ def page_legal(key):
     return render
 
 
+def post_card(T, k):
+    p = T["blog"]["posts"][k]
+    return (f'<a class="post fade" href="{url(T, "post:" + k)}"><span class="case-n">{escape(p["date"])} · {p["minutes"]} {escape(T["blog"]["read"])}</span>'
+            f'<h3 class="h-s">{escape(p["h1"])}</h3><p>{escape(p["lead"])}</p><span class="go">{ARR_UP}</span></a>')
+
+
+def posts_related(T, keys):
+    keys = [k for k in keys if k in T.get("blog", {}).get("posts", {})]
+    if not keys:
+        return ""
+    return f'<section class="sec line-top"><div class="wrap"><span class="eyebrow">{escape(T["blog"]["crumb"])}</span><div class="posts" style="margin-top:28px">{"".join(post_card(T, k) for k in keys)}</div></div></section>'
+
+
+def page_blog(T, ALL):
+    B = T["blog"]
+    body = f"""<section class="phero"><div class="wrap">{crumbs_html(T, B['crumb'])}<h1 class="h-xl" data-split>{B['h1']}</h1><p class="lead fade">{escape(B['lead'])}</p></div></section>
+<section class="sec line-top"><div class="wrap"><div class="posts">{"".join(post_card(T, k) for k in B["posts"])}</div></div></section>"""
+    items = [{"@type": "ListItem", "position": i + 1, "url": url(T, "post:" + k, True), "name": p["h1"]} for i, (k, p) in enumerate(B["posts"].items())]
+    schema = graph(org_schema(T), {"@type": "Blog", "name": B["title"], "url": url(T, "blog", True), "inLanguage": T["lang"],
+                                   "publisher": {"@id": f"{SITE}/#org"}}, {"@type": "ItemList", "itemListElement": items}, crumbs_schema(T, "blog", B["crumb"]))
+    return layout(T, ALL, "blog", body, B, schema)
+
+
+def page_post(k):
+    def render(T, ALL):
+        B, p = T["blog"], T["blog"]["posts"][k]
+        key = "post:" + k
+        crumbs = (f'<nav class="crumbs" aria-label="Breadcrumb"><a href="{url(T, "home")}">{escape(T["ui"]["home"])}</a><span>/</span>'
+                  f'<a href="{url(T, "blog")}">{escape(B["crumb"])}</a></nav>')
+        rel = "".join(f'<a href="{url(T, s)}"><span>{escape(T["nav"][s])}</span>{ARR_UP}</a>' for s in p.get("services", []) if s in T.get("pages", {}))
+        others = [o for o in B["posts"] if o != k][:3]
+        body = f"""<section class="phero"><div class="wrap">{crumbs}<h1 class="h-l" data-split>{escape(p['h1'])}</h1>
+<p class="lead fade">{escape(p['lead'])}</p><p class="case-n" style="margin-top:22px">{escape(p['date'])} · {p['minutes']} {escape(B['read'])}</p></div></section>
+<section class="sec line-top" style="padding-top:60px"><div class="wrap"><article class="prose article">{p['body']}</article></div></section>
+{faq_html(T, p['faq']) if p.get('faq') else ''}
+{f'<section class="sec line-top"><div class="wrap"><span class="eyebrow">{escape(T["ui"]["related"])}</span><div class="rel fade">{rel}</div></div></section>' if rel else ''}
+{posts_related(T, others)}"""
+        art = {"@type": "BlogPosting", "headline": p["h1"], "description": p["desc"], "datePublished": p["iso"], "dateModified": p["iso"],
+               "inLanguage": T["lang"], "mainEntityOfPage": url(T, key, True), "image": f"{SITE}/assets/img/og-{T['lang']}.jpg",
+               "author": {"@id": f"{SITE}/#org"}, "publisher": {"@id": f"{SITE}/#org"}}
+        bc = {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": T["ui"]["home"], "item": url(T, "home", True)},
+            {"@type": "ListItem", "position": 2, "name": B["crumb"], "item": url(T, "blog", True)},
+            {"@type": "ListItem", "position": 3, "name": p["h1"], "item": url(T, key, True)}]}
+        schema = graph(org_schema(T), art, bc, faq_schema(p["faq"]) if p.get("faq") else None)
+        return layout(T, ALL, key, body, p, schema)
+    return render
+
+
 PAGES = {"home": page_home, **{k: page_service(k) for k in SERVICE_KEYS},
-         "portfolio": page_portfolio, "pricing": page_pricing, "privacy": page_legal("privacy"), "terms": page_legal("terms")}
+         "portfolio": page_portfolio, "pricing": page_pricing, "privacy": page_legal("privacy"), "terms": page_legal("terms"),
+         "blog": page_blog}
+
+
+def all_pages(ALL):
+    """Static pages plus per-language dynamic ones (industries, blog posts); keys are shared across languages."""
+    pages = dict(PAGES)
+    for T in ALL.values():
+        for k in T.get("niches", {}):
+            pages["niche:" + k] = page_service("niche:" + k)
+        for k in T.get("blog", {}).get("posts", {}):
+            pages["post:" + k] = page_post(k)
+    return pages
+
+
+def has_page(T, key):
+    if key == "home":
+        return True
+    if key in SERVICE_KEYS:
+        return key in T.get("pages", {})
+    if key.startswith("niche:"):
+        return key[6:] in T.get("niches", {})
+    if key.startswith("post:"):
+        return key[5:] in T.get("blog", {}).get("posts", {})
+    if key in ("privacy", "terms"):
+        return key in T.get("legal", {})
+    return key in T
 
 # old URLs from the previous site that are not reused 1:1
 REDIRECTS = {"et.html": "/et/", "ru.html": "/ru/"}
@@ -499,7 +606,7 @@ def sitemap(ALL, built):
     today = date.today().isoformat()
     rows = []
     for T in ALL.values():
-        for key in PAGES:
+        for key in all_pages(ALL):
             if (T["lang"], key) not in built:
                 continue
             alts = "".join(f'<xhtml:link rel="alternate" hreflang="{L["lang"]}" href="{url(L, key, True)}"/>'
@@ -554,17 +661,11 @@ def build():
     for f in (ROOT / "static").glob("*"):
         shutil.copy(f, DIST / f.name)
     # which (lang, page) pairs exist - languages may be added page by page
-    built = set()
-    for T in ALL.values():
-        for key in PAGES:
-            ok = key == "home" or (key in SERVICE_KEYS and key in T.get("pages", {})) or \
-                 (key == "portfolio" and "portfolio" in T) or (key == "pricing" and "pricing" in T) or \
-                 (key in ("privacy", "terms") and key in T.get("legal", {}))
-            if ok:
-                built.add((T["lang"], key))
+    pages = all_pages(ALL)
+    built = {(T["lang"], key) for T in ALL.values() for key in pages if has_page(T, key)}
     for T in ALL.values():
         T["_built"] = built
-        for key, fn in PAGES.items():
+        for key, fn in pages.items():
             if (T["lang"], key) not in built:
                 continue
             rel = url(T, key).lstrip("/")

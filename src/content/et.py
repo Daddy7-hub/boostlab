@@ -90,7 +90,7 @@ T["cases"] = [
      "tags": ["Piletimüük", "Maksed", "CRM"],
      "text": "Ürituste platvorm after.ee jaoks: piletite veebimüük Eesti pangamaksetega, QR-kontroll uksel, VIP-laudade broneerimine, soovituslingid ja külaliste CRM."},
     {"id": "rentme", "name": "RentMe", "url": "https://rentme.rent/", "img": "", "mock": "rent",
-     "tags": ["Turuplats", "Broneerimine", "Mobiili-API"],
+     "tags": ["Turuplats", "Broneerimine", "Rahvusvaheline"],
      "text": "Rahvusvaheline renditurg rentme.rent: transport, majutus ja asjad kontrollitud omanikelt. Veebibroneering 10% ettemaksuga, tasuta kuulutused, arvustused ja tugi kolmes keeles."},
     {"id": "crm", "name": "Kohandatud CRM", "url": "", "img": "", "mock": "crm",
      "tags": ["CRM", "Automatiseerimine", "Liidestused"],

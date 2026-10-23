@@ -90,7 +90,7 @@ T["cases"] = [
      "tags": ["Bilietai", "Mokėjimai", "CRM"],
      "text": "Renginių platforma after.ee: bilietų pardavimas internetu su Estijos bankų mokėjimais, QR registracija prie įėjimo, VIP staliukų rezervacija, rekomendacijų nuorodos ir svečių CRM."},
     {"id": "rentme", "name": "RentMe", "url": "https://rentme.rent/", "img": "", "mock": "rent",
-     "tags": ["Prekyvietė", "Rezervacijos", "Mobile API"],
+     "tags": ["Prekyvietė", "Rezervacijos", "Tarptautinis"],
      "text": "Tarptautinė nuomos prekyvietė rentme.rent: transportas, būstas ir daiktai iš patikrintų savininkų. Rezervacija internetu su 10% avansu, nemokami skelbimai, atsiliepimai ir pagalba trimis kalbomis."},
     {"id": "crm", "name": "Individuali CRM", "url": "", "img": "", "mock": "crm",
      "tags": ["CRM", "Automatizavimas", "Integracijos"],
