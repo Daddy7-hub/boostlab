@@ -29,7 +29,7 @@ CDN = {
 def load(lang):
     """content/<lang>.py defines T; content/<lang>_pages.py (optional) extends it."""
     ns = {}
-    for name in (f"{lang}.py", f"{lang}_pages.py", f"{lang}_extra.py"):
+    for name in (f"{lang}.py", f"{lang}_pages.py", f"{lang}_extra.py", f"{lang}_seo.py"):
         f = SRC / "content" / name
         if f.exists():
             exec(compile(f.read_text(encoding="utf-8"), str(f), "exec"), ns)
@@ -431,7 +431,7 @@ def page_service(key):
             f'<div class="card fade"><span class="n">0{i + 1}</span><h3 class="h-s">{escape(t)}</h3><p>{escape(d)}</p>'
             + (f'<span class="from"><small class="muted">{escape(T["ui"]["from"])}</small> {f}</span>' if f else "") + "</div>"
             for i, (t, d, f) in enumerate(P["feats"]))
-        body = f"""{phero(T, P, key=P.get("img", key))}
+        body = f"""{phero(T, P, key=P.get("img", key.split(":")[-1]))}
 <section class="sec line-top"><div class="wrap">
 <div class="sec-head"><div><h2 class="h-l" data-split>{P['feat_title']}</h2></div></div>
 <div class="cards">{feats}</div></div></section>
