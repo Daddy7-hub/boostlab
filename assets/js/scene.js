@@ -295,7 +295,7 @@ function init() {
     camera.lookAt(0.25, c.ty, 0);
 
     const w = canvas.clientWidth, h = canvas.clientHeight;
-    const off = camera.aspect > 1.15 ? (1 - ease(seg(sp, 0.08, 0.4))) * 0.17 : 0;
+    const off = camera.aspect > 1.15 ? (1 - ease(seg(sp, 0.08, 0.4))) * 0.24 : 0;
     camera.setViewOffset(w, h, -w * off, h * (camera.aspect > 1.15 ? 0 : 0.22 * (1 - ease(seg(sp, 0.2, 0.6)))), w, h);
     renderer.render(scene, camera);
     if (sp > 0.45 && sp < 0.9) placeHots(w, h);

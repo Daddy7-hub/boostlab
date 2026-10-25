@@ -288,7 +288,7 @@ def page_home(T, ALL):
 <div class="stage-shade"></div>
 <div class="steps-bar" aria-hidden="true">{steps}</div>
 <div class="sc sc-hero">
-<span class="eyebrow fade">01 / {escape(h["steps"][0])}<span class="hide-m"> · {escape(h["eyebrow"])}</span></span>
+<span class="eyebrow fade">{escape(h["eyebrow"])}</span>
 <h1 class="h-xl" data-split style="margin-top:22px">{h['h1']}</h1>
 <p class="lead fade">{escape(h['lead'])}</p>
 <div class="ctas fade"><a class="btn btn-solid" href="#contact">{escape(h['cta1'])} {ARR}</a><a class="btn btn-line" href="#work">{escape(h['cta2'])}</a></div>
