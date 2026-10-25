@@ -154,7 +154,8 @@ def layout(T, ALL, key, body, meta, schema, stage=False):
 
 def cta_block(T):
     c = T["cta_block"]
-    return f"""<section class="cta line-top" id="contact"><div class="wrap">
+    bg = photo("cta", "cta-img")
+    return f"""<section class="cta line-top" id="contact">{bg}<div class="wrap">
 <h2 class="h-xl" data-split>{c['title']}</h2>
 <p class="lead fade">{escape(c['lead'])}</p>
 <div class="ctas fade"><a class="btn btn-solid" href="mailto:{EMAIL}?subject=BoostLab%20project">{escape(c['mail'])} {ARR}</a><a class="btn btn-line" href="tel:{PHONE}">{escape(c['call'])}</a></div>
@@ -273,7 +274,7 @@ def page_home(T, ALL):
         f'<div class="num fade"><small>{escape(s)}</small><b data-count="{n}" data-suf="{escape(suf)}">{n}{escape(suf)}</b><p>{escape(p)}</p></div>'
         for s, n, suf, p in h["nums"])
     svc = "".join(
-        f'<a href="{url(T, k)}"><span class="n">0{i + 1}</span><h3 class="h-m">{escape(t)}</h3><p>{escape(d)}</p><span class="go">{ARR_UP}</span></a>'
+        f'<a href="{url(T, k)}" data-img="{img_src(k)}"><span class="n">0{i + 1}</span><h3 class="h-m">{escape(t)}</h3><p>{escape(d)}</p><span class="go">{ARR_UP}</span></a>'
         for i, (k, t, d) in enumerate(h["svc"]))
     incl = "".join(f"<li>{escape(x)}</li>" for x in h["incl"])
     tiers = "".join(
@@ -304,12 +305,14 @@ def page_home(T, ALL):
 <div class="nums">{nums}</div>
 </div></section>
 
+{marquee_html(T)}
+
 {band_html()}
 
 <section class="sec line-top" id="services"><div class="wrap">
 <div class="sec-head"><div><span class="eyebrow">{escape(h['svc_kicker'])}</span><h2 class="h-l" data-split style="margin-top:22px">{h['svc_title']}</h2></div><p class="lead fade">{escape(h['svc_lead'])}</p></div>
 <div class="svc">{svc}</div>
-</div></section>
+</div><div class="svc-float" aria-hidden="true"><img alt=""></div></section>
 
 <section class="cases sec line-top" id="work">
 <div class="wrap"><div class="sec-head"><div><span class="eyebrow">{escape(h['cases_kicker'])}</span><h2 class="h-l" data-split style="margin-top:22px">{h['cases_title']}</h2></div>
@@ -318,7 +321,8 @@ def page_home(T, ALL):
 </section>
 
 <section class="sec line-top"><div class="wrap incl">
-<div><span class="eyebrow">{escape(h['incl_kicker'])}</span><h2 class="h-l" data-split style="margin:22px 0 24px">{h['incl_title']}</h2><p class="lead fade">{escape(h['incl_lead'])}</p></div>
+<div><span class="eyebrow">{escape(h['incl_kicker'])}</span><h2 class="h-l" data-split style="margin:22px 0 24px">{h['incl_title']}</h2><p class="lead fade">{escape(h['incl_lead'])}</p>
+<div class="collage"><div class="ph ph-a reveal-img">{pic("incl1")}</div><div class="ph ph-b reveal-img">{pic("incl2")}</div></div></div>
 <ul class="fade">{incl}</ul>
 </div></section>
 
@@ -354,10 +358,27 @@ def crumbs_schema(T, key, label):
 
 
 # stock photos (CC0, no people/logos) per page key; missing files are simply skipped
-PAGE_IMG = {"leadgen": "stock-portfolio.webp", "clinics": "stock-crm.webp", "rental": "stock-platforms.webp",
-            "restaurants": "stock-pricing.webp", "ecommerce": "stock-web.webp", "web": "stock-web.webp", "crm": "stock-crm.webp", "platforms": "stock-platforms.webp", "apps": "stock-apps.webp",
+PAGE_IMG = {"leadgen": "stock-portfolio.webp", "clinics": "ph-clinic.webp", "rental": "ph-car.webp",
+            "restaurants": "ph-restaurant.webp", "ecommerce": "ph-phone.webp", "web": "stock-web.webp",
+            "incl1": "ph-plan.webp", "incl2": "ph-code.webp", "cta": "ph-city.webp",
+            "post:website-cost": "ph-plan.webp", "post:custom-crm-vs-saas": "stock-crm.webp", "post:booking-system": "ph-car.webp",
+            "post:b2b-leads-baltics": "ph-arch.webp", "post:seo-checklist": "ph-code.webp", "post:landing-vs-website": "ph-plan2.webp", "crm": "stock-crm.webp", "platforms": "stock-platforms.webp", "apps": "stock-apps.webp",
             "ads": "stock-ads.webp", "smm": "stock-smm.webp", "portfolio": "stock-portfolio.webp", "pricing": "stock-pricing.webp",
             "band": "stock-home.webp"}
+
+
+def img_src(key):
+    name = PAGE_IMG.get(key)
+    return f"/assets/img/{name}" if name and (ROOT / "assets" / "img" / name).exists() else ""
+
+
+def pic(key, cls="", alt=""):
+    """Plain lazy <img> for a PAGE_IMG key (empty string when the file is missing)."""
+    name = PAGE_IMG.get(key)
+    if not name or not (ROOT / "assets" / "img" / name).exists():
+        return ""
+    w, h = img_size(name)
+    return f'<img class="{cls}" src="/assets/img/{name}" alt="{escape(alt)}" width="{w}" height="{h}" loading="lazy" decoding="async">'
 
 
 def photo(key, cls, eager=False):
@@ -367,6 +388,12 @@ def photo(key, cls, eager=False):
     w, h = img_size(name)
     load = 'fetchpriority="high"' if eager else 'loading="lazy"'
     return f'<div class="{cls}" aria-hidden="true"><img src="/assets/img/{name}" alt="" width="{w}" height="{h}" {load} decoding="async"></div>'
+
+
+def marquee_html(T):
+    words = [T["nav"][k] for k in SERVICE_KEYS if k in T.get("nav", {})]
+    row = "".join(f'<span>{escape(w)}</span><i aria-hidden="true">✦</i>' for w in words)
+    return f'<section class="marquee" aria-hidden="true"><div class="mq-track" data-marquee>{row}{row}</div></section>'
 
 
 def band_html():
@@ -507,7 +534,9 @@ def page_legal(key):
 
 def post_card(T, k):
     p = T["blog"]["posts"][k]
-    return (f'<a class="post fade" href="{url(T, "post:" + k)}"><span class="case-n">{escape(p["date"])} · {p["minutes"]} {escape(T["blog"]["read"])}</span>'
+    cover = pic("post:" + k, "", p["h1"])
+    cover = f'<div class="post-cover">{cover}</div>' if cover else ""
+    return (f'<a class="post fade" href="{url(T, "post:" + k)}">{cover}<span class="case-n">{escape(p["date"])} · {p["minutes"]} {escape(T["blog"]["read"])}</span>'
             f'<h3 class="h-s">{escape(p["h1"])}</h3><p>{escape(p["lead"])}</p><span class="go">{ARR_UP}</span></a>')
 
 
@@ -536,7 +565,7 @@ def page_post(k):
                   f'<a href="{url(T, "blog")}">{escape(B["crumb"])}</a></nav>')
         rel = "".join(f'<a href="{url(T, s)}"><span>{escape(T["nav"][s])}</span>{ARR_UP}</a>' for s in p.get("services", []) if s in T.get("pages", {}))
         others = [o for o in B["posts"] if o != k][:3]
-        body = f"""<section class="phero"><div class="wrap">{crumbs}<h1 class="h-l" data-split>{escape(p['h1'])}</h1>
+        body = f"""<section class="phero">{photo("post:" + k, "phero-img", eager=True)}<div class="wrap">{crumbs}<h1 class="h-l" data-split>{escape(p['h1'])}</h1>
 <p class="lead fade">{escape(p['lead'])}</p><p class="case-n" style="margin-top:22px">{escape(p['date'])} · {p['minutes']} {escape(B['read'])}</p></div></section>
 <section class="sec line-top" style="padding-top:60px"><div class="wrap"><article class="prose article">{p['body']}</article></div></section>
 {faq_html(T, p['faq']) if p.get('faq') else ''}

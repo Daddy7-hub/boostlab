@@ -77,7 +77,7 @@
     es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { rootMargin: '0px 0px 12% 0px' });
   function intro() {
-    d.querySelectorAll('[data-split],.fade').forEach(function (el) {
+    d.querySelectorAll('[data-split],.fade,.reveal-img').forEach(function (el) {
       if (el.closest('.sc-hero')) { el.classList.add('in'); return; }
       io.observe(el);
     });
@@ -106,6 +106,36 @@
     };
     addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
     if (lenis) lenis.on('scroll', upd);
+  }
+
+  // ---------- service list: photo preview follows the cursor ----------
+  var flt = d.querySelector('.svc-float');
+  if (flt && matchMedia('(hover:hover) and (pointer:fine)').matches && !reduced) {
+    var fimg = flt.querySelector('img'), fx = 0, fy = 0, tx = 0, ty = 0, vx = 0, on = false;
+    d.querySelectorAll('.svc a[data-img]').forEach(function (a) {
+      if (!a.dataset.img) return;
+      a.addEventListener('pointerenter', function () { if (fimg.getAttribute('src') !== a.dataset.img) fimg.src = a.dataset.img; on = true; flt.classList.add('on'); });
+      a.addEventListener('pointerleave', function () { on = false; flt.classList.remove('on'); });
+    });
+    addEventListener('pointermove', function (e) { tx = e.clientX + 30; ty = e.clientY - 120; }, { passive: true });
+    (function loop() {
+      var nx = fx + (tx - fx) * 0.14; vx = nx - fx; fx = nx; fy += (ty - fy) * 0.14;
+      if (on || flt.classList.contains('on')) flt.style.transform = 'translate(' + fx.toFixed(1) + 'px,' + fy.toFixed(1) + 'px) rotate(' + Math.max(-8, Math.min(8, vx * 0.35)).toFixed(2) + 'deg)';
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  // ---------- marquee: drifts constantly, speeds up with scroll ----------
+  var mq = d.querySelector('[data-marquee]');
+  if (mq && !reduced) {
+    var mx = 0, lastS = scrollY, boost = 0;
+    (function tick() {
+      var sy = scrollY; boost += (Math.abs(sy - lastS) * 0.4 - boost) * 0.1; lastS = sy;
+      mx -= 0.6 + boost;
+      var half = mq.scrollWidth / 2; if (-mx > half) mx += half;
+      mq.style.transform = 'translate3d(' + mx.toFixed(1) + 'px,0,0)';
+      requestAnimationFrame(tick);
+    })();
   }
 
   // ---------- parallax photo bands ----------
