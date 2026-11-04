@@ -4,6 +4,7 @@ python src/build.py  ->  dist/  (published by GitHub Pages workflow)
 Content lives in src/content/<lang>.py, page templates are functions below.
 """
 import json
+import re
 import shutil
 from datetime import date
 from html import escape
@@ -51,6 +52,7 @@ def url(T, key, absolute=False):
 
 ARR = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="arr"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 ARR_UP = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M8 7h9v9"/></svg>'
+LOGO = '<a class="logo" href="{home}" aria-label="BoostLab"><span class="mk" aria-hidden="true">B</span>BoostLab</a>'
 SERVICE_KEYS = ["web", "crm", "platforms", "apps", "ads", "smm", "leadgen"]
 # our own B2B product, linked from the header as a separate highlighted tab
 BL_TAB = '<a class="bl-tab" href="https://balticleads.ee/" target="_blank" rel="noopener"><i></i>BalticLeads<span aria-hidden="true">↗</span></a>'
@@ -75,29 +77,14 @@ def layout(T, ALL, key, body, meta, schema, stage=False):
         menu.append(("blog", T["blog"]["crumb"]))
     menu_html = "".join(
         f'<a href="{url(T, k)}"' + (' aria-current="page"' if k == key or (k == "blog" and key.startswith("post:")) else "") + f">{escape(lbl)}</a>" for k, lbl in menu
-    ) + BL_TAB
+    )
     drawer = "".join(f'<a class="dl" href="{url(T, k)}">{escape(T["nav"][k])}</a>' for k in SERVICE_KEYS if k in T.get("pages", {}))
     drawer += f'<a class="dl" href="{url(T, "portfolio")}">{escape(u["work"])}</a><a class="dl" href="{url(T, "pricing")}">{escape(u["pricing"])}</a>'
     if "blog" in T:
         drawer += f'<a class="dl" href="{url(T, "blog")}">{escape(T["blog"]["crumb"])}</a>'
-    drawer += BL_TAB.replace('class="bl-tab"', 'class="dl bl-tab"')
+    drawer += BL_TAB
     og_img = f"{SITE}/assets/img/og-{T['lang']}.jpg"
-    preload_three = (
-        f'<link rel="modulepreload" href="{CDN["three"]}" crossorigin>' if stage else ""
-    )
-    scripts = (
-        f'<script src="{CDN["lenis"]}" defer></script><script src="/assets/js/site.js?v={V}" defer></script>'
-    )
-    if stage:
-        scripts += (
-            '<script type="importmap">' + json.dumps({"imports": {"three": CDN["three"], "three/addons/": CDN["three_addons"]}}) + "</script>"
-            f'<script type="module" src="/assets/js/scene.js?v={V}"></script>'
-        )
-    pre = (
-        '<div class="pre" aria-hidden="true"><div class="pre-in"><div class="pre-logo">BOOST<span>LAB</span></div>'
-        '<div class="pre-bar"><i></i></div></div></div>'
-        if stage else ""
-    )
+    logo = LOGO.format(home=url(T, "home"))
     return f"""<!DOCTYPE html>
 <html lang="{T['lang']}" class="no-js">
 <head>
@@ -108,7 +95,7 @@ def layout(T, ALL, key, body, meta, schema, stage=False):
 <link rel="canonical" href="{url(T, key, True)}">
 {alt}
 <meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="theme-color" content="#060608">
+<meta name="theme-color" content="#ffffff">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BoostLab">
 <meta property="og:locale" content="{T['locale']}">
@@ -118,35 +105,30 @@ def layout(T, ALL, key, body, meta, schema, stage=False):
 <meta property="og:image" content="{og_img}">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.png" type="image/png" sizes="64x64">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-{preload_three}
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Unbounded:wght@300;400;500&display=swap&subset=cyrillic,latin-ext" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap&subset=cyrillic,latin-ext" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/site.css?v={V}">
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('consent','default',{{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500}});gtag('js',new Date());{''.join(f"gtag('config','{g}');" for g in GA)}window.BL_PIXEL='{PIXEL}';</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id={GA[0]}"></script>
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script>
 </head>
 <body>
-{pre}
 <header class="hdr"><div class="wrap hdr-in">
-<a class="logo" href="{url(T, 'home')}" aria-label="BoostLab">BOOST<span>LAB</span></a>
+{logo}
 <nav class="menu" aria-label="Main">{menu_html}</nav>
-<div class="hdr-r"><div class="langs">{langs}</div><a class="btn btn-solid" href="#contact">{escape(u['cta'])}</a>
+<div class="hdr-r">{BL_TAB}<div class="langs">{langs}</div><a class="btn btn-solid" href="#contact">{escape(u['cta'])}</a>
 <button class="burger" aria-label="{escape(u['menu'])}" aria-expanded="false"><i></i><i></i></button></div>
 </div></header>
-<div class="drawer" data-lenis-prevent>{drawer}<a class="btn btn-solid" href="#contact">{escape(u['cta'])}</a><div class="langs">{langs}</div></div>
+<div class="drawer">{drawer}<a class="btn btn-solid" href="#contact">{escape(u['cta'])}</a><div class="langs">{langs}</div></div>
 <main>
 {body}
 {cta_block(T)}
 </main>
 {footer(T)}
 <div class="ck" role="dialog" aria-live="polite"><p>{u['ck_text'].format(privacy=url(T, 'privacy'))}</p><div class="ck-b"><button class="no">{escape(u['ck_no'])}</button><button class="ok">{escape(u['ck_ok'])}</button></div></div>
-<div class="cur" aria-hidden="true"></div>
-{scripts}
+<script src="/assets/js/site.js?v={V}" defer></script>
 </body>
 </html>
 """
@@ -154,12 +136,12 @@ def layout(T, ALL, key, body, meta, schema, stage=False):
 
 def cta_block(T):
     c = T["cta_block"]
-    bg = photo("cta", "cta-img")
-    return f"""<section class="cta line-top" id="contact">{bg}<div class="wrap">
-<h2 class="h-xl" data-split>{c['title']}</h2>
-<p class="lead fade">{escape(c['lead'])}</p>
-<div class="ctas fade"><a class="btn btn-solid" href="mailto:{EMAIL}?subject=BoostLab%20project">{escape(c['mail'])} {ARR}</a><a class="btn btn-line" href="tel:{PHONE}">{escape(c['call'])}</a></div>
-<div class="contacts fade"><a href="mailto:{EMAIL}">{EMAIL}</a><a href="tel:{PHONE}">{PHONE_H}</a></div>
+    title = re.sub(r"<br\s*/?>", " ", c["title"])
+    return f"""<section class="cta" id="contact"><div class="wrap split">
+<div><h2>{title}</h2><p class="lead">{escape(c['lead'])}</p>
+<div class="ctas"><a class="btn btn-solid" href="mailto:{EMAIL}?subject=BoostLab%20project">{escape(c['mail'])}</a><a class="btn btn-line" href="tel:{PHONE}">{escape(c['call'])}</a></div>
+<div class="contacts"><a href="mailto:{EMAIL}">{EMAIL}</a><a href="tel:{PHONE}">{PHONE_H}</a></div></div>
+<figure>{pic("cta")}</figure>
 </div></section>"""
 
 
@@ -171,13 +153,12 @@ def footer(T):
     blog_a = f'<a href="{url(T, "blog")}">{escape(T["blog"]["crumb"])}</a>' if "blog" in T else ""
     return f"""<footer class="ftr"><div class="wrap">
 <div class="ftr-top">
-<div class="ftr-about"><a class="logo" href="{url(T, 'home')}">BOOST<span>LAB</span></a><p>{escape(u['about'])}</p></div>
+<div class="ftr-about">{LOGO.format(home=url(T, "home"))}<p>{escape(u['about'])}</p></div>
 <div class="ftr-col"><h4>{escape(u['f_services'])}</h4>{svc}</div>{ind_col}
 <div class="ftr-col"><h4>{escape(u['f_company'])}</h4><a href="{url(T, 'portfolio')}">{escape(u['work'])}</a><a href="{url(T, 'pricing')}">{escape(u['pricing'])}</a>{blog_a}<a href="#contact">{escape(u['contact'])}</a></div>
 <div class="ftr-col"><h4>{escape(u['f_contact'])}</h4><a href="mailto:{EMAIL}">{EMAIL}</a><a href="tel:{PHONE}">{PHONE_H}</a><a href="https://balticleads.ee/" rel="noopener">BalticLeads.ee</a></div>
 </div>
-<div class="mega" aria-hidden="true">BOOSTLAB</div>
-<div class="ftr-bot"><span>&copy; {date.today().year} FANARI OÜ · BoostLab · Tallinn, Estonia. {escape(u['rights'])}</span>
+<div class="ftr-bot"><span>&copy; {date.today().year} FANARI OÜ (BoostLab), Tallinn, Estonia. {escape(u['rights'])}</span>
 <nav><a href="{url(T, 'privacy')}">{escape(u['privacy'])}</a><a href="{url(T, 'terms')}">{escape(u['terms'])}</a></nav></div>
 </div></footer>"""
 
@@ -207,8 +188,8 @@ def graph(*nodes):
 def faq_html(T, faq):
     items = "".join(f'<details><summary>{escape(q)}</summary><div class="ans">{escape(a)}</div></details>' for q, a in faq)
     return f"""<section class="sec"><div class="wrap">
-<div class="sec-head"><div><span class="eyebrow">FAQ</span><h2 class="h-l" data-split style="margin-top:22px">{escape(T['ui']['faq'])}</h2></div></div>
-<div class="faq fade">{items}</div></div></section>"""
+<div class="sec-head"><h2>{escape(T['ui']['faq'])}</h2></div>
+<div class="faq">{items}</div></div></section>"""
 
 
 # ---------------------------------------------------------------- mock UIs for cases
@@ -254,85 +235,67 @@ def case_cards(T, cases):
             media = f'<img src="/assets/img/{c["img"]}" alt="{escape(c["name"])} - {escape(c["tags"][0])}" loading="lazy" decoding="async" width="{w}" height="{h}">'
         else:
             media = mock(c["mock"])
-        link = (f'<a class="btn btn-line" href="{c["url"]}" target="_blank" rel="noopener">{escape(T["ui"]["visit"])} {ARR_UP}</a>'
+        link = (f'<a class="btn btn-line" href="{c["url"]}" target="_blank" rel="noopener">{escape(T["ui"]["visit"])}</a>'
                 if c.get("url") else "")
         tags = "".join(f'<span class="tag">{escape(t)}</span>' for t in c["tags"])
         host = c["url"].replace("https://", "").rstrip("/") if c.get("url") else c["id"] + ".app"
         li = "".join(f"<li>{escape(x)}</li>" for x in pts.get(c["id"], []))
-        out.append(f"""<article class="case-row fade"><div class="case-media"><div class="win"><div class="win-bar"><i></i><i></i><i></i><span>{escape(host)}</span></div><div class="win-body">{media}</div></div></div>
-<div class="case-info"><span class="case-n">0{i + 1} / 0{len(cases)}</span><h3 class="h-m">{escape(c['name'])}</h3><div class="case-tags">{tags}</div><p>{escape(c['text'])}</p>{f'<ul class="points">{li}</ul>' if li else ''}{link}</div></article>""")
+        out.append(f"""<article class="case-row"><div class="case-media"><div class="win"><div class="win-bar"><i></i><i></i><i></i><span>{escape(host)}</span></div><div class="win-body">{media}</div></div></div>
+<div class="case-info"><h3 class="h-m">{escape(c['name'])}</h3><div class="case-tags">{tags}</div><p>{escape(c['text'])}</p>{f'<ul class="points">{li}</ul>' if li else ''}{link}</div></article>""")
     return f'<div class="cases-list">{"".join(out)}</div>'
 
 
 # ---------------------------------------------------------------- pages
 def page_home(T, ALL):
     h = T["home"]
-    stats = "".join(f'<div class="stat"><b>{a}</b><span>{escape(b)}</span></div>' for a, b in h["s3_stats"])
-    steps = "".join(f'<span><i></i>0{i + 1} {escape(x)}</span>' for i, x in enumerate(h["steps"]))
-    hot = "".join(f'<div class="hot hot-{i}"><b>{escape(t)}</b><span>{escape(d)}</span></div>' for i, (t, d) in enumerate(h["hot"]))
-    nums = "".join(
-        f'<div class="num fade"><small>{escape(s)}</small><b data-count="{n}" data-suf="{escape(suf)}">{n}{escape(suf)}</b><p>{escape(p)}</p></div>'
-        for s, n, suf, p in h["nums"])
-    svc = "".join(
-        f'<a href="{url(T, k)}" data-img="{img_src(k)}"><span class="n">0{i + 1}</span><h3 class="h-m">{escape(t)}</h3><p>{escape(d)}</p><span class="go">{ARR_UP}</span></a>'
-        for i, (k, t, d) in enumerate(h["svc"]))
+    facts = "".join(f'<div><b>{escape(n)}{escape(suf)}</b><span>{escape(p)}</span></div>' for _, n, suf, p in h["nums"])
+    rows = []
+    for k, t, d in h["svc"]:
+        P = T.get("pages", {}).get(k, {})
+        prices = [price_int(f) for _, _, f in P.get("feats", []) if f]
+        price = f'<span class="price"><small>{escape(T["ui"]["from"])}</small>€{min(prices):,}</span>' if prices else '<span></span>'
+        rows.append(f'<li><a href="{url(T, k)}"><span class="ph">{pic(k, "", t)}</span><span><h3>{escape(t)}</h3><p>{escape(d)}</p></span>{price}</a></li>')
+    steps = "".join(f"<li><span><b>{escape(t)}</b><p>{escape(d)}</p></span></li>" for t, d in T["process"])
     incl = "".join(f"<li>{escape(x)}</li>" for x in h["incl"])
-    tiers = "".join(
-        f'<div class="tier"><span class="muted">{escape(n)}</span><b><small class="muted" style="font-size:14px">{escape(T["ui"]["from"])}</small> {p}</b><ul>{"".join(f"<li>{escape(x)}</li>" for x in f)}</ul></div>'
+    ptable = "".join(
+        f'<div class="row"><b>{escape(n)}</b><span>{escape(", ".join(f))}</span><em><small class="muted" style="font-size:15px;font-weight:400">{escape(T["ui"]["from"])}</small> {p}</em></div>'
         for n, p, f in h["tiers"])
+    h1 = re.sub(r"<br\s*/?>", " ", h["h1"])
     body = f"""
-<section class="stage" aria-label="BoostLab">
-<div class="stage-pin">
-<div class="stage-fallback"></div>
-<canvas id="scene" aria-hidden="true"></canvas>
-<div class="stage-shade"></div>
-<div class="steps-bar" aria-hidden="true">{steps}</div>
-<div class="sc sc-hero">
-<span class="eyebrow fade">{escape(h["eyebrow"])}</span>
-<h1 class="h-xl" data-split style="margin-top:22px">{h['h1']}</h1>
-<p class="lead fade">{escape(h['lead'])}</p>
-<div class="ctas fade"><a class="btn btn-solid" href="#contact">{escape(h['cta1'])} {ARR}</a><a class="btn btn-line" href="#work">{escape(h['cta2'])}</a></div>
+<section class="hero"><div class="wrap">
+<div class="hero-grid">
+<div class="hero-text"><h1>{h1}</h1><p class="lead">{escape(h['lead'])}</p>
+<div class="ctas"><a class="btn btn-solid" href="#contact">{escape(h['cta1'])}</a><a class="btn btn-line" href="#work">{escape(h['cta2'])}</a></div>
+<p class="hero-note">{escape(h['price_from'])} <b>€700</b></p></div>
+<figure class="hero-img">{pic("hero", "", "").replace('loading="lazy"', 'fetchpriority="high"')}</figure>
 </div>
-<div class="sc sc-2"><span class="eyebrow">{escape(h['reveal_kicker'])}</span><p class="h-l" style="margin:20px 0 18px">{h['reveal_title']}</p><p class="lead">{escape(h['reveal_text'])}</p></div>
-<div class="sc sc-hot">{hot}</div>
-<div class="sc sc-3"><div><span class="eyebrow" style="margin-bottom:22px">{escape(h['final_kicker'])}</span><div class="stats">{stats}</div></div><a class="btn btn-solid" href="#contact">{escape(h['s3_cta'])} {ARR}</a></div>
-<div class="scroll-cue" aria-hidden="true"><i></i>{escape(T['ui']['scroll'])}</div>
-</div>
-</section>
-
-<section class="sec"><div class="wrap">
-<div class="sec-head"><div><span class="eyebrow">{escape(h['nums_kicker'])}</span><h2 class="h-l" data-split style="margin-top:22px">{h['nums_title']}</h2></div></div>
-<div class="nums">{nums}</div>
+<div class="facts">{facts}</div>
 </div></section>
 
-{marquee_html(T)}
-
-{band_html()}
-
-<section class="sec line-top" id="services"><div class="wrap">
-<div class="sec-head"><div><span class="eyebrow">{escape(h['svc_kicker'])}</span><h2 class="h-l" data-split style="margin-top:22px">{h['svc_title']}</h2></div><p class="lead fade">{escape(h['svc_lead'])}</p></div>
-<div class="svc">{svc}</div>
-</div><div class="svc-float" aria-hidden="true"><img alt=""></div></section>
-
-<section class="cases sec line-top" id="work">
-<div class="wrap"><div class="sec-head"><div><span class="eyebrow">{escape(h['cases_kicker'])}</span><h2 class="h-l" data-split style="margin-top:22px">{h['cases_title']}</h2></div>
-<p class="lead fade"><a class="btn btn-line" href="{url(T, 'portfolio')}">{escape(T['ui']['work'])} {ARR}</a></p></div></div>
-<div class="wrap"><p class="lead fade" style="margin:-10px 0 34px;max-width:760px">{escape(h['cases_lead'])}</p>{case_cards(T, pick_cases(T, HOME_CASES))}</div>
-</section>
-
-<section class="sec line-top"><div class="wrap incl">
-<div><span class="eyebrow">{escape(h['incl_kicker'])}</span><h2 class="h-l" data-split style="margin:22px 0 24px">{h['incl_title']}</h2><p class="lead fade">{escape(h['incl_lead'])}</p>
-<div class="collage"><div class="ph ph-a reveal-img">{pic("incl1")}</div><div class="ph ph-b reveal-img">{pic("incl2")}</div></div></div>
-<ul class="fade">{incl}</ul>
+<section class="sec sec-fog" id="services"><div class="wrap">
+<div class="sec-head"><h2>{h['svc_title']}</h2><p class="lead">{escape(h['svc_lead'])}</p></div>
+<ul class="svc-list">{"".join(rows)}</ul>
 </div></section>
 
-<section class="sec"><div class="wrap">
-<span class="eyebrow">{escape(h['price_kicker'])}</span>
-<div class="price" style="margin-top:30px">
-<div><p class="muted" style="margin-bottom:14px">{escape(h['price_from'])}</p><p class="big"><small>€</small><span data-count="700">700</span></p></div>
-<div class="price-r"><p class="lead">{escape(h['price_note'])}</p><a class="btn btn-solid" href="#contact">{escape(h['price_cta'])} {ARR}</a><a class="btn btn-line" href="{url(T, 'pricing')}">{escape(h['price_all'])} {ARR}</a></div>
-</div>
-<div class="tiers fade">{tiers}</div>
+<section class="sec" id="work"><div class="wrap">
+<div class="sec-head"><h2>{h['cases_title']}</h2><p class="lead">{escape(h['cases_lead'])}</p></div>
+{case_cards(T, pick_cases(T, HOME_CASES))}
+</div></section>
+
+<section class="sec sec-fog"><div class="wrap split">
+<figure>{pic("process")}</figure>
+<div><h2>{escape(T['ui']['process'])}</h2><ol class="steps-list">{steps}</ol></div>
+</div></section>
+
+<section class="sec"><div class="wrap incl2">
+<div><h2>{h['incl_title']}</h2><p class="lead">{escape(h['incl_lead'])}</p></div>
+<ul class="checks">{incl}</ul>
+</div></section>
+
+<section class="sec sec-fog"><div class="wrap">
+<div class="sec-head"><h2>{escape(T['pricing']['crumb'] if 'pricing' in T else h['price_kicker'])}</h2><p class="lead">{escape(h['price_note'])}</p></div>
+<div class="ptable">{ptable}</div>
+<div class="ptable-foot"><span></span><a class="btn btn-line" href="{url(T, 'pricing')}">{escape(h['price_all'])}</a></div>
 </div></section>
 
 {faq_html(T, h['faq'])}
@@ -344,7 +307,7 @@ def page_home(T, ALL):
              "priceSpecification": {"@type": "PriceSpecification", "minPrice": int(p.replace("€", "").replace(",", "")), "priceCurrency": "EUR"}}
             for n, p, _ in h["tiers"]]},
         faq_schema(h["faq"]))
-    return layout(T, ALL, "home", body, {"title": h["title"], "desc": h["desc"]}, schema, stage=True)
+    return layout(T, ALL, "home", body, {"title": h["title"], "desc": h["desc"]}, schema)
 
 
 def crumbs_html(T, label):
@@ -358,13 +321,12 @@ def crumbs_schema(T, key, label):
 
 
 # stock photos (CC0, no people/logos) per page key; missing files are simply skipped
-PAGE_IMG = {"leadgen": "stock-portfolio.webp", "clinics": "ph-clinic.webp", "rental": "ph-car.webp",
-            "restaurants": "ph-restaurant.webp", "ecommerce": "ph-phone.webp", "web": "stock-web.webp",
-            "incl1": "ph-plan.webp", "incl2": "ph-code.webp", "cta": "ph-city.webp",
-            "post:website-cost": "ph-plan.webp", "post:custom-crm-vs-saas": "stock-crm.webp", "post:booking-system": "ph-car.webp",
-            "post:b2b-leads-baltics": "ph-arch.webp", "post:seo-checklist": "ph-code.webp", "post:landing-vs-website": "ph-plan2.webp", "crm": "stock-crm.webp", "platforms": "stock-platforms.webp", "apps": "stock-apps.webp",
-            "ads": "stock-ads.webp", "smm": "stock-smm.webp", "portfolio": "stock-portfolio.webp", "pricing": "stock-pricing.webp",
-            "band": "stock-home.webp"}
+PAGE_IMG = {"hero": "lt-hero.webp", "web": "lt-web.webp", "crm": "lt-crm.webp", "platforms": "lt-platforms.webp",
+            "apps": "lt-apps.webp", "ads": "lt-ads.webp", "smm": "lt-smm.webp", "leadgen": "lt-leadgen.webp",
+            "portfolio": "lt-portfolio.webp", "pricing": "lt-pricing.webp", "process": "lt-process.webp", "cta": "lt-contact.webp",
+            "ecommerce": "lt-ecommerce.webp", "clinics": "lt-clinics.webp", "rental": "lt-rental.webp", "restaurants": "lt-restaurants.webp",
+            "post:website-cost": "lt-post1.webp", "post:custom-crm-vs-saas": "lt-post2.webp", "post:booking-system": "lt-post3.webp",
+            "post:b2b-leads-baltics": "lt-post4.webp", "post:seo-checklist": "lt-post5.webp", "post:landing-vs-website": "lt-post6.webp"}
 
 
 def img_src(key):
@@ -403,33 +365,35 @@ def band_html():
 
 def phero(T, P, ctas=True, key=""):
     stats = "".join(f'<div class="stat"><b>{escape(a)}</b><span>{escape(b)}</span></div>' for a, b in P.get("stats", []))
-    btns = (f'<div class="ctas fade"><a class="btn btn-solid" href="#contact">{escape(T["home"]["cta1"])} {ARR}</a>'
+    btns = (f'<div class="ctas"><a class="btn btn-solid" href="#contact">{escape(T["home"]["cta1"])}</a>'
             f'<a class="btn btn-line" href="{url(T, "pricing")}">{escape(T["ui"]["pricing"])}</a></div>') if ctas else ""
-    st = f'<div class="pstats fade">{stats}</div>' if stats else ""
-    return f"""<section class="phero">{photo(key, "phero-img", eager=True)}<div class="wrap">
-{crumbs_html(T, P['crumb'])}
-<h1 class="h-xl" data-split>{P['h1']}</h1>
-<p class="lead fade">{escape(P['lead'])}</p>
-{btns}{st}
+    st = f'<div class="pstats">{stats}</div>' if stats else ""
+    img = photo(key, "phero-img", eager=True)
+    h1 = re.sub(r"<br\s*/?>", " ", P["h1"])
+    return f"""<section class="phero{'' if img else ' no-img'}"><div class="wrap">
+<div class="phero-txt">{crumbs_html(T, P['crumb'])}
+<h1>{h1}</h1>
+<p class="lead">{escape(P['lead'])}</p>
+{btns}{st}</div>
+{img}
 </div></section>"""
 
 
 def process_html(T):
-    steps = "".join(f'<div class="step fade"><span class="n">0{i + 1}</span><h3 class="h-s">{escape(t)}</h3><p>{escape(d)}</p></div>'
-                    for i, (t, d) in enumerate(T["process"]))
-    return f"""<section class="sec line-top"><div class="wrap">
-<div class="sec-head"><div><span class="eyebrow">{escape(T['ui']['process'])}</span></div></div>
+    steps = "".join(f'<div class="step"><h3>{escape(t)}</h3><p>{escape(d)}</p></div>' for t, d in T["process"])
+    return f"""<section class="sec sec-fog"><div class="wrap">
+<div class="sec-head"><h2>{escape(T['ui']['process'])}</h2></div>
 <div class="steps">{steps}</div></div></section>"""
 
 
 def related_html(T, key):
-    links = "".join(f'<a href="{url(T, k)}"><span>{escape(T["nav"][k])}</span>{ARR_UP}</a>' for k in SERVICE_KEYS if k != key and k in T.get("pages", {}))
-    return f'<section class="sec line-top"><div class="wrap"><span class="eyebrow">{escape(T["ui"]["related"])}</span><div class="rel fade">{links}</div></div></section>'
+    links = "".join(f'<a href="{url(T, k)}">{escape(T["nav"][k])}</a>' for k in SERVICE_KEYS if k != key and k in T.get("pages", {}))
+    return f'<section class="sec"><div class="wrap"><h2 class="h-m">{escape(T["ui"]["related"])}</h2><div class="rel">{links}</div></div></section>'
 
 
 def seo_html(blocks):
     inner = "".join(f"<h2>{escape(h)}</h2><p>{escape(p)}</p>" for h, p in blocks)
-    return f'<section class="sec line-top"><div class="wrap"><div class="prose fade">{inner}</div></div></section>'
+    return f'<section class="sec"><div class="wrap"><div class="prose">{inner}</div></div></section>'
 
 
 def price_int(p):
@@ -443,9 +407,9 @@ def partner_html(P):
         return ""
     pts = "".join(f"<li>{escape(x)}</li>" for x in b["points"])
     return f"""<section class="sec line-top"><div class="wrap partner">
-<div class="partner-media fade"><div class="win"><div class="win-bar"><i></i><i></i><i></i><span>balticleads.ee</span></div><div class="win-body"><img src="/assets/img/case-balticleads.webp" alt="BalticLeads" loading="lazy" width="{img_size('case-balticleads.webp')[0]}" height="{img_size('case-balticleads.webp')[1]}"></div></div></div>
-<div class="case-info"><span class="case-n">{escape(b['kicker'])}</span><h2 class="h-l" data-split>{b['title']}</h2><p>{escape(b['text'])}</p><ul class="points">{pts}</ul>
-<a class="btn btn-solid" href="https://balticleads.ee/" target="_blank" rel="noopener">{escape(b['cta'])} {ARR_UP}</a></div></div></section>"""
+<div class="partner-media"><div class="win"><div class="win-bar"><i></i><i></i><i></i><span>balticleads.ee</span></div><div class="win-body"><img src="/assets/img/case-balticleads.webp" alt="BalticLeads" loading="lazy" width="{img_size('case-balticleads.webp')[0]}" height="{img_size('case-balticleads.webp')[1]}"></div></div></div>
+<div class="case-info"><h2>{b['title']}</h2><p>{escape(b['text'])}</p><ul class="points">{pts}</ul>
+<a class="btn btn-solid" href="https://balticleads.ee/" target="_blank" rel="noopener">{escape(b['cta'])}</a></div></div></section>"""
 
 
 def page_service(key):
@@ -455,12 +419,12 @@ def page_service(key):
         else:
             P = T["pages"][key]
         feats = "".join(
-            f'<div class="card fade"><span class="n">0{i + 1}</span><h3 class="h-s">{escape(t)}</h3><p>{escape(d)}</p>'
+            f'<div class="card"><span class="n">0{i + 1}</span><h3 class="h-s">{escape(t)}</h3><p>{escape(d)}</p>'
             + (f'<span class="from"><small class="muted">{escape(T["ui"]["from"])}</small> {f}</span>' if f else "") + "</div>"
             for i, (t, d, f) in enumerate(P["feats"]))
         body = f"""{phero(T, P, key=P.get("img", key.split(":")[-1]))}
-<section class="sec line-top"><div class="wrap">
-<div class="sec-head"><div><h2 class="h-l" data-split>{P['feat_title']}</h2></div></div>
+<section class="sec"><div class="wrap">
+<div class="sec-head"><h2>{P['feat_title']}</h2></div>
 <div class="cards">{feats}</div></div></section>
 {partner_html(P)}
 {process_html(T)}
@@ -536,7 +500,7 @@ def post_card(T, k):
     p = T["blog"]["posts"][k]
     cover = pic("post:" + k, "", p["h1"])
     cover = f'<div class="post-cover">{cover}</div>' if cover else ""
-    return (f'<a class="post fade" href="{url(T, "post:" + k)}">{cover}<span class="case-n">{escape(p["date"])} · {p["minutes"]} {escape(T["blog"]["read"])}</span>'
+    return (f'<a class="post" href="{url(T, "post:" + k)}">{cover}<span class="case-n">{escape(p["date"])} · {p["minutes"]} {escape(T["blog"]["read"])}</span>'
             f'<h3 class="h-s">{escape(p["h1"])}</h3><p>{escape(p["lead"])}</p><span class="go">{ARR_UP}</span></a>')
 
 
@@ -544,13 +508,13 @@ def posts_related(T, keys):
     keys = [k for k in keys if k in T.get("blog", {}).get("posts", {})]
     if not keys:
         return ""
-    return f'<section class="sec line-top"><div class="wrap"><span class="eyebrow">{escape(T["blog"]["crumb"])}</span><div class="posts" style="margin-top:28px">{"".join(post_card(T, k) for k in keys)}</div></div></section>'
+    return f'<section class="sec sec-fog"><div class="wrap"><div class="sec-head"><h2 class="h-m">{escape(T["blog"]["crumb"])}</h2></div><div class="posts">{"".join(post_card(T, k) for k in keys)}</div></div></section>'
 
 
 def page_blog(T, ALL):
     B = T["blog"]
-    body = f"""<section class="phero"><div class="wrap">{crumbs_html(T, B['crumb'])}<h1 class="h-xl" data-split>{B['h1']}</h1><p class="lead fade">{escape(B['lead'])}</p></div></section>
-<section class="sec line-top"><div class="wrap"><div class="posts">{"".join(post_card(T, k) for k in B["posts"])}</div></div></section>"""
+    body = f"""<section class="phero no-img"><div class="wrap"><div class="phero-txt">{crumbs_html(T, B['crumb'])}<h1>{B['h1']}</h1><p class="lead">{escape(B['lead'])}</p></div></div></section>
+<section class="sec" style="padding-top:0"><div class="wrap"><div class="posts">{"".join(post_card(T, k) for k in B["posts"])}</div></div></section>"""
     items = [{"@type": "ListItem", "position": i + 1, "url": url(T, "post:" + k, True), "name": p["h1"]} for i, (k, p) in enumerate(B["posts"].items())]
     schema = graph(org_schema(T), {"@type": "Blog", "name": B["title"], "url": url(T, "blog", True), "inLanguage": T["lang"],
                                    "publisher": {"@id": f"{SITE}/#org"}}, {"@type": "ItemList", "itemListElement": items}, crumbs_schema(T, "blog", B["crumb"]))
@@ -648,29 +612,46 @@ def sitemap(ALL, built):
 
 
 def og_image(T):
-    from PIL import Image, ImageDraw, ImageFilter, ImageFont
+    from PIL import Image, ImageDraw, ImageFont
     W, H = 1200, 630
-    base = Image.new("RGB", (W, H), "#060608")
-    glow = Image.new("RGB", (W, H), "#060608")
-    ImageDraw.Draw(glow).ellipse([640, 110, 1260, 730], fill="#6a3c1a")
-    im = Image.blend(base, glow.filter(ImageFilter.GaussianBlur(130)), 0.9)
+    im = Image.new("RGB", (W, H), "#FFFFFF")
     d = ImageDraw.Draw(im)
-    ttf = str(SRC / "fonts" / "Unbounded.ttf")
+    ttf = str(SRC / "fonts" / "Onest.ttf")
 
-    def F(size, wght=400):
+    def F(size, wght=600):
         f = ImageFont.truetype(ttf, size)
         try:
             f.set_variation_by_axes([wght])
         except Exception:
             pass
         return f
-    d.text((70, 70), "BOOST", font=F(30), fill="#ECE8E1")
-    d.text((70 + d.textlength("BOOST", font=F(30)), 70), "LAB", font=F(30), fill="#D88A4C")
-    y = 220
-    for i, ln in enumerate(T["og"]):
-        d.text((70, y), ln, font=F(62), fill="#D88A4C" if i == len(T["og"]) - 1 else "#ECE8E1")
-        y += 82
-    d.text((70, 540), T["og_foot"], font=F(20, 300), fill="#8E8A84")
+    # photo panel on the right, text on the left - same split as the site hero
+    ph = Image.open(ROOT / "assets" / "img" / "lt-hero.webp").convert("RGB")
+    k = max(520 / ph.width, 550 / ph.height)
+    ph = ph.resize((round(ph.width * k), round(ph.height * k)))
+    left, top = (ph.width - 520) // 2, (ph.height - 550) // 2
+    ph = ph.crop((left, top, left + 520, top + 550))
+    mask = Image.new("L", ph.size, 0)
+    ImageDraw.Draw(mask).rounded_rectangle([0, 0, ph.width, ph.height], 18, fill=255)
+    im.paste(ph, (640, 40), mask)
+    d.rounded_rectangle([70, 64, 114, 108], 10, fill="#13212E")
+    d.text((80, 66), "B", font=F(32, 700), fill="#FFFFFF")
+    d.ellipse([101, 95, 109, 103], fill="#D88A4C")
+    d.text((128, 70), "BoostLab", font=F(30, 700), fill="#13212E")
+    # headline = the home page H1, wrapped to the text column
+    words, lines, cur = re.sub(r"<[^>]+>", " ", T["home"]["h1"]).split(), [], ""
+    for w in words:
+        t = (cur + " " + w).strip()
+        if d.textlength(t, font=F(48)) > 520 and cur:
+            lines.append(cur); cur = w
+        else:
+            cur = t
+    lines.append(cur)
+    y = 180
+    for ln in lines[:4]:
+        d.text((70, y), ln, font=F(48, 600), fill="#13212E")
+        y += 62
+    d.text((70, 520), T["og_foot"], font=F(21, 500), fill="#0F766E")
     return im
 
 

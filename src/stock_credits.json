@@ -1,74 +1,90 @@
 {
- "stock-web.webp": {
-  "source": "https://stocksnap.io/photo/macbook-laptop-DWLWL9USBG",
-  "license": "CC0 (StockSnap via Openverse)"
- },
- "stock-crm.webp": {
-  "source": "https://stocksnap.io/photo/laptop-desk-2BJQISGWND",
-  "license": "CC0 (StockSnap via Openverse)"
- },
- "stock-ads.webp": {
-  "source": "https://stocksnap.io/photo/laptop-desk-3NXCLQST85",
-  "license": "CC0 (StockSnap via Openverse)"
- },
- "stock-platforms.webp": {
-  "source": "https://stocksnap.io/photo/house-home-29PH3DAQ7C",
-  "license": "CC0 (StockSnap via Openverse)"
- },
- "stock-apps.webp": {
-  "source": "https://stocksnap.io/photo/iphone-smartphone-AQZQ7RGC7R",
-  "license": "CC0 (StockSnap via Openverse)"
- },
- "stock-smm.webp": {
-  "source": "https://stocksnap.io/photo/camera-lens-FUL7CILDYQ",
-  "license": "CC0 (StockSnap via Openverse)"
- },
- "stock-home.webp": {
-  "source": "https://stocksnap.io/photo/night-dark-H01L2BILXC",
-  "license": "CC0 (StockSnap via Openverse)"
- },
- "stock-portfolio.webp": {
-  "source": "https://stocksnap.io/photo/architecture-buildings-P19Z6VTYQ0",
-  "license": "CC0 (StockSnap via Openverse)"
- },
- "stock-pricing.webp": {
-  "source": "https://stocksnap.io/photo/office-desk-WPTZMPBOF0",
-  "license": "CC0 (StockSnap via Openverse)"
- },
- "ph-restaurant.webp": {
-  "source": "https://www.rawpixel.com/image/447750/free-photo-image-restaurant-table-dinner-chair",
+ "lt-hero.webp": {
+  "source": "https://www.rawpixel.com/image/6113893/photo-image-aesthetic-public-domain-laptop",
   "license": "CC0 (rawpixel via Openverse)"
  },
- "ph-clinic.webp": {
-  "source": "https://www.rawpixel.com/image/3282520/free-photo-image-dentist-dental-dentistry",
+ "lt-web.webp": {
+  "source": "https://www.rawpixel.com/image/3337308/free-photo-image-cc0-computer-hardware",
   "license": "CC0 (rawpixel via Openverse)"
  },
- "ph-car.webp": {
+ "lt-crm.webp": {
+  "source": "https://www.rawpixel.com/image/5926105/photo-image-background-aesthetic-public-domain",
+  "license": "CC0 (rawpixel via Openverse)"
+ },
+ "lt-platforms.webp": {
+  "source": "https://www.rawpixel.com/image/5924997/photo-image-public-domain-house-interior",
+  "license": "CC0 (rawpixel via Openverse)"
+ },
+ "lt-apps.webp": {
+  "source": "https://www.rawpixel.com/image/5967683/white-iphone-wood-desk",
+  "license": "CC0 (rawpixel via Openverse)"
+ },
+ "lt-ads.webp": {
+  "source": "https://www.rawpixel.com/image/5966690/top-workspace-office",
+  "license": "CC0 (rawpixel via Openverse)"
+ },
+ "lt-smm.webp": {
+  "source": "https://www.rawpixel.com/image/5967103/desk-plant",
+  "license": "CC0 (rawpixel via Openverse)"
+ },
+ "lt-process.webp": {
+  "source": "https://www.rawpixel.com/image/3303655/free-photo-image-tabletop-interior-cafeteria",
+  "license": "CC0 (rawpixel via Openverse)"
+ },
+ "lt-contact.webp": {
+  "source": "https://www.rawpixel.com/image/5919681/photo-image-public-domain-computer-table",
+  "license": "CC0 (rawpixel via Openverse)"
+ },
+ "lt-leadgen.webp": {
+  "source": "https://www.rawpixel.com/image/6024318/office-hallway-free-public-domain-cc0-photo",
+  "license": "CC0 (rawpixel via Openverse)"
+ },
+ "lt-ecommerce.webp": {
+  "source": "https://www.rawpixel.com/image/5915990/photo-image-background-public-domain-wooden",
+  "license": "CC0 (rawpixel via Openverse)"
+ },
+ "lt-clinics.webp": {
+  "source": "https://www.rawpixel.com/image/6020787/dental-clinic-free-public-domain-cc0-photo",
+  "license": "CC0 (rawpixel via Openverse)"
+ },
+ "lt-rental.webp": {
   "source": "https://www.rawpixel.com/image/6032420/car-interior-free-public-domain-cc0-photo",
   "license": "CC0 (rawpixel via Openverse)"
  },
- "ph-plan.webp": {
-  "source": "https://www.rawpixel.com/image/5905412/photo-image-background-public-domain-wooden",
+ "lt-restaurants.webp": {
+  "source": "https://www.rawpixel.com/image/3336823/free-photo-image-restaurant-conference-room-interior",
   "license": "CC0 (rawpixel via Openverse)"
  },
- "ph-plan2.webp": {
-  "source": "https://www.rawpixel.com/image/432045/notebook-and-cup-coffee",
+ "lt-portfolio.webp": {
+  "source": "https://www.rawpixel.com/image/3285824/free-photo-image-office-building-residence-city",
   "license": "CC0 (rawpixel via Openverse)"
  },
- "ph-code.webp": {
-  "source": "https://www.rawpixel.com/image/5924954/photo-image-background-public-domain-technology",
+ "lt-pricing.webp": {
+  "source": "https://www.rawpixel.com/image/432079/free-photo-image-laptop-office-work-computer-mockup",
   "license": "CC0 (rawpixel via Openverse)"
  },
- "ph-city.webp": {
-  "source": "https://www.rawpixel.com/image/5927401/photo-image-public-domain-free-city",
+ "lt-post1.webp": {
+  "source": "https://www.rawpixel.com/image/5967000/top-workspace-office",
   "license": "CC0 (rawpixel via Openverse)"
  },
- "ph-arch.webp": {
-  "source": "https://www.rawpixel.com/image/6022389/photo-image-public-domain-glass-window",
+ "lt-post2.webp": {
+  "source": "https://www.rawpixel.com/image/5912771/photo-image-background-public-domain-technology",
   "license": "CC0 (rawpixel via Openverse)"
  },
- "ph-phone.webp": {
-  "source": "https://www.rawpixel.com/image/5965989/macbook-iphone-desk-office",
+ "lt-post3.webp": {
+  "source": "https://www.rawpixel.com/image/5920263/photo-image-public-domain-house-interior",
+  "license": "CC0 (rawpixel via Openverse)"
+ },
+ "lt-post4.webp": {
+  "source": "https://www.rawpixel.com/image/5905925/photo-image-public-domain-table-room",
+  "license": "CC0 (rawpixel via Openverse)"
+ },
+ "lt-post5.webp": {
+  "source": "https://www.rawpixel.com/image/5915552/photo-image-phone-public-domain-computer",
+  "license": "CC0 (rawpixel via Openverse)"
+ },
+ "lt-post6.webp": {
+  "source": "https://www.rawpixel.com/image/8811998/office-desk-keyboard",
   "license": "CC0 (rawpixel via Openverse)"
  }
 }
