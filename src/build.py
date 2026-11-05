@@ -18,6 +18,8 @@ LANGS = ["en", "et", "ru", "lt"]
 PHONE, PHONE_H, EMAIL = "+37256825854", "+372 568 25854", "info@boostlab.lt"
 GA = ["G-5F8H438EKX", "AW-18015999232", "GT-TQDGLZ8J"]
 PIXEL = "137665235020353"
+# Google Ads conversion actions: paste labels from Ads > Goals > Conversions (format "AW-ID/label")
+ADS_CONV = {"email": "", "phone": ""}
 V = __import__("hashlib").sha1(b"".join(p.read_bytes() for p in sorted((ROOT / "assets").glob("*/*.*")) if p.suffix in (".css", ".js"))).hexdigest()[:10]
 
 CDN = {
@@ -30,7 +32,7 @@ CDN = {
 def load(lang):
     """content/<lang>.py defines T; content/<lang>_pages.py (optional) extends it."""
     ns = {}
-    for name in (f"{lang}.py", f"{lang}_pages.py", f"{lang}_extra.py", f"{lang}_seo.py"):
+    for name in (f"{lang}.py", f"{lang}_pages.py", f"{lang}_extra.py", f"{lang}_seo.py", f"{lang}_blog2.py"):
         f = SRC / "content" / name
         if f.exists():
             exec(compile(f.read_text(encoding="utf-8"), str(f), "exec"), ns)
@@ -83,7 +85,7 @@ def layout(T, ALL, key, body, meta, schema, stage=False):
     if "blog" in T:
         drawer += f'<a class="dl" href="{url(T, "blog")}">{escape(T["blog"]["crumb"])}</a>'
     drawer += BL_TAB
-    og_img = f"{SITE}/assets/img/og-{T['lang']}.jpg"
+    og_img = meta.get("og_image") or f"{SITE}/assets/img/og-{T['lang']}.jpg"
     logo = LOGO.format(home=url(T, "home"))
     return f"""<!DOCTYPE html>
 <html lang="{T['lang']}" class="no-js">
@@ -103,14 +105,14 @@ def layout(T, ALL, key, body, meta, schema, stage=False):
 <meta property="og:description" content="{escape(meta['desc'])}">
 <meta property="og:url" content="{url(T, key, True)}">
 <meta property="og:image" content="{og_img}">
-<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+{"" if meta.get("og_image") else '<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">'}
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.png" type="image/png" sizes="64x64">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap&subset=cyrillic,latin-ext" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/site.css?v={V}">
-<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('consent','default',{{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500}});gtag('js',new Date());{''.join(f"gtag('config','{g}');" for g in GA)}window.BL_PIXEL='{PIXEL}';</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('consent','default',{{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500}});gtag('js',new Date());{''.join(f"gtag('config','{g}');" for g in GA)}window.BL_PIXEL='{PIXEL}';window.BL_ADS={json.dumps(ADS_CONV)};</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id={GA[0]}"></script>
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script>
 </head>
@@ -326,7 +328,9 @@ PAGE_IMG = {"hero": "lt-hero.webp", "web": "lt-web.webp", "crm": "lt-crm.webp", 
             "portfolio": "lt-portfolio.webp", "pricing": "lt-pricing.webp", "process": "lt-process.webp", "cta": "lt-contact.webp",
             "ecommerce": "lt-ecommerce.webp", "clinics": "lt-clinics.webp", "rental": "lt-rental.webp", "restaurants": "lt-restaurants.webp",
             "post:website-cost": "lt-post1.webp", "post:custom-crm-vs-saas": "lt-post2.webp", "post:booking-system": "lt-post3.webp",
-            "post:b2b-leads-baltics": "lt-post4.webp", "post:seo-checklist": "lt-post5.webp", "post:landing-vs-website": "lt-post6.webp"}
+            "post:b2b-leads-baltics": "lt-post4.webp", "post:seo-checklist": "lt-post5.webp", "post:landing-vs-website": "lt-post6.webp",
+            "post:ecommerce-cost": "lt-post7.webp", "post:crm-construction": "lt-post8.webp",
+            "post:google-ads-small-business": "lt-post9.webp", "post:redesign-without-seo-loss": "lt-post10.webp"}
 
 
 def img_src(key):
@@ -430,7 +434,7 @@ def page_service(key):
 {process_html(T)}
 {seo_html(P['seo'])}
 {faq_html(T, P['faq'])}
-{posts_related(T, P.get("posts", []))}
+{posts_related(T, P.get("posts") or auto_posts(T, key))}
 {related_html(T, key)}"""
         prices = [price_int(f) for _, _, f in P["feats"] if f]
         service = {"@type": "Service", "name": P["crumb"], "serviceType": P["crumb"], "description": P["desc"],
@@ -504,6 +508,13 @@ def post_card(T, k):
             f'<h3 class="h-s">{escape(p["h1"])}</h3><p>{escape(p["lead"])}</p><span class="go">{ARR_UP}</span></a>')
 
 
+def auto_posts(T, key):
+    """Newest posts that list this service key in their 'services'."""
+    posts = T.get("blog", {}).get("posts", {})
+    hits = [k for k, p in posts.items() if key in p.get("services", [])]
+    return sorted(hits, key=lambda k: posts[k]["iso"], reverse=True)[:3]
+
+
 def posts_related(T, keys):
     keys = [k for k in keys if k in T.get("blog", {}).get("posts", {})]
     if not keys:
@@ -514,7 +525,7 @@ def posts_related(T, keys):
 def page_blog(T, ALL):
     B = T["blog"]
     body = f"""<section class="phero no-img"><div class="wrap"><div class="phero-txt">{crumbs_html(T, B['crumb'])}<h1>{B['h1']}</h1><p class="lead">{escape(B['lead'])}</p></div></div></section>
-<section class="sec" style="padding-top:0"><div class="wrap"><div class="posts">{"".join(post_card(T, k) for k in B["posts"])}</div></div></section>"""
+<section class="sec" style="padding-top:0"><div class="wrap"><div class="posts">{"".join(post_card(T, k) for k in sorted(B["posts"], key=lambda k: B["posts"][k]["iso"], reverse=True))}</div></div></section>"""
     items = [{"@type": "ListItem", "position": i + 1, "url": url(T, "post:" + k, True), "name": p["h1"]} for i, (k, p) in enumerate(B["posts"].items())]
     schema = graph(org_schema(T), {"@type": "Blog", "name": B["title"], "url": url(T, "blog", True), "inLanguage": T["lang"],
                                    "publisher": {"@id": f"{SITE}/#org"}}, {"@type": "ItemList", "itemListElement": items}, crumbs_schema(T, "blog", B["crumb"]))
@@ -529,21 +540,26 @@ def page_post(k):
                   f'<a href="{url(T, "blog")}">{escape(B["crumb"])}</a></nav>')
         rel = "".join(f'<a href="{url(T, s)}"><span>{escape(T["nav"][s])}</span>{ARR_UP}</a>' for s in p.get("services", []) if s in T.get("pages", {}))
         others = [o for o in B["posts"] if o != k][:3]
-        body = f"""<section class="phero">{photo("post:" + k, "phero-img", eager=True)}<div class="wrap">{crumbs}<h1 class="h-l" data-split>{escape(p['h1'])}</h1>
-<p class="lead fade">{escape(p['lead'])}</p><p class="case-n" style="margin-top:22px">{escape(p['date'])} · {p['minutes']} {escape(B['read'])}</p></div></section>
-<section class="sec line-top" style="padding-top:60px"><div class="wrap"><article class="prose article">{p['body']}</article></div></section>
+        img = photo("post:" + k, "phero-img", eager=True)
+        body = f"""<section class="phero{'' if img else ' no-img'}"><div class="wrap">
+<div class="phero-txt">{crumbs}<h1 class="h-l">{escape(p['h1'])}</h1>
+<p class="lead">{escape(p['lead'])}</p><p class="muted">{escape(p['date'])}, {p['minutes']} {escape(B['read'])}</p></div>
+{img}</div></section>
+<section class="sec" style="padding-top:8px"><div class="wrap"><article class="prose article">{p['body']}</article></div></section>
 {faq_html(T, p['faq']) if p.get('faq') else ''}
 {f'<section class="sec line-top"><div class="wrap"><span class="eyebrow">{escape(T["ui"]["related"])}</span><div class="rel fade">{rel}</div></div></section>' if rel else ''}
 {posts_related(T, others)}"""
         art = {"@type": "BlogPosting", "headline": p["h1"], "description": p["desc"], "datePublished": p["iso"], "dateModified": p["iso"],
-               "inLanguage": T["lang"], "mainEntityOfPage": url(T, key, True), "image": f"{SITE}/assets/img/og-{T['lang']}.jpg",
+               "inLanguage": T["lang"], "mainEntityOfPage": url(T, key, True), "image": SITE + (img_src(key) or f"/assets/img/og-{T['lang']}.jpg"),
                "author": {"@id": f"{SITE}/#org"}, "publisher": {"@id": f"{SITE}/#org"}}
         bc = {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": T["ui"]["home"], "item": url(T, "home", True)},
             {"@type": "ListItem", "position": 2, "name": B["crumb"], "item": url(T, "blog", True)},
             {"@type": "ListItem", "position": 3, "name": p["h1"], "item": url(T, key, True)}]}
         schema = graph(org_schema(T), art, bc, faq_schema(p["faq"]) if p.get("faq") else None)
-        return layout(T, ALL, key, body, p, schema)
+        cover = img_src(key)
+        meta = dict(p, og_image=SITE + cover.replace(".webp", ".jpg")) if cover else p
+        return layout(T, ALL, key, body, meta, schema)
     return render
 
 
@@ -606,9 +622,12 @@ def sitemap(ALL, built):
                            for L in ALL.values() if (L["lang"], key) in built)
             alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{url(ALL["en"], key, True)}"/>'
             pr = "1.0" if key == "home" else "0.3" if key in ("privacy", "terms") else "0.8"
-            rows.append(f"<url><loc>{url(T, key, True)}</loc>{alts}<lastmod>{today}</lastmod><priority>{pr}</priority></url>")
+            pk = "hero" if key == "home" else key if key.startswith("post:") else key.split(":")[-1]
+            im = img_src(pk)
+            img = f"<image:image><image:loc>{SITE}{im}</image:loc></image:image>" if im else ""
+            rows.append(f"<url><loc>{url(T, key, True)}</loc>{alts}{img}<lastmod>{today}</lastmod><priority>{pr}</priority></url>")
     return ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
-            'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + "\n".join(rows) + "\n</urlset>\n")
+            'xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + "\n".join(rows) + "\n</urlset>\n")
 
 
 def og_image(T):
@@ -668,6 +687,10 @@ def build():
     for p in DIST.iterdir():
         shutil.rmtree(p) if p.is_dir() else p.unlink()
     shutil.copytree(ROOT / "assets", DIST / "assets")
+    # JPG twins of blog covers for social previews (not every network accepts WebP)
+    from PIL import Image
+    for f in (DIST / "assets" / "img").glob("lt-post*.webp"):
+        Image.open(f).convert("RGB").save(f.with_suffix(".jpg"), quality=84)
     for f in (ROOT / "static").glob("*"):
         shutil.copy(f, DIST / f.name)
     # which (lang, page) pairs exist - languages may be added page by page

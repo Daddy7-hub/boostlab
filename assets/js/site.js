@@ -38,6 +38,12 @@
   }
 
   d.querySelectorAll('a[href^="mailto:"],a[href^="tel:"]').forEach(function (a) {
-    a.addEventListener('click', function () { window.gtag && gtag('event', 'generate_lead', { method: a.href.split(':')[0] }); });
+    a.addEventListener('click', function () {
+      if (!window.gtag) return;
+      var m = a.href.split(':')[0] === 'tel' ? 'phone' : 'email';
+      gtag('event', 'generate_lead', { method: m });
+      var lbl = (window.BL_ADS || {})[m];
+      if (lbl) gtag('event', 'conversion', { send_to: lbl });
+    });
   });
 })();
