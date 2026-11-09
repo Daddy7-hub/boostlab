@@ -3,6 +3,7 @@
 python src/build.py  ->  dist/  (published by GitHub Pages workflow)
 Content lives in src/content/<lang>.py, page templates are functions below.
 """
+from urllib.parse import quote
 import json
 import re
 import shutil
@@ -19,7 +20,7 @@ PHONE, PHONE_H, EMAIL = "+37256825854", "+372 568 25854", "info@boostlab.lt"
 GA = ["G-5F8H438EKX", "AW-18015999232", "GT-TQDGLZ8J"]
 PIXEL = "137665235020353"
 # Google Ads conversion actions: paste labels from Ads > Goals > Conversions (format "AW-ID/label")
-ADS_CONV = {"email": "", "phone": ""}
+ADS_CONV = {"email": "", "phone": "", "mockup": ""}
 V = __import__("hashlib").sha1(b"".join(p.read_bytes() for p in sorted((ROOT / "assets").glob("*/*.*")) if p.suffix in (".css", ".js"))).hexdigest()[:10]
 
 CDN = {
@@ -32,7 +33,7 @@ CDN = {
 def load(lang):
     """content/<lang>.py defines T; content/<lang>_pages.py (optional) extends it."""
     ns = {}
-    for name in (f"{lang}.py", f"{lang}_pages.py", f"{lang}_extra.py", f"{lang}_seo.py", f"{lang}_blog2.py"):
+    for name in (f"{lang}.py", f"{lang}_pages.py", f"{lang}_extra.py", f"{lang}_seo.py", f"{lang}_blog2.py", f"{lang}_blog3.py"):
         f = SRC / "content" / name
         if f.exists():
             exec(compile(f.read_text(encoding="utf-8"), str(f), "exec"), ns)
@@ -136,13 +137,35 @@ def layout(T, ALL, key, body, meta, schema, stage=False):
 """
 
 
+def mk_mail(T):
+    return f"mailto:{EMAIL}?subject={quote(T['ui']['mk_subject'])}"
+
+
+MK_KEYS = {"web", "crm", "platforms", "apps", "niche:ecommerce", "niche:clinics", "niche:rental", "niche:restaurants"}
+
+
+def mockup_block(T, cls="sec"):
+    """Free design mockup offer - home, pricing, build-type service pages."""
+    u = T["ui"]
+    if "mk_title" not in u:
+        return ""
+    pts = "".join(f"<li>{escape(x)}</li>" for x in u["mk_points"])
+    return f"""<section class="{cls}" id="mockup"><div class="wrap mk">
+<div><h2>{escape(u['mk_title'])}</h2><p class="lead">{escape(u['mk_text'])}</p><ul class="checks">{pts}</ul>
+<a class="btn btn-solid" href="{mk_mail(T)}" data-lead="mockup">{escape(u['mk_cta'])}</a></div>
+<div class="mk-media" aria-hidden="true"><div class="win-bar"><i></i><i></i><i></i><span>{escape(u['mk_host'])}</span></div>
+<div class="wire"><i class="nav"></i><div class="txt"><i></i><i></i><i></i><i></i><i></i></div><i class="ph"></i><div class="row"><i></i><i></i><i></i></div></div></div>
+</div></section>"""
+
+
 def cta_block(T):
     c = T["cta_block"]
     title = re.sub(r"<br\s*/?>", " ", c["title"])
     return f"""<section class="cta" id="contact"><div class="wrap split">
 <div><h2>{title}</h2><p class="lead">{escape(c['lead'])}</p>
 <div class="ctas"><a class="btn btn-solid" href="mailto:{EMAIL}?subject=BoostLab%20project">{escape(c['mail'])}</a><a class="btn btn-line" href="tel:{PHONE}">{escape(c['call'])}</a></div>
-<div class="contacts"><a href="mailto:{EMAIL}">{EMAIL}</a><a href="tel:{PHONE}">{PHONE_H}</a></div></div>
+<div class="contacts"><a href="mailto:{EMAIL}">{EMAIL}</a><a href="tel:{PHONE}">{PHONE_H}</a></div>
+{f'<p class="cta-note"><a href="{mk_mail(T)}" data-lead="mockup">{escape(T["ui"]["mk_note"])}</a></p>' if "mk_note" in T["ui"] else ""}</div>
 <figure>{pic("cta")}</figure>
 </div></section>"""
 
@@ -160,7 +183,7 @@ def footer(T):
 <div class="ftr-col"><h4>{escape(u['f_company'])}</h4><a href="{url(T, 'portfolio')}">{escape(u['work'])}</a><a href="{url(T, 'pricing')}">{escape(u['pricing'])}</a>{blog_a}<a href="#contact">{escape(u['contact'])}</a></div>
 <div class="ftr-col"><h4>{escape(u['f_contact'])}</h4><a href="mailto:{EMAIL}">{EMAIL}</a><a href="tel:{PHONE}">{PHONE_H}</a><a href="https://balticleads.ee/" rel="noopener">BalticLeads.ee</a></div>
 </div>
-<div class="ftr-bot"><span>&copy; {date.today().year} FANARI OÜ (BoostLab), Tallinn, Estonia. {escape(u['rights'])}</span>
+<div class="ftr-bot"><span>&copy; {date.today().year} FANARI OÜ (BoostLab), Ehitajate tee 15-20, 12612 Tallinn, Estonia. {escape(u['rights'])}</span>
 <nav><a href="{url(T, 'privacy')}">{escape(u['privacy'])}</a><a href="{url(T, 'terms')}">{escape(u['terms'])}</a></nav></div>
 </div></footer>"""
 
@@ -268,7 +291,7 @@ def page_home(T, ALL):
 <div class="hero-grid">
 <div class="hero-text"><h1>{h1}</h1><p class="lead">{escape(h['lead'])}</p>
 <div class="ctas"><a class="btn btn-solid" href="#contact">{escape(h['cta1'])}</a><a class="btn btn-line" href="#work">{escape(h['cta2'])}</a></div>
-<p class="hero-note">{escape(h['price_from'])} <b>€700</b></p></div>
+<p class="hero-note">{escape(h['price_from'])} <b>€700</b>. <a href="#mockup">{escape(T['ui'].get('mk_note', ''))}</a></p></div>
 <figure class="hero-img">{pic("hero", "", "").replace('loading="lazy"', 'fetchpriority="high"')}</figure>
 </div>
 <div class="facts">{facts}</div>
@@ -283,6 +306,8 @@ def page_home(T, ALL):
 <div class="sec-head"><h2>{h['cases_title']}</h2><p class="lead">{escape(h['cases_lead'])}</p></div>
 {case_cards(T, pick_cases(T, HOME_CASES))}
 </div></section>
+
+{mockup_block(T, "sec line-top")}
 
 <section class="sec sec-fog"><div class="wrap split">
 <figure>{pic("process")}</figure>
@@ -299,6 +324,8 @@ def page_home(T, ALL):
 <div class="ptable">{ptable}</div>
 <div class="ptable-foot"><span></span><a class="btn btn-line" href="{url(T, 'pricing')}">{escape(h['price_all'])}</a></div>
 </div></section>
+
+{latest_posts(T)}
 
 {faq_html(T, h['faq'])}
 """
@@ -330,7 +357,9 @@ PAGE_IMG = {"hero": "lt-hero.webp", "web": "lt-web.webp", "crm": "lt-crm.webp", 
             "post:website-cost": "lt-post1.webp", "post:custom-crm-vs-saas": "lt-post2.webp", "post:booking-system": "lt-post3.webp",
             "post:b2b-leads-baltics": "lt-post4.webp", "post:seo-checklist": "lt-post5.webp", "post:landing-vs-website": "lt-post6.webp",
             "post:ecommerce-cost": "lt-post7.webp", "post:crm-construction": "lt-post8.webp",
-            "post:google-ads-small-business": "lt-post9.webp", "post:redesign-without-seo-loss": "lt-post10.webp"}
+            "post:google-ads-small-business": "lt-post9.webp", "post:redesign-without-seo-loss": "lt-post10.webp",
+            "post:smm-how-we-work": "lt-post11.webp", "post:smm-cost": "lt-post12.webp", "post:mobile-app-cost": "lt-post13.webp",
+            "post:how-we-work": "lt-post14.webp", "post:b2b-email-campaign": "lt-post15.webp"}
 
 
 def img_src(key):
@@ -367,18 +396,21 @@ def band_html():
     return f'<section class="band">{img.replace("<img ", "<img data-parallax ")}</section>' if img else ""
 
 
-def phero(T, P, ctas=True, key=""):
+def phero(T, P, ctas=True, key="", reads=()):
     stats = "".join(f'<div class="stat"><b>{escape(a)}</b><span>{escape(b)}</span></div>' for a, b in P.get("stats", []))
     btns = (f'<div class="ctas"><a class="btn btn-solid" href="#contact">{escape(T["home"]["cta1"])}</a>'
             f'<a class="btn btn-line" href="{url(T, "pricing")}">{escape(T["ui"]["pricing"])}</a></div>') if ctas else ""
     st = f'<div class="pstats">{stats}</div>' if stats else ""
     img = photo(key, "phero-img", eager=True)
     h1 = re.sub(r"<br\s*/?>", " ", P["h1"])
+    posts = T.get("blog", {}).get("posts", {})
+    links = ", ".join(f'<a href="{url(T, "post:" + k)}">{escape(posts[k]["h1"])}</a>' for k in reads if k in posts)
+    rd = f'<p class="reads">{escape(T["ui"].get("read_more", ""))} {links}</p>' if links else ""
     return f"""<section class="phero{'' if img else ' no-img'}"><div class="wrap">
 <div class="phero-txt">{crumbs_html(T, P['crumb'])}
 <h1>{h1}</h1>
 <p class="lead">{escape(P['lead'])}</p>
-{btns}{st}</div>
+{btns}{rd}{st}</div>
 {img}
 </div></section>"""
 
@@ -426,15 +458,17 @@ def page_service(key):
             f'<div class="card"><span class="n">0{i + 1}</span><h3 class="h-s">{escape(t)}</h3><p>{escape(d)}</p>'
             + (f'<span class="from"><small class="muted">{escape(T["ui"]["from"])}</small> {f}</span>' if f else "") + "</div>"
             for i, (t, d, f) in enumerate(P["feats"]))
-        body = f"""{phero(T, P, key=P.get("img", key.split(":")[-1]))}
+        rel_posts = service_posts(T, key, P)
+        body = f"""{phero(T, P, key=P.get("img", key.split(":")[-1]), reads=rel_posts[:2])}
 <section class="sec"><div class="wrap">
 <div class="sec-head"><h2>{P['feat_title']}</h2></div>
 <div class="cards">{feats}</div></div></section>
+{mockup_block(T, "sec line-top") if key in MK_KEYS else ""}
 {partner_html(P)}
-{process_html(T)}
+{process_html(T) if key not in ("ads", "smm", "leadgen") else ""}
 {seo_html(P['seo'])}
 {faq_html(T, P['faq'])}
-{posts_related(T, P.get("posts") or auto_posts(T, key))}
+{posts_related(T, rel_posts)}
 {related_html(T, key)}"""
         prices = [price_int(f) for _, _, f in P["feats"] if f]
         service = {"@type": "Service", "name": P["crumb"], "serviceType": P["crumb"], "description": P["desc"],
@@ -450,7 +484,8 @@ def page_portfolio(T, ALL):
     P = T["portfolio"]
     body = f"""{phero(T, P, ctas=False, key="portfolio")}
 <section class="sec line-top"><div class="wrap">{case_cards(T, pick_cases(T, PORTFOLIO_CASES))}</div></section>
-<section class="sec line-top"><div class="wrap incl"><div><h2 class="h-l" data-split>{P['more_title']}</h2></div><p class="lead fade">{escape(P['more'])}</p></div></section>"""
+<section class="sec line-top"><div class="wrap incl"><div><h2 class="h-l">{P['more_title']}</h2></div><p class="lead">{escape(P['more'])}</p></div></section>
+{posts_related(T, ["how-we-work", "booking-system", "b2b-email-campaign"])}"""
     items = [{"@type": "CreativeWork", "name": c["name"], "description": c["text"], **({"url": c["url"]} if c.get("url") else {})} for c in pick_cases(T, PORTFOLIO_CASES)]
     schema = graph(org_schema(T), {"@type": "CollectionPage", "name": P["title"], "url": url(T, "portfolio", True),
                                    "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "item": it} for i, it in enumerate(items)]}},
@@ -475,9 +510,11 @@ def page_pricing(T, ALL):
     addons = "".join(f'<div class="prow"><span>{escape(n)}</span><b>{p}</b></div>' for n, p in P["addons"])
     body = f"""{phero(T, P, ctas=False, key="pricing")}
 <section class="sec line-top"><div class="wrap"><h2 class="h-l" data-split>{P['web_title']}</h2><div class="tiers fade">{tier_cards(T, P['web'])}</div></div></section>
+{mockup_block(T, "sec sec-fog")}
 <section class="sec line-top"><div class="wrap"><h2 class="h-l" data-split>{P['mkt_title']}</h2><div class="tiers fade">{tier_cards(T, P['mkt'])}</div></div></section>
 <section class="sec line-top"><div class="wrap incl"><div><h2 class="h-l" data-split>{P['plat_title']}</h2><p class="lead fade" style="margin-top:24px">{escape(P['note'])}</p></div>
 <div class="fade"><div class="plist">{plat_html}</div><h3 class="h-s" style="margin:40px 0 10px">{escape(P['addons_title'])}</h3><div class="plist">{addons}</div></div></div></section>
+{posts_related(T, ["website-cost", "ecommerce-cost", "smm-cost"])}
 {faq_html(T, P['faq'])}"""
     offers = []
     for n, p, per, _ in P["web"] + P["mkt"]:
@@ -508,18 +545,35 @@ def post_card(T, k):
             f'<h3 class="h-s">{escape(p["h1"])}</h3><p>{escape(p["lead"])}</p><span class="go">{ARR_UP}</span></a>')
 
 
-def auto_posts(T, key):
+def service_posts(T, key, P):
+    """Explicit posts of the page first, then newest posts tagged with the service."""
+    out = []
+    tag = {"ecommerce": "web", "restaurants": "web", "clinics": "crm", "rental": "platforms"}.get(key.split(":")[-1], key)
+    for k in list(P.get("posts", [])) + auto_posts(T, tag, 6):
+        if k in T.get("blog", {}).get("posts", {}) and k not in out:
+            out.append(k)
+    return out[:3]
+
+
+def auto_posts(T, key, n=3):
     """Newest posts that list this service key in their 'services'."""
     posts = T.get("blog", {}).get("posts", {})
     hits = [k for k, p in posts.items() if key in p.get("services", [])]
-    return sorted(hits, key=lambda k: posts[k]["iso"], reverse=True)[:3]
+    return sorted(hits, key=lambda k: posts[k]["iso"], reverse=True)[:n]
+
+
+def latest_posts(T, n=3):
+    posts = T.get("blog", {}).get("posts", {})
+    return posts_related(T, sorted(posts, key=lambda k: posts[k]["iso"], reverse=True)[:n])
 
 
 def posts_related(T, keys):
     keys = [k for k in keys if k in T.get("blog", {}).get("posts", {})]
     if not keys:
         return ""
-    return f'<section class="sec sec-fog"><div class="wrap"><div class="sec-head"><h2 class="h-m">{escape(T["blog"]["crumb"])}</h2></div><div class="posts">{"".join(post_card(T, k) for k in keys)}</div></div></section>'
+    return (f'<section class="sec sec-fog"><div class="wrap"><div class="sec-head"><h2 class="h-m">{escape(T["ui"].get("from_blog", T["blog"]["crumb"]))}</h2>'
+            f'<p><a class="btn btn-line" href="{url(T, "blog")}">{escape(T["ui"].get("all_posts", T["blog"]["crumb"]))}</a></p></div>'
+            f'<div class="posts">{"".join(post_card(T, k) for k in keys)}</div></div></section>')
 
 
 def page_blog(T, ALL):

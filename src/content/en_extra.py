@@ -16,3 +16,8 @@ T["case_points"] = {
     "rentme": ["Transport, property and things in one marketplace", "Online booking: 10% now, the rest in person", "Verified hosts, reviews and free listings"],
     "crm": ["Leads from the website and ads in one inbox", "Pipeline, bookings, invoices and reminders", "Roles, reports and integrations"],
 }
+
+T["ui"].update({"read_more": "Read more about our approach:", "all_posts": "All articles", "from_blog": "From the blog"})
+
+# free design mockup offer
+T["ui"].update({'mk_title': 'Free design mockup of your site or platform', 'mk_text': 'Send us a short brief or a link to your current site. We design the main screen of your new website, store or platform, so you see the result before you pay anything.', 'mk_points': ['No obligation, no prepayment', 'A real design for your brand, not a template', 'Comes with a fixed quote for the whole project'], 'mk_cta': 'Get a free mockup', 'mk_note': 'Free design mockup before you decide.', 'mk_subject': 'Free design mockup', 'mk_host': 'your-site.com'})

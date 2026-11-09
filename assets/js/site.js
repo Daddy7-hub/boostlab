@@ -40,9 +40,9 @@
   d.querySelectorAll('a[href^="mailto:"],a[href^="tel:"]').forEach(function (a) {
     a.addEventListener('click', function () {
       if (!window.gtag) return;
-      var m = a.href.split(':')[0] === 'tel' ? 'phone' : 'email';
+      var m = a.getAttribute('data-lead') || (a.href.split(':')[0] === 'tel' ? 'phone' : 'email');
       gtag('event', 'generate_lead', { method: m });
-      var lbl = (window.BL_ADS || {})[m];
+      var ads = window.BL_ADS || {}, lbl = ads[m] || (m === 'mockup' ? ads.email : '');
       if (lbl) gtag('event', 'conversion', { send_to: lbl });
     });
   });

@@ -16,3 +16,8 @@ T["case_points"] = {
     "rentme": ["Transport, majutus ja asjad ühel platvormil", "Veebibroneering: 10% kohe, ülejäänu kohapeal", "Kontrollitud omanikud, arvustused ja tasuta kuulutused"],
     "crm": ["Päringud kodulehelt ja reklaamidest ühte postkasti", "Müügitoru, broneeringud, arved ja meeldetuletused", "Rollid, aruanded ja liidestused"],
 }
+
+T["ui"].update({"read_more": "Loe meie lähenemisest:", "all_posts": "Kõik artiklid", "from_blog": "Blogist"})
+
+# free design mockup offer
+T["ui"].update({'mk_title': 'Tasuta disainikavand teie veebilehele või platvormile', 'mk_text': 'Saatke lühike kirjeldus või link praegusele lehele. Kujundame teie uue veebilehe, e-poe või platvormi põhivaate, et näeksite tulemust enne, kui midagi maksate.', 'mk_points': ['Ilma kohustuste ja ettemakseta', 'Päris disain teie brändile, mitte mall', 'Koos fikseeritud hinnapakkumisega kogu projektile'], 'mk_cta': 'Küsi tasuta kavandit', 'mk_note': 'Tasuta disainikavand enne otsust.', 'mk_subject': 'Tasuta disainikavand', 'mk_host': 'teie-leht.ee'})
